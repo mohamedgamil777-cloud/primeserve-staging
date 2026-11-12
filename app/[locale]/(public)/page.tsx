@@ -14,6 +14,8 @@ import Link from "next/link"
 import { getTranslations } from "next-intl/server"
 import YouTubeVideo from "@/components/common/youtube-video"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
+import workplaceBanner from "@/public/imgs/banners/workplace-platform.webp"
 
 export const dynamic = 'force-dynamic';
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
@@ -78,6 +80,16 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   return (
     <main className="flex min-h-screen flex-col">
       <HeroSection heroSectionData={_store?.storeAssets} />
+      <section className="bg-white">
+        <Link href={`/${locale}/support`} className="block">
+          <Image
+            src={workplaceBanner}
+            alt="PrimeServe: one platform for every workplace"
+            sizes="100vw"
+            className="h-auto w-full"
+          />
+        </Link>
+      </section>
       <Link href={"/account/rewards"}>
         <div className="bg-[#34ca80] font-bold text-white gap-4 px-4 py-2 flex items-center justify-center">
           <span className="text-sm sm:text-base">
