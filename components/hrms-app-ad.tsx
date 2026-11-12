@@ -17,33 +17,34 @@ export default function HrmsAppAd({}: Props) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="overflow-hidden rounded-3xl bg-[#0B1F33] p-8 text-white"
+      className="flex h-full flex-col overflow-hidden rounded-3xl bg-[#0B1F33] p-6 text-white sm:p-8"
     >
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="space-y-4">
+      <div className="flex items-start justify-between gap-4">
+        <div className="space-y-3">
           <Badge className="bg-white/20 text-white hover:bg-white/30 rounded-xl">{t('premium')}</Badge>
-          <h2 className="text-3xl font-bold">{t('human-resources-management-system')}</h2>
-          <p className="max-w-[600px] text-white/80">
-            {t('unleash-your-creativity-with-our-cutting-edge-comprehensive-suite-of-professional-hr-tools-and-resources-bundled-in-one-awesome-app')}
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <a 
-              target='_blank'
-              href={"https://hrms.codmium.com/"}
-              className={cn(buttonVariants({"variant":"default"}),"rounded-2xl bg-[#F26522] text-white hover:bg-[#d9541a]")}
-            >
-              {t('explore-plans')}
-            </a>
-            <a 
-              target='_blank'
-              href={"https://hrms.codmium.com/"}
-              className={cn(buttonVariants({"variant":"outline"}),"rounded-2xl bg-transparent border-white text-white hover:bg-white/10")}
-            >
-              {t('take-a-tour')}
-            </a>
-          </div>
+          <h2 className="text-2xl font-bold sm:text-3xl">{t('human-resources-management-system')}</h2>
         </div>
-        <Image alt={t('budgetm-managment')} height={240} width={240} src={hrAppIcon}/>        
+        <Image alt={t('human-resources-management-system')} height={160} width={160} src={hrAppIcon} className="h-24 w-24 shrink-0 object-contain sm:h-36 sm:w-36"/>
+      </div>
+      <p className="mt-4 text-white/80">
+        {t('unleash-your-creativity-with-our-cutting-edge-comprehensive-suite-of-professional-hr-tools-and-resources-bundled-in-one-awesome-app')}
+      </p>
+      <div className="mt-auto flex flex-wrap gap-3 pt-6">
+        <a 
+          target='_blank'
+          href={"https://hrms.codmium.com/"}
+          className={cn(buttonVariants({"variant":"default"}),"h-11 rounded-xl bg-[#F26522] px-5 text-white hover:bg-[#d9541a]")}
+        >
+          {t('explore-plans')}
+        </a>
+        <a 
+          target='_blank'
+          href={"https://hrms.codmium.com/"}
+          className={cn(buttonVariants({"variant":"outline"}),"h-11 rounded-xl bg-transparent border-white px-5 text-white hover:bg-white/10 hover:text-white")}
+        >
+          {t('take-a-tour')}
+        </a>
+      </div>
         {/* <div className="hidden lg:block">
           <motion.div
             animate={{ rotate: 360 }}
@@ -57,7 +58,6 @@ export default function HrmsAppAd({}: Props) {
             <div className="absolute inset-16 rounded-full bg-white/50" />
           </motion.div>
         </div> */}
-      </div>
     </motion.div>
   )
 }
