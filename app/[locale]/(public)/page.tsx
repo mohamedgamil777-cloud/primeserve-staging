@@ -13,6 +13,7 @@ import { getTranslations } from "next-intl/server"
 import YouTubeVideo from "@/components/common/youtube-video"
 import { ArrowRight, ClipboardCheck, Layers, Search, ShieldCheck, Truck, Users } from "lucide-react"
 import Image from "next/image"
+import { SERVICE_CATEGORY_PRIORITY, SUPPLY_SUBCATEGORY_PRIORITY, sortByPriority } from "@/lib/home-priority"
 import heroDevices from "@/public/imgs/banners/hero-devices.webp"
 
 export const dynamic = 'force-dynamic';
@@ -74,6 +75,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       }
     })
   ]) 
+
+  // Show the most important B2B services and supplies first
+  const serviceCategoriesOrdered = sortByPriority(_serviceCategories, SERVICE_CATEGORY_PRIORITY)
+  const categoriesOrdered = _categories.map(c => ({ ...c, subcategories: sortByPriority(c.subcategories, SUPPLY_SUBCATEGORY_PRIORITY) }))
 
   const steps = [
     { icon: Search, title: t("ui.step1Title"), text: t("ui.step1Text") },
@@ -139,11 +144,11 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         </div>
       </Link>
 
-      <FeaturedServiceCategories categories={_serviceCategories}/>
+      <FeaturedServiceCategories categories={serviceCategoriesOrdered}/>
       {
         _categories.length > 0
         &&
-        <FeaturedCategories isExtended={_store?.storeDisplaySettings?.categoryStyle === "detailed"} categories={_categories} />
+        <FeaturedCategories isExtended={_store?.storeDisplaySettings?.categoryStyle === "detailed"} categories={categoriesOrdered} />
       }
 
       {/* How it works: a smaller video with the three steps beside it. */}
