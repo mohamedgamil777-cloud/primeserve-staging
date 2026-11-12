@@ -1,6 +1,5 @@
 import Link from "next/link"
 import { Facebook, Instagram, Twitter } from "lucide-react"
-import MadeByCodmium from "./made-by-codmium"
 import { getTranslations } from "next-intl/server"
 
 export async function Footer({locale}:{locale:string}) {
@@ -109,7 +108,6 @@ export async function Footer({locale}:{locale:string}) {
           <p>&copy; {new Date().getFullYear()} PrimeServe. All rights reserved.</p>
         </div> */}
       </div>
-      <MadeByCodmium locale={locale}/>
     </footer>
   )
 }
