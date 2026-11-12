@@ -36,14 +36,14 @@ export function Header() {
     //   active: pathname === `${locale}/products`,
     // },
     {
-      href: `/${locale}/categories`,
-      label: t('supplies'),
-      active: pathname === `/${locale}/categories`,
-    },
-    {
       label: t('services'),
       href: `/${locale}/services`,
       active: pathname === `/${locale}/services`,
+    },
+    {
+      href: `/${locale}/categories`,
+      label: t('supplies'),
+      active: pathname === `/${locale}/categories`,
     },
     {
       href: `/${locale}/about`,

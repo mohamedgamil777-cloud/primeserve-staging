@@ -101,12 +101,12 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         <YouTubeVideo videoId="W-uTUPGkQJc" />
       </div>
 
+      <FeaturedServiceCategories categories={_serviceCategories}/>
       {
         _categories.length > 0
         &&
         <FeaturedCategories isExtended={_store?.storeDisplaySettings?.categoryStyle === "detailed"} categories={_categories} />
       }
-      <FeaturedServiceCategories categories={_serviceCategories}/>
       <section className="container px-4 md:px-6 mx-auto py-16 space-y-16">
         <HrmsAppAd/>
         <BudgetManagementAd/>
