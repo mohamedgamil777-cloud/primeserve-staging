@@ -25,10 +25,12 @@ import { getLocalizedValue } from "@/types/internationalization"
 interface ProductCardProps {
   product: ProductItem
   index?: number,
-  detailed?:boolean
+  detailed?:boolean,
+  // Smaller card for the homepage carousel
+  compact?:boolean
 }
 
-export function ProductCard({ product, index = 0, detailed }: ProductCardProps) {
+export function ProductCard({ product, index = 0, detailed, compact }: ProductCardProps) {
   const t = useTranslations()
   const locale = useLocale()
   const router = useRouter()
@@ -131,13 +133,13 @@ export function ProductCard({ product, index = 0, detailed }: ProductCardProps) 
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="relative aspect-square overflow-hidden">
+        <div className={cn("relative overflow-hidden",compact ? "aspect-square sm:aspect-[4/3] bg-white" : "aspect-square")}>
           <div className=" inline" onClick={goToProductPage}>
             <div className="relative h-full w-full">
               <img
                 src={genProductImageUrl(product.mainImage)}
                 alt={localizedProductName}
-                className={cn("object-cover w-full h-full transition-transform duration-300 group-hover:scale-105",isOutOfStock ? "grayscale" : "")}
+                className={cn("w-full h-full transition-transform duration-300 group-hover:scale-105",compact ? "object-contain p-2" : "object-cover",isOutOfStock ? "grayscale" : "")}
               />
               {/* {product.images.length > 1 && (
                 <img
@@ -195,12 +197,12 @@ export function ProductCard({ product, index = 0, detailed }: ProductCardProps) 
 
             <div className={cn("absolute bottom-0 left-0 right-0 p-2 flex flex-col gap-2 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity",isMobile && "opacity-100")}>
               <div className="flex justify-between items-center">
-                <Button variant="secondary" size="icon" className={cn("rounded-full",isInWishList && "bg-primary hover:bg-primary")} onClick={toggleWishState}>
+                <Button variant="secondary" size="icon" className={cn("rounded-full",compact && "h-8 w-8",isInWishList && "bg-primary hover:bg-primary")} onClick={toggleWishState}>
                   <Heart className={"h-4 w-4"} />
                   <span className="sr-only">{t('add-to-wishlist')}</span>
                 </Button>
 
-                <div className="flex items-center bg-background rounded-full overflow-hidden border">
+                <div className={cn("flex items-center bg-background rounded-full overflow-hidden border",compact && "hidden sm:flex")}>
                   <Button
                     variant="ghost"
                     size="icon"
@@ -239,7 +241,7 @@ export function ProductCard({ product, index = 0, detailed }: ProductCardProps) 
                   {t('remove-from-cart')}
                 </Button>
               ) : (
-                <Button size="sm" className="w-full" disabled={isOutOfStock} onClick={handleAddToCart}>
+                <Button size="sm" className={cn("w-full",compact && "h-8 text-xs")} disabled={isOutOfStock} onClick={handleAddToCart}>
                   <ShoppingCart className="h-4 w-4 mr-2" />
                    {isOutOfStock ? t('out-of-stock-0') : t('add-to-cart')}
                 </Button>
@@ -247,13 +249,13 @@ export function ProductCard({ product, index = 0, detailed }: ProductCardProps) 
             </div>
           )}
         </div>
-        <CardContent className="px-4">
+        <CardContent className={compact ? "px-3" : "px-4"}>
           <div onClick={goToProductPage} className="block">
-            <h3 className="font-bold line-clamp-1 hover:underline md:text-lg">{localizedProductName}</h3>
-            <p className="text-sm text-muted-foreground line-clamp-1">{getLocalizedValue(product.category.nameI18n,locale)}</p>
+            <h3 className={cn("font-bold line-clamp-1 hover:underline",compact ? "text-sm" : "md:text-lg")}>{localizedProductName}</h3>
+            <p className={cn("text-muted-foreground line-clamp-1",compact ? "text-xs" : "text-sm")}>{getLocalizedValue(product.category.nameI18n,locale)}</p>
           </div>
         </CardContent>
-        <CardFooter className="p-4 pt-0 flex items-center justify-between">
+        <CardFooter className={cn("pt-0 flex items-center justify-between",compact ? "p-3 pt-0 text-sm" : "p-4 pt-0")}>
           <div className="flex items-center gap-2">
             {(product.discountPercentage ?? 0) > 0 ? (
               <>
@@ -264,11 +266,11 @@ export function ProductCard({ product, index = 0, detailed }: ProductCardProps) 
               <span className="font-medium">EGP {product.price}</span>
             )}
           </div>
-          <div className="flex items-center">
+          <div className={cn("flex items-center",compact && "hidden sm:flex")}>
             {[...Array(5)].map((_, i) => (
               <svg
                 key={i}
-                className={`h-4 w-4 ${i < (product.rating ?? 0) ? "text-yellow-400" : "text-gray-300"}`}
+                className={`${compact ? "h-3 w-3" : "h-4 w-4"} ${i < (product.rating ?? 0) ? "text-yellow-400" : "text-gray-300"}`}
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >

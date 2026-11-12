@@ -18,11 +18,11 @@ export function FeaturedProducts({products,detailed}:Props) {
   const t = useTranslations()
   const isLoading = false
   return (
-    <section className="py-12 md:py-16">
+    <section className="py-10 md:py-14">
       <div className="container px-4 md:px-6 mx-auto">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter text-[#0B1F33] sm:text-4xl">{t('featured-products')}</h2>
+            <h2 className="text-2xl font-bold tracking-tighter text-[#0B1F33] sm:text-3xl">{t('featured-products')}</h2>
             {/* <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
               Discover our handpicked selection of trending items
             </p> */}
@@ -59,21 +59,21 @@ export function FeaturedProducts({products,detailed}:Props) {
               }),
             ]}
             opts={{"align":"start","direction":locale === "ar" ? "rtl" : "ltr"}}
-            className="mt-8"
+            className="mt-6"
           >
-            <CarouselContent className="-ml-4">
+            <CarouselContent className="-ml-3 sm:-ml-4">
               {
                 products?.map((product, index) => (
-                  <CarouselItem key={product.id} className="md:basis-1/2 lg:basis-1/3 xl:basis-1/4 pl-4">
-                    <ProductCard detailed={detailed} product={product} index={index} />
+                  <CarouselItem key={product.id} className="basis-1/2 pl-3 sm:basis-1/3 sm:pl-4 lg:basis-1/4 xl:basis-1/5">
+                    <ProductCard compact detailed={detailed} product={product} index={index} />
                   </CarouselItem>
                 ))
               }
             </CarouselContent>
           </Carousel>
         }
-        <div className="relative z-10 mt-10 flex justify-center">
-          <Button asChild size="lg" className="h-12 rounded-xl bg-[#0B1F33] px-8 text-white hover:bg-[#0B1F33]/90">
+        <div className="relative z-10 mt-8 flex justify-center">
+          <Button asChild size="lg" className="h-11 rounded-xl bg-[#0B1F33] px-6 text-white hover:bg-[#0B1F33]/90">
             <Link href={`/${locale}/products`}>{t('view-all-products')}</Link>
           </Button>
         </div>
