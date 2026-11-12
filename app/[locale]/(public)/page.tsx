@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button"
-import { HeroSection } from "@/components/hero-section"
 import { FeaturedProducts } from "@/components/featured-products"
 import { FeaturedCategories } from "@/components/categories/featured-categories"
 import { Newsletter } from "@/components/newsletter"
@@ -79,13 +78,14 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
   return (
     <main className="flex min-h-screen flex-col">
-      <HeroSection heroSectionData={_store?.storeAssets} />
+      {/* Main hero is the workplace platform banner. The old text hero (HeroSection) is kept in the code but not shown. */}
       <section className="bg-white">
         <Link href={`/${locale}/support`} className="block">
           <Image
             src={workplaceBanner}
             alt="PrimeServe: one platform for every workplace"
             sizes="100vw"
+            priority
             className="h-auto w-full"
           />
         </Link>
