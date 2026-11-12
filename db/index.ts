@@ -9,6 +9,8 @@ const db = drizzle({
     database: env.DB_NAME,
     user: env.DB_USER,
     password: env.DB_PASSWORD,
+    // Hosted databases (Supabase on Vercel) need SSL; the local one doesn't.
+    ssl: process.env.DB_SSL === "true" ? { rejectUnauthorized: false } : undefined,
 	},
   schema:schema
 });

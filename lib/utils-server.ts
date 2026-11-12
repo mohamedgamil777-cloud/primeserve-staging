@@ -3,6 +3,16 @@ import fs from "fs/promises"
 import sharp from "sharp"
 import fsExtra from 'fs-extra';
 import path from "path";
+import { and, eq } from "drizzle-orm";
+
+// On Vercel the file system is read-only, so uploaded images go into the database instead.
+const useDbStorage = () => !!process.env.VERCEL || process.env.IMAGE_STORAGE === "db"
+
+async function getImageStore() {
+    const { db } = await import("@/db")
+    const { uploadedImages } = await import("@/db/schema/uploadedImages")
+    return { db, uploadedImages }
+}
 
 export async function saveImg(buffer:Buffer,width:number,path:string) {
     try{
@@ -19,6 +29,18 @@ export async function saveImg(buffer:Buffer,width:number,path:string) {
 }
 
 export async function safeSaveImg(buffer:Buffer,width:number,dir:string,fileName:string) {
+    if (useDbStorage()) {
+        const data = await sharp(buffer,{"failOnError":false,"failOn":"none"})
+            .resize({width})
+            .webp({"quality":100})
+            .toBuffer()
+        const section = path.basename(dir)
+        const { db, uploadedImages } = await getImageStore()
+        await db.insert(uploadedImages)
+            .values({ section, name: fileName, data })
+            .onConflictDoUpdate({ target: [uploadedImages.section, uploadedImages.name], set: { data } })
+        return
+    }
     try{
         await fs.unlink(path.join(dir,fileName))
     }catch{
@@ -49,9 +71,21 @@ export async function saveFile(file:Buffer|File,path:string) {
 }
 
 
-export async function safeUnlink(path:string) {
+export async function safeUnlink(filePath:string) {
+    if (useDbStorage()) {
+        try {
+            const { db, uploadedImages } = await getImageStore()
+            await db.delete(uploadedImages).where(and(
+                eq(uploadedImages.section, path.basename(path.dirname(filePath))),
+                eq(uploadedImages.name, path.basename(filePath)),
+            ))
+        } catch {
+            // Ignore: the image may only exist as a bundled file
+        }
+        return
+    }
     try{
-        await fs.unlink(path)
+        await fs.unlink(filePath)
     }catch{
         // Do nothing this error means there is no file with that path
     }

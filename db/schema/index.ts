@@ -1,3 +1,4 @@
+export { uploadedImages } from "./uploadedImages"
 export { users } from "./users"
 export { stores } from "./stores"
 export { categories } from "./categories"
