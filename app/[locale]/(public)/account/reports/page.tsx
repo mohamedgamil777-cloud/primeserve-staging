@@ -110,7 +110,7 @@ export default function AccountReportsPage() {
             <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${data?.totals.current.totalSpent.toLocaleString()}</div>
+            <div className="text-2xl font-bold">EGP {data?.totals.current.totalSpent.toLocaleString()}</div>
             <Trend
               cur={data?.totals.current.totalSpent ?? 0}
               prev={data?.totals.previous.totalSpent ?? 0}
@@ -152,7 +152,7 @@ export default function AccountReportsPage() {
             <ShoppingCart className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${(data?.totals.current.avgOrderValue ?? 0).toLocaleString()}</div>
+            <div className="text-2xl font-bold">EGP {(data?.totals.current.avgOrderValue ?? 0).toLocaleString()}</div>
             <Trend
               cur={data?.totals.current.avgOrderValue ?? 0}
               prev={data?.totals.previous.avgOrderValue ?? 0}
@@ -183,7 +183,7 @@ export default function AccountReportsPage() {
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="month" />
                     <YAxis />
-                    <Tooltip formatter={(value) => [`$${value}`, "Amount"]} />
+                    <Tooltip formatter={(value) => [`EGP ${value}`, "Amount"]} />
                     <Area type="monotone" dataKey="amount" stroke="#8884d8" fill="#8884d8" fillOpacity={0.3} />
                   </AreaChart>
                 </ResponsiveContainer>
@@ -243,8 +243,8 @@ export default function AccountReportsPage() {
                         </div>
                       </div>
                       <div className="text-right">
-                        <p className="font-medium">{t("price")}: ${product.price.toLocaleString()}</p>
-                        <Badge variant="secondary">{t("spent")}: ${product.totalSpent.toLocaleString()}</Badge>
+                        <p className="font-medium">{t("price")}: EGP {product.price.toLocaleString()}</p>
+                        <Badge variant="secondary">{t("spent")}: EGP {product.totalSpent.toLocaleString()}</Badge>
                       </div>
                     </div>
                   ))
@@ -318,7 +318,7 @@ export default function AccountReportsPage() {
                       </div>
                       <div className="text-right">
                         <Badge className={cn(getStatusBadgeClassName(order.status as OrderStatus))}>{order.status}</Badge>
-                        <p className="text-sm text-muted-foreground mt-1">${order.totalAmount}</p>
+                        <p className="text-sm text-muted-foreground mt-1">EGP {order.totalAmount}</p>
                       </div>
                     </div>
                   ))
@@ -517,7 +517,7 @@ export default function AccountReportsPage() {
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm">Progress to Platinum</span>
-                    <span className="text-sm text-muted-foreground">$311 / $500</span>
+                    <span className="text-sm text-muted-foreground">EGP 311 / EGP 500</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
                     <div className="bg-yellow-600 h-2 rounded-full" style={{ width: "62%" }}></div>

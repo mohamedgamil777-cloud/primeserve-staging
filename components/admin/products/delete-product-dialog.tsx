@@ -76,7 +76,7 @@ export function DeleteProductDialog({ product, children }: PropsWithChildren<Del
               <div className="space-y-1">
                 <h4 className="font-medium">{getLocalizedValue(product.nameI18n,locale)}</h4>
                 <p className="text-sm text-muted-foreground">{getLocalizedValue(product.category.nameI18n,locale)}</p>
-                <p className="text-sm font-medium">${product.price.toFixed(2)}</p>
+                <p className="text-sm font-medium">EGP {product.price.toFixed(2)}</p>
               </div>
               <Badge variant={(product.stock ?? 0) > 0 ? "default" : "destructive"}>{product.stock} {t('in-stock')}</Badge>
             </div>

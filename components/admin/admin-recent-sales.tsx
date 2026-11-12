@@ -15,7 +15,7 @@ export function AdminRecentSales() {
           fontSize={12}
           tickLine={false}
           axisLine={false}
-          tickFormatter={(value) => `$${value}`}
+          tickFormatter={(value) => `EGP ${value}`}
         />
         <Bar dataKey="orders" fill="currentColor" radius={[4, 4, 0, 0]} className="fill-primary" />
       </BarChart>

@@ -79,8 +79,8 @@ export default function BudgetCard({budget}: Props) {
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="flex justify-between text-sm">
-          <span>{t("spent")}: ${budget.spent.toFixed(2)}</span>
-          <span>{t("budget")}: ${budget.amount.toFixed(2)}</span>
+          <span>{t("spent")}: EGP {budget.spent.toFixed(2)}</span>
+          <span>{t("budget")}: EGP {budget.amount.toFixed(2)}</span>
         </div>
         <Progress
           value={percentage}
@@ -88,7 +88,7 @@ export default function BudgetCard({budget}: Props) {
         />
         <div className="flex justify-between items-center text-sm text-muted-foreground">
           <span>{percentage.toFixed(1)}% {t("used")}</span>
-          <span>${(budget.amount - budget.spent).toFixed(2)} {t("remaining")}</span>
+          <span>EGP {(budget.amount - budget.spent).toFixed(2)} {t("remaining")}</span>
         </div>
         {budget.status === "over" && (
           <div className="flex items-center gap-2 text-red-600 text-sm">

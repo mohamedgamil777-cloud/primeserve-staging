@@ -54,16 +54,16 @@ export default function CartOrderSummary({storeCartSettings}: Props) {
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-muted-foreground">{t('subtotal')}</span>
-            <span>${subtotal.toFixed(2)}</span>
+            <span>EGP {subtotal.toFixed(2)}</span>
           </div>
           <div className="flex items-center justify-between">
             <span className="text-muted-foreground">{t('shipping')}</span>
-            <span>{baseShipping === 0 ? t('free') : `$${baseShipping.toFixed(2)}`}</span>
+            <span>{baseShipping === 0 ? t('free') : `EGP ${baseShipping.toFixed(2)}`}</span>
           </div>
           {shippingDiscount > 0 && (
             <div className="flex items-center justify-between text-green-600">
               <span>{t('shipping-discount')}</span>
-              <span>-${shippingDiscount.toFixed(2)}</span>
+              <span>-EGP {shippingDiscount.toFixed(2)}</span>
             </div>
           )}
           {appliedReward && (
@@ -98,7 +98,7 @@ export default function CartOrderSummary({storeCartSettings}: Props) {
         <Separator />
         <div className="flex items-center justify-between font-medium">
           <span>{t('total')}</span>
-          <span>${finalTotal.toFixed(2)}</span>
+          <span>EGP {finalTotal.toFixed(2)}</span>
         </div>
         {
           !!storeCartSettings?.promotionEnabled

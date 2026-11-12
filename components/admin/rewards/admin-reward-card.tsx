@@ -71,7 +71,7 @@ export default function AdminRewardCard({reward}: Props) {
           {reward.minPurchase > 0 && (
             <>
               <span>•</span>
-              <span>Min. ${reward.minPurchase}</span>
+              <span>Min. EGP {reward.minPurchase}</span>
             </>
           )}
           <span>•</span>

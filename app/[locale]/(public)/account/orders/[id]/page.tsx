@@ -166,9 +166,9 @@ export default async function OrderDetailsPage({params}:{"params":Promise<{"id":
                         <p className="text-sm text-muted-foreground">Variant: {t('no-variant')}</p>
                       </div>
                       <div className="text-right">
-                        <p className="font-medium">${(item.price * item.quantity).toFixed(2)}</p>
+                        <p className="font-medium">EGP {(item.price * item.quantity).toFixed(2)}</p>
                         <p className="text-sm text-muted-foreground">
-                          ${item.price.toFixed(2)} × {item.quantity}
+                          EGP {item.price.toFixed(2)} × {item.quantity}
                         </p>
                       </div>
                     </div>
@@ -181,21 +181,21 @@ export default async function OrderDetailsPage({params}:{"params":Promise<{"id":
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">{t('subtotal')}</span>
-                  <span>${order.subtotal.toLocaleString()}</span>
+                  <span>EGP {order.subtotal.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">{t('shipping')}</span>
-                  <span>{order.freeShipping ? t('free') : `$${order.shippingCost.toLocaleString()}`}</span>
+                  <span>{order.freeShipping ? t('free') : `EGP ${order.shippingCost.toLocaleString()}`}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">{t('tax')}</span>
-                  {/* <span>${order.tax.toFixed(2)}</span> */}
-                  <span>${0}</span>
+                  {/* <span>EGP {order.tax.toFixed(2)}</span> */}
+                  <span>EGP {0}</span>
                 </div>
                 <Separator />
                 <div className="flex justify-between font-medium">
                   <span>{t('total')}</span>
-                  <span>${order.totalAmount.toLocaleString()}</span>
+                  <span>EGP {order.totalAmount.toLocaleString()}</span>
                 </div>
               </div>
             </div>

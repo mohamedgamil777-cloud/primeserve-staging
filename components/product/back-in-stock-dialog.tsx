@@ -113,7 +113,7 @@ export function BackInStockDialog({ product, children }: PropsWithChildren<BackI
           />
           <div className="flex-1">
             <h4 className="font-medium line-clamp-1">{getLocalizedValue(product.nameI18n,locale)}</h4>
-            <p className="text-sm text-muted-foreground">${product.price.toFixed(2)}</p>
+            <p className="text-sm text-muted-foreground">EGP {product.price.toFixed(2)}</p>
           </div>
         </div>
 

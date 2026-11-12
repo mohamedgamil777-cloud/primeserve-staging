@@ -55,7 +55,7 @@ export default function CustomerBudgetManagementPage() {
             <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${totalBudget.toFixed(2)}</div>
+            <div className="text-2xl font-bold">EGP {totalBudget.toFixed(2)}</div>
             <p className="text-xs text-muted-foreground">{t('across-all-active-budgets')}</p>
           </CardContent>
         </Card>
@@ -65,7 +65,7 @@ export default function CustomerBudgetManagementPage() {
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${totalSpent.toFixed(2)}</div>
+            <div className="text-2xl font-bold">EGP {totalSpent.toFixed(2)}</div>
             <p className="text-xs text-muted-foreground">
               {((totalSpent / totalBudget) * 100).toFixed(1)}{t('of-total-budget')}
             </p>
@@ -77,7 +77,7 @@ export default function CustomerBudgetManagementPage() {
             <TrendingDown className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-green-600">${remainingBudget.toFixed(2)}</div>
+            <div className="text-2xl font-bold text-green-600">EGP {remainingBudget.toFixed(2)}</div>
             <p className="text-xs text-muted-foreground">{t('available-to-spend')}</p>
           </CardContent>
         </Card>
@@ -117,7 +117,7 @@ export default function CustomerBudgetManagementPage() {
                       <React.Fragment key={budget.id}>
                         <div className="flex justify-between items-center">
                           <span className="text-sm">{getLocalizedValue(categories?.find(cat=>cat.id === budget.categoryId)?.nameI18n,locale)}</span>
-                          <span className="text-sm font-medium">${budget.spent}</span>
+                          <span className="text-sm font-medium">EGP {budget.spent}</span>
                         </div>
                         <Progress value={(budget.spent / budget.amount)*100} className="h-2" />
                       </React.Fragment>
@@ -173,7 +173,7 @@ export default function CustomerBudgetManagementPage() {
                       </p>
                     </div>
                     <div className="text-right">
-                      <p className="font-medium">${transaction.amount}</p>
+                      <p className="font-medium">EGP {transaction.amount}</p>
                     </div>
                   </div>
                 ))}

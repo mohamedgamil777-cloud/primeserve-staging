@@ -51,7 +51,7 @@ export default function AnalyticKeyMetrics({range}: Props) {
           <DollarSign className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">${sums.current.revenue.toLocaleString()}</div>
+          <div className="text-2xl font-bold">EGP {sums.current.revenue.toLocaleString()}</div>
           <Trend cur={sums.current.revenue} prev={sums.previous.revenue} period={range} />
         </CardContent>
       </Card>

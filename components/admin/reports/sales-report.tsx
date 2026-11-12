@@ -112,7 +112,7 @@ export function SalesReport() {
           <div className="grid gap-4 md:grid-cols-3">
             <div className="space-y-2">
               <p className="text-sm font-medium">Total Sales</p>
-              <p className="text-2xl font-bold">${salesStats.totalSales.toLocaleString()}</p>
+              <p className="text-2xl font-bold">EGP {salesStats.totalSales.toLocaleString()}</p>
             </div>
             <div className="space-y-2">
               <p className="text-sm font-medium">Orders</p>
@@ -120,7 +120,7 @@ export function SalesReport() {
             </div>
             <div className="space-y-2">
               <p className="text-sm font-medium">Average Order Value</p>
-              <p className="text-2xl font-bold">${salesStats.averageOrderValue}</p>
+              <p className="text-2xl font-bold">EGP {salesStats.averageOrderValue}</p>
             </div>
             {/* <div className="space-y-2">
               <p className="text-sm font-medium">Conversion Rate</p>

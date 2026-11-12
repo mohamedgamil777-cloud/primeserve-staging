@@ -53,8 +53,8 @@ export default function ServiceFilters({}: Props) {
             <h3 className="font-medium text-sm">Price Range</h3>
             <Slider defaultValue={[0, 200]} min={0} max={500} step={10} />
             <div className="flex items-center justify-between">
-              <span className="text-sm">$0</span>
-              <span className="text-sm">$500+</span>
+              <span className="text-sm">EGP 0</span>
+              <span className="text-sm">EGP 500+</span>
             </div>
           </div>
 

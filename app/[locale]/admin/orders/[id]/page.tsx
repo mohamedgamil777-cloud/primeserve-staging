@@ -188,9 +188,9 @@ export default function OrderDetails() {
                         <p className="text-sm text-muted-foreground">Variant: {item.variant}</p>
                       </div>
                       <div className="text-right">
-                        <p className="font-medium">${(item.price * item.quantity).toFixed(2)}</p>
+                        <p className="font-medium">EGP {(item.price * item.quantity).toFixed(2)}</p>
                         <p className="text-sm text-muted-foreground">
-                          ${item.price.toFixed(2)} × {item.quantity}
+                          EGP {item.price.toFixed(2)} × {item.quantity}
                         </p>
                       </div>
                     </div>
@@ -203,20 +203,20 @@ export default function OrderDetails() {
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Subtotal</span>
-                  <span>${subtotal.toFixed(2)}</span>
+                  <span>EGP {subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Shipping</span>
-                  <span>{mockOrder.payment.shipping === 0 ? "Free" : `$${mockOrder.payment.shipping.toFixed(2)}`}</span>
+                  <span>{mockOrder.payment.shipping === 0 ? "Free" : `EGP ${mockOrder.payment.shipping.toFixed(2)}`}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Tax</span>
-                  <span>${mockOrder.payment.tax.toFixed(2)}</span>
+                  <span>EGP {mockOrder.payment.tax.toFixed(2)}</span>
                 </div>
                 <Separator />
                 <div className="flex justify-between font-medium">
                   <span>Total</span>
-                  <span>${mockOrder.payment.total.toFixed(2)}</span>
+                  <span>EGP {mockOrder.payment.total.toFixed(2)}</span>
                 </div>
               </div>
             </div>

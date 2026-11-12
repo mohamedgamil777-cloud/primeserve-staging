@@ -69,7 +69,7 @@ export function PromotionsTable({ status }: PromotionsTableProps) {
                 promotion.type === "percentage"
                   ? `${promotion.value}%`
                   : promotion.type === "fixed"
-                    ? `$${promotion.value}`
+                    ? `EGP ${promotion.value}`
                     : promotion.type === "shipping"
                       ? "Free"
                       : promotion.value
@@ -79,7 +79,7 @@ export function PromotionsTable({ status }: PromotionsTableProps) {
               "order":4,
               "head":"Min. Purchase",
               "cellClassName":()=>"text-left",
-              "cell":(all,promotion)=>promotion.minPurchase && promotion.minPurchase > 0 ? `$${promotion.minPurchase?.toLocaleString()}` : "None",
+              "cell":(all,promotion)=>promotion.minPurchase && promotion.minPurchase > 0 ? `EGP ${promotion.minPurchase?.toLocaleString()}` : "None",
             },
             {
               "order":5,

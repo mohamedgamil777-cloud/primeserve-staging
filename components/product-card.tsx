@@ -257,11 +257,11 @@ export function ProductCard({ product, index = 0, detailed }: ProductCardProps) 
           <div className="flex items-center gap-2">
             {(product.discountPercentage ?? 0) > 0 ? (
               <>
-                <span className="font-medium">${product.price * (1 - (product.discountPercentage ?? 0) / 100)}</span>
-                <span className="text-sm text-muted-foreground line-through">${product.price}</span>
+                <span className="font-medium">EGP {product.price * (1 - (product.discountPercentage ?? 0) / 100)}</span>
+                <span className="text-sm text-muted-foreground line-through">EGP {product.price}</span>
               </>
             ) : (
-              <span className="font-medium">${product.price}</span>
+              <span className="font-medium">EGP {product.price}</span>
             )}
           </div>
           <div className="flex items-center">

@@ -69,14 +69,14 @@ export default function CartItem({item}: Props) {
           {(item.product.discountPercentage ?? 0) > 0 ? (
             <>
               <span className="font-medium">
-                ${(item.product.price * (1 - (item.product.discountPercentage ?? 0) / 100) * item.quantity).toFixed(2)}
+                EGP {(item.product.price * (1 - (item.product.discountPercentage ?? 0) / 100) * item.quantity).toFixed(2)}
               </span>
               <span className="text-sm text-muted-foreground line-through">
-                ${(item.product.price * item.quantity).toFixed(2)}
+                EGP {(item.product.price * item.quantity).toFixed(2)}
               </span>
             </>
           ) : (
-            <span className="font-medium">${(item.product.price * item.quantity).toFixed(2)}</span>
+            <span className="font-medium">EGP {(item.product.price * item.quantity).toFixed(2)}</span>
           )}
         </div>
         <Button

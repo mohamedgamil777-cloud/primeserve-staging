@@ -97,7 +97,7 @@ export default function AdminServicesPage() {
             <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${totalRevenue.toLocaleString()}</div>
+            <div className="text-2xl font-bold">EGP {totalRevenue.toLocaleString()}</div>
             <p className="text-xs text-muted-foreground">+8% from last month</p>
           </CardContent>
         </Card>
@@ -193,7 +193,7 @@ export default function AdminServicesPage() {
                   "cellClassName":()=>"text-left",
                   "cell":(allServices,service)=>(
                     service.pricingModel === "fixed" ? (
-                        <span className="font-semibold">${service.price}</span>
+                        <span className="font-semibold">EGP {service.price}</span>
                       ) : (
                         <Badge>Quote Required</Badge>
                       )

@@ -17,7 +17,7 @@ export default function AppliedCartReward({}: Props) {
           <h4 className="font-medium text-green-800">{appliedReward?.reward?.name}</h4>
           <p className="text-sm text-green-600">
             {appliedReward?.reward?.type === "discount"
-              ? `$${appliedReward.reward?.name} ${t('discount-applied')}`
+              ? `${appliedReward.reward?.name} ${t('discount-applied')}`
               : t('free-shipping-applied')}
           </p>
           {/* <p className="text-xs text-green-600 font-mono">{appliedReward.code}</p> */}

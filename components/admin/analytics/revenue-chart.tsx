@@ -29,13 +29,13 @@ export function RevenueChart({ current:currentData, previous:previousData }: Pic
           fontSize={12}
           tickLine={false}
           axisLine={false}
-          tickFormatter={(value) => `$${value}`}
+          tickFormatter={(value) => `EGP ${value}`}
         />
         <Tooltip 
           formatter={(value, name) => {
             // const formattedName = name === 'currentRevenue' ? 'Current Period' : 'Previous Period'
             const formattedName = name
-            return [`$${value}`, formattedName]
+            return [`EGP ${value}`, formattedName]
           }} 
           labelStyle={{ color: "#000" }} 
         />

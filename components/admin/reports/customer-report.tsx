@@ -91,7 +91,7 @@ export function CustomerReport() {
             </div>
             {/* <div className="space-y-2">
               <p className="text-sm font-medium">Average CLV</p>
-              <p className="text-2xl font-bold">$1,456</p>
+              <p className="text-2xl font-bold">EGP 1,456</p>
             </div>
             <div className="space-y-2">
               <p className="text-sm font-medium">Retention Rate</p>

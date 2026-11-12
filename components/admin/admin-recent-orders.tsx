@@ -35,7 +35,7 @@ export function AdminRecentOrders() {
             >
               {order.status}
             </Badge>
-            <p className="text-sm font-medium">${order.totalAmount.toFixed(2)}</p>
+            <p className="text-sm font-medium">EGP {order.totalAmount.toFixed(2)}</p>
           </div>
         </div>
       ))}

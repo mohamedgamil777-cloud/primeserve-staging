@@ -112,7 +112,7 @@ export default function ProductsPage() {
               "head":"Price",
               "cellClassName":()=>"text-left",
               "cell":(allProducts,product)=>(
-                `$${product.price.toLocaleString()}`
+                `EGP ${product.price.toLocaleString()}`
               )
             },
             {

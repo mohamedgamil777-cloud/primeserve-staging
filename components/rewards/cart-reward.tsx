@@ -13,7 +13,7 @@ export default function CartReward({reward}: Props) {
   const { applyReward, subtotal } = useCart()
   const handleApplyReward = () => {
     if (subtotal < (reward.reward?.minPurchase ?? 0)) {
-      toast.error(`Minimum purchase of $${reward.reward?.minPurchase} required for this reward`)
+      toast.error(`Minimum purchase of EGP ${reward.reward?.minPurchase} required for this reward`)
       return
     }
     applyReward(reward)
@@ -39,7 +39,7 @@ export default function CartReward({reward}: Props) {
           </div>
           {!canApply && (
             <p className="text-xs text-orange-600 mt-1">
-              Add ${((reward.reward?.minPurchase ?? 0) - subtotal).toFixed(2)} more to use this reward
+              Add EGP {((reward.reward?.minPurchase ?? 0) - subtotal).toFixed(2)} more to use this reward
             </p>
           )}
         </div>

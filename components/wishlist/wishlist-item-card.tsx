@@ -52,7 +52,7 @@ export default function WishlistItemCard({item}: Props) {
         <h4 className="font-medium">{getLocalizedValue(item.nameI18n,locale)}</h4>
         <p className="text-sm text-muted-foreground">Category: {getLocalizedValue(item.category,locale)}</p>
         <p className="text-sm text-muted-foreground">Added on: {formatDate(item.addedOn)}</p>
-        <p className="font-medium mt-1">${item.price.toFixed(2)}</p>
+        <p className="font-medium mt-1">EGP {item.price.toFixed(2)}</p>
         {!item.inStock && <p className="text-sm text-destructive mt-1">Out of stock</p>}
       </div>
       <div className="flex flex-col sm:flex-row gap-2 mt-4 sm:mt-0">

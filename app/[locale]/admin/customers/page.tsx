@@ -95,7 +95,7 @@ export default function CustomersPage() {
               "order":4,
               "head":"Total Spent",
               "cellClassName":()=>"text-left",
-              "cell":(allCustomers,customer)=>`$${customer.spent.toLocaleString()}`,
+              "cell":(allCustomers,customer)=>`EGP ${customer.spent.toLocaleString()}`,
             },
             {
               "order":5,

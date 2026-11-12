@@ -104,7 +104,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             <div className="flex items-center gap-6 mb-6">
               <div className="flex items-center gap-2">
                 <DollarSign className="h-5 w-5 text-primary" />
-                <span className="text-2xl font-bold">${service.price}</span>
+                <span className="text-2xl font-bold">EGP {service.price}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="h-5 w-5 text-muted-foreground" />
@@ -209,7 +209,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     {service.addOns.map((addon, index) => (
                       <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
                         <span>{addon.name}</span>
-                        <span className="font-semibold">+${addon.price}</span>
+                        <span className="font-semibold">+EGP {addon.price}</span>
                       </div>
                     ))}
                   </div>

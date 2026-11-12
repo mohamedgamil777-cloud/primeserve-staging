@@ -305,7 +305,7 @@ export default function BookServicePage({service}:Props) {
                             {addon.name}
                           </Label>
                         </div>
-                        <span className="font-semibold">+${addon.price}</span>
+                        <span className="font-semibold">+EGP {addon.price}</span>
                       </div>
                     ))}
                   </CardContent>
@@ -328,7 +328,7 @@ export default function BookServicePage({service}:Props) {
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span>{getLocalizedValue(service.nameI18n,locale)}</span>
-                    <span>${service.price}</span>
+                    <span>EGP {service.price}</span>
                   </div>
 
                   {form.watch("addtionalServiceIds")?.map((addonId) => {
@@ -336,7 +336,7 @@ export default function BookServicePage({service}:Props) {
                     return addon ? (
                       <div key={addon.id} className="flex justify-between text-sm">
                         <span>{addon.name}</span>
-                        <span>+${addon.price}</span>
+                        <span>+EGP {addon.price}</span>
                       </div>
                     ) : null
                   })}
@@ -344,7 +344,7 @@ export default function BookServicePage({service}:Props) {
                 
                   <div className="flex justify-between text-sm">
                     <span>Rush fee</span>
-                    <span>+${
+                    <span>+EGP {
                         form.watch("urgency") === "high"
                         ?
                         service.highPriorityFee
@@ -364,7 +364,7 @@ export default function BookServicePage({service}:Props) {
 
                 <div className="flex justify-between font-semibold text-lg">
                   <span>Total</span>
-                  <span>${calculateTotal()}</span>
+                  <span>EGP {calculateTotal()}</span>
                 </div>
 
                 <div className="space-y-2 text-sm text-muted-foreground">

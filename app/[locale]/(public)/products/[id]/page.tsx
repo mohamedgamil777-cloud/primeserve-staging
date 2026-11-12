@@ -174,11 +174,11 @@ export default function ProductPage() {
             <div className="flex items-center gap-2">
               {discountedPrice ? (
                 <>
-                  <span className="text-2xl font-bold">${discountedPrice.toFixed(2)}</span>
-                  <span className="text-lg text-muted-foreground line-through">${product.price.toFixed(2)}</span>
+                  <span className="text-2xl font-bold">EGP {discountedPrice.toFixed(2)}</span>
+                  <span className="text-lg text-muted-foreground line-through">EGP {product.price.toFixed(2)}</span>
                 </>
               ) : (
-                <span className="text-2xl font-bold">${product.price.toFixed(2)}</span>
+                <span className="text-2xl font-bold">EGP {product.price.toFixed(2)}</span>
               )}
             </div>
             <p className="text-muted-foreground">{product.description}</p>

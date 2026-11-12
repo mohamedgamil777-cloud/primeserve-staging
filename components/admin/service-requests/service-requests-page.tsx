@@ -202,8 +202,8 @@ export default function ServiceRequestsPage({pendingCount,confirmedCount,inProgr
                   "head":"Cost",
                   "cell":(allRequests,request)=>(
                     <div>
-                      {request.budget && <div className="text-sm">Budget: ${request.budget}</div>}
-                      {request.budget && <div className="font-medium">Act: {request.service.pricingModel === "fixed" ? `$${request.service.price}` : " Needs Quote"}</div>}
+                      {request.budget && <div className="text-sm">Budget: EGP {request.budget}</div>}
+                      {request.budget && <div className="font-medium">Act: {request.service.pricingModel === "fixed" ? `EGP ${request.service.price}` : " Needs Quote"}</div>}
                     </div>
                   ),
                   "cellClassName":()=>"font-medium text-left"

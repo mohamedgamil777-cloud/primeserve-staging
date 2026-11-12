@@ -36,7 +36,7 @@ export default function CustomerOrder({order}: Props) {
           </div>
           <p className="text-sm text-muted-foreground">{formatDate(order.createdAt)}</p>
           <p className="text-sm mt-2">
-            {order.productsCount} items • Total: ${order.totalAmount.toLocaleString()}
+            {order.productsCount} items • Total: EGP {order.totalAmount.toLocaleString()}
           </p>
         </div>
         <div className="flex items-center gap-2 self-end sm:self-center">

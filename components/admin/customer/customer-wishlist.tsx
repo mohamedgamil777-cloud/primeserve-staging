@@ -47,7 +47,7 @@ export default function CustomerWishlist({customerId}: Props) {
                 </div>
                 <div className="flex flex-1 flex-col">
                   <h4 className="font-medium">{getLocalizedValue(item.nameI18n,locale)}</h4>
-                  <p className="text-sm text-muted-foreground">${item.price.toFixed(2)}</p>
+                  <p className="text-sm text-muted-foreground">EGP {item.price.toFixed(2)}</p>
                 </div>
                 <Button variant="outline" size="sm" asChild>
                   <Link href={`/${locale}/admin/products/${item.id}`}>

@@ -68,9 +68,9 @@ export function CartPreview() {
                       <h4 className="text-sm font-medium line-clamp-1">{getLocalizedValue(item.product.nameI18n,locale)}</h4>
                       <p className="text-sm font-medium">
                         {(item.product.discountPercentage ?? 0) > 0 ? (
-                          <span>${(item.product.price * (1 - (item.product.discountPercentage ?? 0) / 100)).toFixed(2)}</span>
+                          <span>EGP {(item.product.price * (1 - (item.product.discountPercentage ?? 0) / 100)).toFixed(2)}</span>
                         ) : (
-                          <span>${item.product.price.toFixed(2)}</span>
+                          <span>EGP {item.product.price.toFixed(2)}</span>
                         )}
                       </p>
                     </div>
@@ -86,7 +86,7 @@ export function CartPreview() {
             <div className="p-4 space-y-4">
               <div className="flex items-center justify-between font-medium">
                 <span>{t('subtotal')}</span>
-                <span>${subtotal.toFixed(2)}</span>
+                <span>EGP {subtotal.toFixed(2)}</span>
               </div>
               <div className="flex flex-col gap-2">
                 <Button asChild className="w-full">

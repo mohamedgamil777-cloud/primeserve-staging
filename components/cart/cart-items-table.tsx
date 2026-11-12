@@ -99,14 +99,14 @@ export default function CartItemsTable({}: Props) {
                 {item.product.discountPercentage > 0 ? (
                   <div className="flex flex-col items-end">
                     <span className="font-medium">
-                      ${(item.product.price * (1 - item.product.discountPercentage / 100)).toFixed(2)}
+                      EGP {(item.product.price * (1 - item.product.discountPercentage / 100)).toFixed(2)}
                     </span>
                     <span className="text-xs text-muted-foreground line-through">
-                      ${item.product.price.toFixed(2)}
+                      EGP {item.product.price.toFixed(2)}
                     </span>
                   </div>
                 ) : (
-                  <span>${item.product.price.toFixed(2)}</span>
+                  <span>EGP {item.product.price.toFixed(2)}</span>
                 )}
               </TableCell>
               <TableCell>
@@ -154,7 +154,7 @@ export default function CartItemsTable({}: Props) {
                 </div>
               </TableCell>
               <TableCell className="text-right font-medium">
-                ${(item.product.price * (1 - (item.product.discountPercentage ?? 0) / 100) * item.quantity).toFixed(2)}
+                EGP {(item.product.price * (1 - (item.product.discountPercentage ?? 0) / 100) * item.quantity).toFixed(2)}
               </TableCell>
               <TableCell className="text-right">
                 <Button

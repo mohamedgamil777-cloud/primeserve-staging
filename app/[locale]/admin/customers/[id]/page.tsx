@@ -137,7 +137,7 @@ export default async function CustomerProfile({params}:{"params":Promise<{"id":s
               </div>
               <div className="flex items-center">
                 <CreditCard className="mr-2 h-4 w-4 text-muted-foreground" />
-                <span>Total spent: ${customer.totalSpent.toLocaleString()}</span>
+                <span>Total spent: EGP {customer.totalSpent.toLocaleString()}</span>
               </div>
             </div>
 

@@ -171,7 +171,7 @@ export function CreatePromotionDialog({ initialData, children }: PropsWithChildr
                     <FormLabel>{form.watch("type") === "percentage" ? "Percentage" : "Amount"}</FormLabel>
                     <FormControl>
                       <div className="flex items-center gap-2">
-                        {form.watch("type") === "fixed" && <span className="text-sm">$</span>}
+                        {form.watch("type") === "fixed" && <span className="text-sm">EGP</span>}
                         <Input 
                           {...field} 
                           value={field.value ?? 0} 
@@ -211,7 +211,7 @@ export function CreatePromotionDialog({ initialData, children }: PropsWithChildr
                   <FormLabel>Min. Purchase</FormLabel>
                   <FormControl>
                     <div className="flex items-center gap-2">
-                      <span className="text-sm">$</span>
+                      <span className="text-sm">EGP</span>
                       <Input 
                         {...field} 
                         value={field.value ?? 0} 
