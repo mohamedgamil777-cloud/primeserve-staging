@@ -46,6 +46,11 @@ export function Header() {
       active: pathname === `/${locale}/categories`,
     },
     {
+      href: `/${locale}/employee-experience`,
+      label: t('eePage.nav'),
+      active: pathname === `/${locale}/employee-experience`,
+    },
+    {
       href: `/${locale}/about`,
       label: t('about'),
       active: pathname === `/${locale}/about`,
