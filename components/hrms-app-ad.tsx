@@ -4,7 +4,8 @@ import { Badge } from './ui/badge'
 import { Button, buttonVariants } from './ui/button'
 import { motion } from "framer-motion"
 import { cn } from '@/lib/utils'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
+import Link from 'next/link'
 import Image from 'next/image'
 import hrAppIcon from "@/public/imgs/hr_app_ico.png"
 
@@ -12,6 +13,7 @@ type Props = {}
 
 export default function HrmsAppAd({}: Props) {
   const t = useTranslations()
+  const locale = useLocale()
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -30,20 +32,12 @@ export default function HrmsAppAd({}: Props) {
         {t('unleash-your-creativity-with-our-cutting-edge-comprehensive-suite-of-professional-hr-tools-and-resources-bundled-in-one-awesome-app')}
       </p>
       <div className="mt-auto flex flex-wrap gap-3 pt-6">
-        <a 
-          target='_blank'
-          href={"https://hrms.codmium.com/"}
+        <Link
+          href={`/${locale}/employee-experience`}
           className={cn(buttonVariants({"variant":"default"}),"h-11 rounded-xl bg-[#F26522] px-5 text-white hover:bg-[#d9541a]")}
         >
-          {t('explore-plans')}
-        </a>
-        <a 
-          target='_blank'
-          href={"https://hrms.codmium.com/"}
-          className={cn(buttonVariants({"variant":"outline"}),"h-11 rounded-xl bg-transparent border-white px-5 text-white hover:bg-white/10 hover:text-white")}
-        >
           {t('take-a-tour')}
-        </a>
+        </Link>
       </div>
         {/* <div className="hidden lg:block">
           <motion.div
