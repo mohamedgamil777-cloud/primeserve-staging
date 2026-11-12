@@ -1,0 +1,2 @@
+export const genStoreLogoUrl = (logo?:string|null) => logo ? `/imgs/stores/logo/${logo}` : "/placeholder.png"
+export const genStoreTeamMemberImageUrl = (logo?:string|null) => logo ? `/imgs/team/${logo}` : "/placeholder.png"

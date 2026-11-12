@@ -1,0 +1,61 @@
+import {
+  Plus,
+  Search,
+  MoreHorizontal,
+  Edit,
+  Trash2,
+  Eye,
+  Monitor,
+  Smartphone,
+  Gamepad2,
+  Laptop,
+  Tv,
+  Speaker,
+  Headphones,
+  Camera,
+  Printer,
+  Router,
+  HardDrive,
+  Cpu,
+  Battery,
+  Zap,
+  Settings,
+  Wrench,
+  Hammer,
+  WrenchIcon as Screwdriver,
+  Home,
+  Building,
+  Car,
+  Truck,
+} from "lucide-react"
+
+
+export const availableIcons = [
+  { name: "Monitor", icon: Monitor },
+  { name: "Smartphone", icon: Smartphone },
+  { name: "Gamepad2", icon: Gamepad2 },
+  { name: "Laptop", icon: Laptop },
+  { name: "Tv", icon: Tv },
+  { name: "Speaker", icon: Speaker },
+  { name: "Headphones", icon: Headphones },
+  { name: "Camera", icon: Camera },
+  { name: "Printer", icon: Printer },
+  { name: "Router", icon: Router },
+  { name: "HardDrive", icon: HardDrive },
+  { name: "Cpu", icon: Cpu },
+  { name: "Battery", icon: Battery },
+  { name: "Zap", icon: Zap },
+  { name: "Settings", icon: Settings },
+  { name: "Wrench", icon: Wrench },
+  { name: "Hammer", icon: Hammer },
+  { name: "Screwdriver", icon: Screwdriver },
+  { name: "Home", icon: Home },
+  { name: "Building", icon: Building },
+  { name: "Car", icon: Car },
+  { name: "Truck", icon: Truck },
+]
+
+export const getIconComponent = (iconName: string) => {
+  const iconItem = availableIcons.find((icon) => icon.name === iconName)
+  return iconItem ? iconItem.icon : Monitor
+}

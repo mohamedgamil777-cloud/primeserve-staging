@@ -1,0 +1,1 @@
+export const genCategoryImageUrl = (categoryImage?:string|null) => categoryImage ? `/api/imgs/categories/${categoryImage}`  : "/placeholder.png"

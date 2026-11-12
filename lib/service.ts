@@ -1,0 +1,1 @@
+export const genServiceImageUrl = (serviceImage?:string|null) => serviceImage ? `/api/imgs/services/${serviceImage}`  : "/placeholder.png"

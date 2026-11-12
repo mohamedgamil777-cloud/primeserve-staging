@@ -1,0 +1,11 @@
+{
+  "i18n-ally.localesPaths": [
+    "i18n",
+    "messages",
+    "components/languages",
+    "components/messages",
+    "public/locales",
+    "app/api/messages",
+    "app/[locale]/admin/messages"
+  ]
+}
