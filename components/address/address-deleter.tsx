@@ -1,4 +1,5 @@
 "use client"
+import { useTranslations } from "next-intl"
 import { deleteAddress } from '@/actions/address'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
@@ -13,6 +14,7 @@ type Props = {
 }
 
 export default function AddressDeleter({address,children}: PropsWithChildren<Props>) {
+  const tx = useTranslations("ui")
   const queryClient = useQueryClient()
   const handleDeleteAddress = async()=>{
     try {
@@ -23,7 +25,7 @@ export default function AddressDeleter({address,children}: PropsWithChildren<Pro
         toast.success(`Address "${address.name}" has been deleted successfully.`)
       } 
     } catch (error) {
-      toast.error("Something went wrong, try again later.")
+      toast.error(tx("somethingWrong"))
     }
   }
   return (
@@ -40,16 +42,15 @@ export default function AddressDeleter({address,children}: PropsWithChildren<Pro
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+          <AlertDialogTitle>{tx("sureTitle")}</AlertDialogTitle>
           <AlertDialogDescription>
-            This will permanently delete {address.name} from the system. This action cannot be
-            undone.
+            {tx("deleteAddressText",{name:address.name})}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel>{tx("cancel")}</AlertDialogCancel>
           <AlertDialogAction onClick={handleDeleteAddress} className="bg-red-600 hover:bg-red-700">
-            Delete
+            {tx("delete")}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

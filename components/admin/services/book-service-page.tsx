@@ -1,4 +1,6 @@
 "use client"
+import { useTranslations } from "next-intl"
+import { localizeContent } from "@/lib/content-ar"
 
 import type React from "react"
 
@@ -33,6 +35,7 @@ export default function BookServicePage({service}:Props) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const router = useRouter()
   const locale = useLocale()
+  const tb = useTranslations("bookPage")
 
   const form = useForm<z.infer<typeof insertServiceRequestSchema>>({
     resolver: zodResolver(insertServiceRequestSchema),
@@ -75,12 +78,12 @@ export default function BookServicePage({service}:Props) {
       const res = await updateServiceRequest(values)
       if(res.error) toast.error(res.error)
       else{
-        toast.success("Service request submitted successfully! We'll contact you within 24 hours to confirm.")
+        toast.success(tb("submitted"))
         form.reset()
         router.push("/services")
       }
     } catch (error) {
-        toast.error("Something went wrong, try again later.")
+        toast.error(tb("somethingWrong"))
     }
     setIsSubmitting(false)
     
@@ -90,8 +93,8 @@ export default function BookServicePage({service}:Props) {
     <div className="container mx-auto px-4 py-8">
       <div className="mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">Book Service</h1>
-          <p className="text-muted-foreground">Schedule your {getLocalizedValue(service.nameI18n,locale)}</p>
+          <h1 className="text-3xl font-bold mb-2">{tb("bookService")}</h1>
+          <p className="text-muted-foreground">{tb("scheduleYour",{name:getLocalizedValue(service.nameI18n,locale) ?? ""})}</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -101,8 +104,8 @@ export default function BookServicePage({service}:Props) {
               <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
                 <Card>
                   <CardHeader>
-                    <CardTitle>Project Address</CardTitle>
-                    <CardDescription>Where should we perform the service?</CardDescription>
+                    <CardTitle>{tb("projectAddress")}</CardTitle>
+                    <CardDescription>{tb("whereService")}</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <FormField
@@ -124,8 +127,8 @@ export default function BookServicePage({service}:Props) {
     
                 <Card>
                   <CardHeader>
-                    <CardTitle>Project Details</CardTitle>
-                    <CardDescription>Tell us about your specific requirements</CardDescription>
+                    <CardTitle>{tb("projectDetails")}</CardTitle>
+                    <CardDescription>{tb("tellUs")}</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <FormField
@@ -133,10 +136,10 @@ export default function BookServicePage({service}:Props) {
                       name="description"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Project Description</FormLabel>
+                          <FormLabel>{tb("projectDescription")}</FormLabel>
                           <FormControl>
                             <Textarea
-                              placeholder="Please describe your project in detail..."
+                              placeholder={tb("describePh")}
                               rows={6}
                               {...field}
                               value={field.value ?? ""}
@@ -153,17 +156,17 @@ export default function BookServicePage({service}:Props) {
                         name="budget"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Estimated Budget Range</FormLabel>
+                            <FormLabel>{tb("budget")}</FormLabel>
                             <Select onValueChange={field.onChange} value={field.value}>
                               <FormControl>
                                 <SelectTrigger className=' w-full'>
-                                  <SelectValue placeholder="Select budget range" />
+                                  <SelectValue placeholder={tb("budgetPh")} />
                                 </SelectTrigger>
                               </FormControl>
                               <SelectContent>
                                 {Object.entries(serviceBudgets).map(([value, label]) => (
                                   <SelectItem key={value} value={value}>
-                                    {label}
+                                    {localizeContent(label, locale)}
                                   </SelectItem>
                                 ))}
                               </SelectContent>
@@ -178,17 +181,17 @@ export default function BookServicePage({service}:Props) {
                         name="timeline"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Desired Timeline</FormLabel>
+                            <FormLabel>{tb("timeline")}</FormLabel>
                             <Select onValueChange={field.onChange} value={field.value}>
                               <FormControl>
                                 <SelectTrigger className=' w-full'>
-                                  <SelectValue placeholder="Select timeline" />
+                                  <SelectValue placeholder={tb("timelinePh")} />
                                 </SelectTrigger>
                               </FormControl>
                               <SelectContent>
                                 {Object.entries(serviceTimeLines).map(([value, label]) => (
                                   <SelectItem key={value} value={value}>
-                                    {label}
+                                    {localizeContent(label, locale)}
                                   </SelectItem>
                                 ))}
                               </SelectContent>
@@ -204,18 +207,18 @@ export default function BookServicePage({service}:Props) {
                       name="desiredDaytime"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Desired Time of Day</FormLabel>
+                          <FormLabel>{tb("timeOfDay")}</FormLabel>
                           <Select onValueChange={field.onChange} value={field.value}>
                             <FormControl>
                               <SelectTrigger className=' w-full'>
-                                <SelectValue placeholder="Select preferred time" />
+                                <SelectValue placeholder={tb("timePh")} />
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                              <SelectItem value="morning">Morning (8AM–12PM)</SelectItem>
-                              <SelectItem value="afternoon">Afternoon (12PM–4PM)</SelectItem>
-                              <SelectItem value="evening">Evening (4PM–8PM)</SelectItem>
-                              <SelectItem value="anytime">Anytime</SelectItem>
+                              <SelectItem value="morning">{tb("morning")}</SelectItem>
+                              <SelectItem value="afternoon">{tb("afternoon")}</SelectItem>
+                              <SelectItem value="evening">{tb("evening")}</SelectItem>
+                              <SelectItem value="anytime">{tb("anytime")}</SelectItem>
                             </SelectContent>
                           </Select>
                           <FormMessage />
@@ -227,7 +230,7 @@ export default function BookServicePage({service}:Props) {
                       name="contactMethod"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Preferred Contact Method</FormLabel>
+                          <FormLabel>{tb("contactMethod")}</FormLabel>
                           <FormControl>
                             <RadioGroup
                               className="mt-2"
@@ -236,15 +239,15 @@ export default function BookServicePage({service}:Props) {
                             >
                               <div className="flex items-center space-x-2">
                                 <RadioGroupItem value="email" id="email-contact" />
-                                <Label htmlFor="email-contact">Email</Label>
+                                <Label htmlFor="email-contact">{tb("email")}</Label>
                               </div>
                               <div className="flex items-center space-x-2">
                                 <RadioGroupItem value="phone" id="phone-contact" />
-                                <Label htmlFor="phone-contact">Phone</Label>
+                                <Label htmlFor="phone-contact">{tb("phone")}</Label>
                               </div>
                               <div className="flex items-center space-x-2">
                                 <RadioGroupItem value="both" id="both-contact" />
-                                <Label htmlFor="both-contact">Either</Label>
+                                <Label htmlFor="both-contact">{tb("either")}</Label>
                               </div>
                             </RadioGroup>
                           </FormControl>
@@ -258,7 +261,7 @@ export default function BookServicePage({service}:Props) {
                       name="urgency"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Project Urgency</FormLabel>
+                          <FormLabel>{tb("urgency")}</FormLabel>
                           <FormControl>
                             <RadioGroup
                               className="mt-2"
@@ -267,15 +270,15 @@ export default function BookServicePage({service}:Props) {
                             >
                               <div className="flex items-center space-x-2">
                                 <RadioGroupItem value="low" id="urgency-low" />
-                                <Label htmlFor="urgency-low">Low - Planning phase</Label>
+                                <Label htmlFor="urgency-low">{tb("low")}</Label>
                               </div>
                               <div className="flex items-center space-x-2">
                                 <RadioGroupItem value="medium" id="urgency-medium" />
-                                <Label htmlFor="urgency-medium">Medium - Start in a month</Label>
+                                <Label htmlFor="urgency-medium">{tb("medium")}</Label>
                               </div>
                               <div className="flex items-center space-x-2">
                                 <RadioGroupItem value="high" id="urgency-high" />
-                                <Label htmlFor="urgency-high">High - Urgent</Label>
+                                <Label htmlFor="urgency-high">{tb("high")}</Label>
                               </div>
                             </RadioGroup>
                           </FormControl>
@@ -289,8 +292,8 @@ export default function BookServicePage({service}:Props) {
                 {/* Additional Services */}
                 <Card>
                   <CardHeader>
-                    <CardTitle>Additional Services</CardTitle>
-                    <CardDescription>Add extra services to your booking</CardDescription>
+                    <CardTitle>{tb("additional")}</CardTitle>
+                    <CardDescription>{tb("additionalText")}</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     {service.addOns.map((addon) => (
@@ -302,7 +305,7 @@ export default function BookServicePage({service}:Props) {
                             onCheckedChange={(checked) => handleAddonChange(addon.id, checked as boolean)}
                           />
                           <Label htmlFor={addon.id} className="font-medium">
-                            {addon.name}
+                            {localizeContent(addon.name, locale)}
                           </Label>
                         </div>
                         <span className="font-semibold">+EGP {addon.price}</span>
@@ -322,7 +325,7 @@ export default function BookServicePage({service}:Props) {
           <div>
             <Card className="sticky top-6">
               <CardHeader>
-                <CardTitle>Order Summary</CardTitle>
+                <CardTitle>{tb("summary")}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-2">
@@ -335,7 +338,7 @@ export default function BookServicePage({service}:Props) {
                     const addon = service.addOns.find((a) => a.id === addonId)
                     return addon ? (
                       <div key={addon.id} className="flex justify-between text-sm">
-                        <span>{addon.name}</span>
+                        <span>{localizeContent(addon.name, locale)}</span>
                         <span>+EGP {addon.price}</span>
                       </div>
                     ) : null
@@ -343,7 +346,7 @@ export default function BookServicePage({service}:Props) {
 
                 
                   <div className="flex justify-between text-sm">
-                    <span>Rush fee</span>
+                    <span>{tb("rush")}</span>
                     <span>+EGP {
                         form.watch("urgency") === "high"
                         ?
@@ -363,28 +366,27 @@ export default function BookServicePage({service}:Props) {
                 <Separator />
 
                 <div className="flex justify-between font-semibold text-lg">
-                  <span>Total</span>
+                  <span>{tb("total")}</span>
                   <span>EGP {calculateTotal()}</span>
                 </div>
 
                 <div className="space-y-2 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <Clock className="h-4 w-4" />
-                    <span>Duration: {service.estimatedDuration}</span>
+                    <span>{tb("duration",{d:String(service.estimatedDuration ?? "")})}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CreditCard className="h-4 w-4" />
-                    <span>Payment due after service</span>
+                    <span>{tb("payAfter")}</span>
                   </div>
                 </div>
 
                 <div className="p-3 bg-muted rounded-lg">
-                  <h4 className="font-semibold mb-2">What happens next?</h4>
+                  <h4 className="font-semibold mb-2">{tb("next")}</h4>
                   <ul className="text-sm space-y-1 text-muted-foreground">
-                    <li>• We'll confirm your booking within 24 hours</li>
-                    <li>• Technician will call 30 minutes before arrival</li>
-                    <li>• Payment is collected after service completion</li>
-                    <li>• 90-day warranty on all installations</li>
+                    <li>• {tb("n1")}</li>
+                    <li>• {tb("n2")}</li>
+                    <li>• {tb("n3")}</li>
                   </ul>
                 </div>
               </CardContent>

@@ -29,7 +29,7 @@ export default function LanguageSwitcher() {
                     }
                 </button>
                 {/* <Button variant="outline" size="icon">
-                <span className="sr-only">Toggle Language</span>
+                <span className="sr-only">{t("ui.toggleLanguage")}</span>
                 </Button> */}
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">

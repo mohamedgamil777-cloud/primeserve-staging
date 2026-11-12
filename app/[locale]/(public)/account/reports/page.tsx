@@ -97,7 +97,7 @@ export default function AccountReportsPage() {
           </Select>
           <Button>
             <Download className="mr-2 h-4 w-4" />
-            Export
+            {t("ui.export")}
           </Button>
         </div>
       </div>
@@ -106,7 +106,7 @@ export default function AccountReportsPage() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Spent</CardTitle>
+            <CardTitle className="text-sm font-medium">{t("ui.totalSpent")}</CardTitle>
             <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -512,11 +512,11 @@ export default function AccountReportsPage() {
                     <p className="font-medium">{t('current-tier')}</p>
                     <p className="text-sm text-muted-foreground">{t('gold-member')}</p>
                   </div>
-                  <Badge className="bg-yellow-100 text-yellow-800">Gold</Badge>
+                  <Badge className="bg-yellow-100 text-yellow-800">{t("ui.gold")}</Badge>
                 </div>
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm">Progress to Platinum</span>
+                    <span className="text-sm">{t("ui.progressPlatinum")}</span>
                     <span className="text-sm text-muted-foreground">EGP 311 / EGP 500</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
@@ -526,11 +526,11 @@ export default function AccountReportsPage() {
                 <div className="grid grid-cols-2 gap-4 pt-4">
                   <div className="text-center">
                     <p className="text-2xl font-bold">1,250</p>
-                    <p className="text-sm text-muted-foreground">Points Earned</p>
+                    <p className="text-sm text-muted-foreground">{t("ui.pointsEarned")}</p>
                   </div>
                   <div className="text-center">
                     <p className="text-2xl font-bold">15%</p>
-                    <p className="text-sm text-muted-foreground">Discount Rate</p>
+                    <p className="text-sm text-muted-foreground">{t("ui.discountRate")}</p>
                   </div>
                 </div>
               </div>

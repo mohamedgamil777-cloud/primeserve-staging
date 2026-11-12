@@ -16,7 +16,7 @@ export default function ProductPriceRangeSelector({priceRange,setPriceRange}: Pr
       <div className="space-y-2">
         {
           Object.entries(productPriceRanges).map(item=>(
-            <div key={item[0]} className="flex items-center space-x-2">
+            <div key={item[0]} className="flex items-center gap-2">
               <input
                 type="radio"
                 id={`price-${item[0]}`}
@@ -25,7 +25,7 @@ export default function ProductPriceRangeSelector({priceRange,setPriceRange}: Pr
                 onChange={() => setPriceRange(item[0] as ProductPriceRange)}
                 className="h-4 w-4 border-gray-300"
               />
-              <label htmlFor="price-all">{item[1]}</label>
+              <label htmlFor={`price-${item[0]}`}>{t(item[0] === "all" ? "all-prices" : item[0])}</label>
             </div>
           ))
         }

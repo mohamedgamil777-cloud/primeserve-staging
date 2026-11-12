@@ -78,7 +78,7 @@ export default function CategoriesList({categoriesPromise}:{categoriesPromise:Pr
                         <div className="absolute bottom-0 left-0 right-0 p-6 z-20 text-white">
                           <h3 className="text-2xl font-bold">{getLocalizedValue(category.nameI18n,locale)}</h3>
                           <p className="text-sm text-white/80">{getLocalizedValue(category.descriptionI18n,locale)}</p>
-                          <p className="text-sm text-white/80 mt-2">{category.subcategories.length} subcategories</p>
+                          <p className="text-sm text-white/80 mt-2">{tu("subcategoriesCount",{count:category.subcategories.length})}</p>
                         </div>
                       </div>
                     </CardContent>

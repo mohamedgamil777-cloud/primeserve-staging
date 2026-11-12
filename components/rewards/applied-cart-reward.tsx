@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl'
 type Props = {}
 
 export default function AppliedCartReward({}: Props) {
+  const tx = useTranslations("ui")
   const t = useTranslations()
   const { appliedReward, removeReward } = useCart()
   return (
@@ -27,7 +28,7 @@ export default function AppliedCartReward({}: Props) {
           size="sm"
           onClick={() => {
             removeReward()
-            toast.success("Reward removed")
+            toast.success(tx("rewardRemoved"))
           }}
         >
           <X className="h-4 w-4" />

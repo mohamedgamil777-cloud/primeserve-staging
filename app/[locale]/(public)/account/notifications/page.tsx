@@ -12,75 +12,38 @@ import { Bell, Package, Tag, CreditCard, Heart, CheckCircle, Clock, X } from "lu
 import { CustomerNotificationsEmpty } from "@/components/empty-states/customer-empty-states"
 import { useTranslations } from "next-intl"
 
-// Mock data for notifications
-const notifications = [
-  {
-    id: "1",
-    type: "order",
-    title: "Order Shipped",
-    message: "Your order #12345 has been shipped and is on its way!",
-    timestamp: "2 hours ago",
-    read: false,
-    icon: Package,
-  },
-  {
-    id: "2",
-    type: "promotion",
-    title: "Flash Sale Alert",
-    message: "50% off on electronics! Limited time offer ending soon.",
-    timestamp: "1 day ago",
-    read: true,
-    icon: Tag,
-  },
-  {
-    id: "3",
-    type: "payment",
-    title: "Payment Successful",
-    message: "Your payment of $299.99 has been processed successfully.",
-    timestamp: "3 days ago",
-    read: true,
-    icon: CreditCard,
-  },
-  {
-    id: "4",
-    type: "wishlist",
-    title: "Wishlist Item on Sale",
-    message: "The iPhone 15 Pro in your wishlist is now 15% off!",
-    timestamp: "1 week ago",
-    read: false,
-    icon: Heart,
-  },
-]
+// No real notifications feed yet, so the page shows its empty state instead of sample items
+const notifications: { id: string; type: string; title: string; message: string; timestamp: string; read: boolean; icon: typeof Package }[] = []
 
 const notificationSettings = [
   {
     id: "order_updates",
-    label: "Order Updates",
-    description: "Get notified about order status changes",
+    label: "order_updates.label",
+    description: "order_updates.description",
     enabled: true,
   },
   {
     id: "promotions",
-    label: "Promotions & Offers",
-    description: "Receive notifications about sales and special offers",
+    label: "promotions.label",
+    description: "promotions.description",
     enabled: true,
   },
   {
     id: "wishlist_alerts",
-    label: "Wishlist Alerts",
-    description: "Get notified when wishlist items go on sale",
+    label: "wishlist_alerts.label",
+    description: "wishlist_alerts.description",
     enabled: false,
   },
   {
     id: "newsletter",
-    label: "Newsletter",
-    description: "Weekly newsletter with new products and tips",
+    label: "newsletter.label",
+    description: "newsletter.description",
     enabled: true,
   },
   {
     id: "security",
-    label: "Security Alerts",
-    description: "Important security and account notifications",
+    label: "security.label",
+    description: "security.description",
     enabled: true,
   },
 ]
@@ -201,8 +164,8 @@ export default function NotificationsPage() {
                 <div key={setting.id}>
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
-                      <Label htmlFor={setting.id}>{setting.label}</Label>
-                      <p className="text-sm text-muted-foreground">{setting.description}</p>
+                      <Label htmlFor={setting.id}>{t(`notifSettings.${setting.label}`)}</Label>
+                      <p className="text-sm text-muted-foreground">{t(`notifSettings.${setting.description}`)}</p>
                     </div>
                     <Switch
                       id={setting.id}

@@ -21,6 +21,7 @@ import { useTranslations } from 'next-intl'
 type Props = {}
 
 export default function AuthToCheckout({children}: PropsWithChildren<Props>) {
+  const tx = useTranslations("ui")
   const t = useTranslations()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const router = useRouter()
@@ -74,7 +75,7 @@ export default function AuthToCheckout({children}: PropsWithChildren<Props>) {
         toast.success(t('you-new-account-has-been-created-successfully-you-can-now-proceed-with-checkout'))
       }
     } catch (error) {
-      toast.error("Something went wrong, try again later.")
+      toast.error(tx("somethingWrong"))
     }
     setIsSubmitting(false)
   }

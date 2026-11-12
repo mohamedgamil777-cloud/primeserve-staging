@@ -1,3 +1,4 @@
+import { localizeContent } from "@/lib/content-ar"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
@@ -6,14 +7,20 @@ import { getTenantId } from "@/lib/tenant"
 import { db } from "@/db"
 import { getTranslations } from "next-intl/server"
 
+// Swap English-only text for its Arabic version on /ar
+function localizeFields<T extends Record<string, unknown> | null | undefined>(obj: T, locale: string): T {
+  if (!obj) return obj
+  return Object.fromEntries(Object.entries(obj).map(([k, v]) => [k, typeof v === "string" ? localizeContent(v, locale) : v])) as T
+}
+
 export default async function PrivacyPolicyPage({ params }: { params: Promise<{ locale: string }> }) {
   const [storeId,t] = await Promise.all([
     getTenantId(),
     getTranslations({"locale":(await params).locale})
   ])
-  const storePriveyPolicy = await db.query.privacyPolicy.findFirst({
+  const storePriveyPolicy = localizeFields(await db.query.privacyPolicy.findFirst({
     "where":(privacyPolicy,{eq})=>eq(privacyPolicy.storeId,storeId)
-  })
+  }), (await params).locale)
   const sections = [
     {
       id: "introduction",

@@ -1,4 +1,5 @@
 "use client"
+import { useTranslations } from "next-intl"
 
 import {
   BadgeCheck,
@@ -38,6 +39,7 @@ import { useState } from "react"
 import { useQueryClient } from "@tanstack/react-query"
 
 export function NavUser() {
+  const tx = useTranslations("ui")
   const queryClient = useQueryClient()
   const [loggingOut, setLoggingOut] = useState(false)
   const router = useRouter()
@@ -52,11 +54,11 @@ export function NavUser() {
       else if(res.success){
         await queryClient.invalidateQueries({"queryKey":["current-user"]})
         await queryClient.invalidateQueries()
-        toast.success("You have been logged out successfully.")
+        toast.success(tx("loggedOut"))
         router.push("/")
       }
     } catch (error) {
-      toast.error("Something went wrong, try again later.")
+      toast.error(tx("somethingWrong"))
     }
     setLoggingOut(false)
   }

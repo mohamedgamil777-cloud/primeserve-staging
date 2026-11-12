@@ -76,8 +76,8 @@ export default function SignupForm() {
             transition={{ delay: 0.2, duration: 0.5 }}
             className="text-center mb-8"
           >
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Sign Up</h1>
-            <p className="text-gray-600">Create your account</p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">{t("authPage.signUp")}</h1>
+            <p className="text-gray-600">{t("authPage.createAccount")}</p>
           </motion.div>
 
           <Form {...form}>
@@ -93,11 +93,11 @@ export default function SignupForm() {
                     name="firstName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-gray-700 font-medium">First Name</FormLabel>
+                        <FormLabel className="text-gray-700 font-medium">{t("authPage.firstName")}</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
-                            placeholder="John"
+                            placeholder={t("authPage.firstNamePh")}
                             className="border-0 border-b-2 border-gray-300 rounded-none bg-transparent px-0 py-3 focus:border-blue-500 focus:ring-0 transition-colors duration-200"
                           />
                         </FormControl>
@@ -117,11 +117,11 @@ export default function SignupForm() {
                     name="lastName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-gray-700 font-medium">Last Name</FormLabel>
+                        <FormLabel className="text-gray-700 font-medium">{t("authPage.lastName")}</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
-                            placeholder="Doe"
+                            placeholder={t("authPage.lastNamePh")}
                             className="border-0 border-b-2 border-gray-300 rounded-none bg-transparent px-0 py-3 focus:border-blue-500 focus:ring-0 transition-colors duration-200"
                           />
                         </FormControl>
@@ -142,12 +142,12 @@ export default function SignupForm() {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-gray-700 font-medium">Email</FormLabel>
+                      <FormLabel className="text-gray-700 font-medium">{t("authPage.email")}</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
                           type="email"
-                          placeholder="john@example.com"
+                          placeholder={t("authPage.emailExample")}
                           className="border-0 border-b-2 border-gray-300 rounded-none bg-transparent px-0 py-3 focus:border-blue-500 focus:ring-0 transition-colors duration-200"
                         />
                       </FormControl>
@@ -167,7 +167,7 @@ export default function SignupForm() {
                   name="phone"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-gray-700 font-medium">Phone (Optional)</FormLabel>
+                      <FormLabel className="text-gray-700 font-medium">{t("authPage.phoneOptional")}</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -193,12 +193,12 @@ export default function SignupForm() {
                     name="password"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-gray-700 font-medium">Password</FormLabel>
+                        <FormLabel className="text-gray-700 font-medium">{t("authPage.password")}</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
                             type="password"
-                            placeholder="Enter your password"
+                            placeholder={t("authPage.passwordPh")}
                             className="border-0 border-b-2 border-gray-300 rounded-none bg-transparent px-0 py-3 focus:border-blue-500 focus:ring-0 transition-colors duration-200"
                           />
                         </FormControl>
@@ -218,12 +218,12 @@ export default function SignupForm() {
                     name="confirmPassword"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-gray-700 font-medium">Confirm Password</FormLabel>
+                        <FormLabel className="text-gray-700 font-medium">{t("authPage.confirmPassword")}</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
                             type="password"
-                            placeholder="Confirm your password"
+                            placeholder={t("authPage.confirmPasswordPh")}
                             className="border-0 border-b-2 border-gray-300 rounded-none bg-transparent px-0 py-3 focus:border-blue-500 focus:ring-0 transition-colors duration-200"
                           />
                         </FormControl>
@@ -244,15 +244,15 @@ export default function SignupForm() {
                   control={form.control}
                   name="agreeToTerms"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                    <FormItem className="flex flex-row items-start gap-3 space-y-0">
                       <FormControl>
                         <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                       </FormControl>
                       <div className="space-y-1 leading-none">
                         <FormLabel className="text-sm text-gray-600">
-                          I agree to the{" "}
-                          <Link href="/terms" className="text-blue-600 hover:text-blue-700 underline">
-                            Terms and Conditions
+                          {t("authPage.agree")}{" "}
+                          <Link href={`/${locale}/privacy`} className="text-blue-600 hover:text-blue-700 underline">
+                            {t("authPage.terms")}
                           </Link>
                         </FormLabel>
                         <FormMessage />
@@ -265,12 +265,12 @@ export default function SignupForm() {
                   control={form.control}
                   name="subscribeNewsletter"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                    <FormItem className="flex flex-row items-start gap-3 space-y-0">
                       <FormControl>
                         <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                       </FormControl>
                       <div className="space-y-1 leading-none">
-                        <FormLabel className="text-sm text-gray-600">Subscribe to our newsletter</FormLabel>
+                        <FormLabel className="text-sm text-gray-600">{t("authPage.newsletter")}</FormLabel>
                       </div>
                     </FormItem>
                   )}
@@ -287,7 +287,7 @@ export default function SignupForm() {
                   disabled={isLoading}
                   className="w-full bg-gradient-to-r from-[#0B1F33] to-[#00796B] hover:from-[#132f4c] hover:to-[#00796B] text-white font-medium py-3 rounded-lg transition-all duration-200 transform hover:scale-[1.02]"
                 >
-                  {isLoading ? "Creating Account..." : "Sign Up"}
+                  {isLoading ? t("authPage.creating") : t("authPage.signUp")}
                 </Button>
               </motion.div>
 
@@ -298,12 +298,12 @@ export default function SignupForm() {
                 className="text-center"
               >
                 <p className="text-gray-600 text-sm">
-                  Already have an account?{" "}
+                  {t("authPage.haveAccount")}{" "}
                   <Link
                     href={`/${locale}/auth/login`}
                     className="text-primary font-medium transition-colors duration-200"
                   >
-                    Login
+                    {t("authPage.login")}
                   </Link>
                 </p>
               </motion.div>

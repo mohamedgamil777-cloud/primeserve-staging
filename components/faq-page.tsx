@@ -70,7 +70,7 @@ export default function FAQPage({storeFAQS}:{storeFAQS:FAQCategoryTree[]}) {
                   className="w-full justify-start"
                   onClick={() => setSelectedCategory("all")}
                 >
-                  All Questions
+                  {t('ui.allQuestions')}
                 </Button>
                 {storeFAQS.map((category) => (
                   <Button

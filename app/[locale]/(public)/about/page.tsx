@@ -1,3 +1,4 @@
+import { localizeContent } from "@/lib/content-ar"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -35,7 +36,6 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   const tu = await getTranslations({ locale: (await params).locale, namespace: "ui" })
   const t = await getTranslations({"locale":(await params).locale})
   const storeId = await getTenantId()
-  console.log(await params,t('get-it-on'))
   const storeInfo = await db.query.stores.findFirst({
     "where":(stores,{eq})=>eq(stores.id,storeId),
     "columns":{
@@ -129,9 +129,9 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       <section className="relative bg-[#0B1F33] py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-white">{storeInfo?.aboutPageContent?.heroTitle}</h1>
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-white">{localizeContent(storeInfo?.aboutPageContent?.heroTitle, (await params).locale)}</h1>
             <p className="text-xl text-gray-100 mb-8 leading-relaxed">
-              {storeInfo?.aboutPageContent?.heroDescription}
+              {localizeContent(storeInfo?.aboutPageContent?.heroDescription, (await params).locale)}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               {stats.map((stat, index) => (
@@ -166,7 +166,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               </CardHeader>
               <CardContent className="text-center">
                 <p className="text-muted-foreground">
-                  {storeInfo?.aboutPageContent?.mission}
+                  {localizeContent(storeInfo?.aboutPageContent?.mission, (await params).locale)}
                 </p>
               </CardContent>
             </Card>
@@ -177,7 +177,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               </CardHeader>
               <CardContent className="text-center">
                 <p className="text-muted-foreground">
-                  {storeInfo?.aboutPageContent?.vision}
+                  {localizeContent(storeInfo?.aboutPageContent?.vision, (await params).locale)}
                 </p>
               </CardContent>
             </Card>
@@ -188,7 +188,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               </CardHeader>
               <CardContent className="text-center">
                 <p className="text-muted-foreground">
-                  {storeInfo?.aboutPageContent?.values}
+                  {localizeContent(storeInfo?.aboutPageContent?.values, (await params).locale)}
                 </p>
               </CardContent>
             </Card>

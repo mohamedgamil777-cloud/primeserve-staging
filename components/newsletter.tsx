@@ -12,6 +12,7 @@ import { useTranslations } from "next-intl"
 
 
 export function Newsletter() {
+  const tx = useTranslations("ui")
   const t = useTranslations()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -33,7 +34,7 @@ export function Newsletter() {
     await new Promise((resolve) => setTimeout(resolve, 1000))
 
     toast({
-      title: "Subscribed!",
+      title: tx("subscribed"),
       description: t('youve-successfully-subscribed-to-our-newsletter'),
     })
 
@@ -67,7 +68,7 @@ export function Newsletter() {
                   )}
                 />
                 <Button type="submit" disabled={isSubmitting}>
-                  {isSubmitting ? "Subscribing..." : t('subscribe')}
+                  {isSubmitting ? tx("subscribing") : t('subscribe')}
                 </Button>
               </form>
             </Form>

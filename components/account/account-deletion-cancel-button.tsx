@@ -1,4 +1,5 @@
 "use client"
+import { useTranslations } from "next-intl"
 import React, { useState } from 'react'
 import { Button } from '../ui/button'
 import { toast } from 'sonner'
@@ -8,6 +9,7 @@ import { useRouter } from 'next/navigation'
 type Props = {}
 
 export default function AccountDeletionCancelButton({}: Props) {
+  const tx = useTranslations("ui")
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
 
@@ -17,11 +19,11 @@ export default function AccountDeletionCancelButton({}: Props) {
       const res = await cancelAccountDeletion()
       if(res.error) toast.error(res.error)
       if(res.success){
-        toast.success("Account deletion has been cancelled successfully.")
+        toast.success(tx("deletionCancelled"))
         router.refresh()
       } 
     } catch (error) {
-      toast.error("Failed to cancel account deletion. Please contact support.")
+      toast.error(tx("deletionCancelFailed"))
     }
     setIsLoading(false)
   }

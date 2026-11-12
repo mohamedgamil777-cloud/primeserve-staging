@@ -71,7 +71,7 @@ export default function LoginForm() {
             transition={{ delay: 0.2, duration: 0.5 }}
             className="text-center mb-8"
           >
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Login</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">{t("authPage.login")}</h1>
           </motion.div>
     
           <Form {...form}>
@@ -86,12 +86,12 @@ export default function LoginForm() {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-gray-700 font-medium">Email</FormLabel>
+                      <FormLabel className="text-gray-700 font-medium">{t("authPage.email")}</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
                           type="email"
-                          placeholder="Enter your email"
+                          placeholder={t("authPage.emailPh")}
                           className="border-0 border-b-2 border-gray-300 rounded-none bg-transparent px-0 py-3 focus:border-blue-500 focus:ring-0 transition-colors duration-200"
                         />
                       </FormControl>
@@ -111,12 +111,12 @@ export default function LoginForm() {
                   name="password"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-gray-700 font-medium">Password</FormLabel>
+                      <FormLabel className="text-gray-700 font-medium">{t("authPage.password")}</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
                           type="password"
-                          placeholder="Enter your password"
+                          placeholder={t("authPage.passwordPh")}
                           className="border-0 border-b-2 border-gray-300 rounded-none bg-transparent px-0 py-3 focus:border-blue-500 focus:ring-0 transition-colors duration-200"
                         />
                       </FormControl>
@@ -135,12 +135,12 @@ export default function LoginForm() {
                   control={form.control}
                   name="rememberMe"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                    <FormItem className="flex flex-row items-start gap-3 space-y-0">
                       <FormControl>
                         <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                       </FormControl>
                       <div className="space-y-1 leading-none">
-                        <FormLabel className="text-sm text-gray-600">Remember me</FormLabel>
+                        <FormLabel className="text-sm text-gray-600">{t("authPage.rememberMe")}</FormLabel>
                       </div>
                     </FormItem>
                   )}
@@ -157,7 +157,7 @@ export default function LoginForm() {
                   disabled={isLoading}
                   className="w-full bg-gradient-to-r from-[#0B1F33] to-[#00796B] hover:from-[#132f4c] hover:to-[#00796B] text-white font-medium py-3 rounded-lg transition-all duration-200 transform hover:scale-[1.02]"
                 >
-                  {isLoading ? "Logging in..." : "Login"}
+                  {isLoading ? t("authPage.loggingIn") : t("authPage.login")}
                 </Button>
               </motion.div>
     
@@ -171,16 +171,16 @@ export default function LoginForm() {
                   href={`/${locale}/auth/forgot-password`}
                   className="from-[#0B1F33] to-[#00796B] text-primary text-sm font-medium transition-colors duration-200"
                 >
-                  Forgot Password?
+                  {t("authPage.forgot")}
                 </Link>
     
                 <p className="text-gray-600 text-sm">
-                  {"Don't have an account? "}
+                  {t("authPage.noAccount")}{" "}
                   <Link
                     href={`/${locale}/auth/register`}
                     className="text-primary font-medium transition-colors duration-200"
                   >
-                    Sign up
+                    {t("authPage.signUp")}
                   </Link>
                 </p>
               </motion.div>

@@ -80,7 +80,7 @@ export function ProductCard({ product, index = 0, detailed, compact: compactProp
     if (isInCart) {
       // If already in cart, update quantity
       updateItemQuantity({"productId":product.id,"newQuantity":quantity})
-      toast.success(`Your cart's quantity of "${localizedProductName}" has been updated to ${quantity}`)
+      toast.success(t("ui.cartQtyUpdated",{name:localizedProductName,qty:quantity}))
     } else {
       // Add the product to cart with the selected quantity
       addItems([{"product":product,quantity}])
@@ -102,7 +102,7 @@ export function ProductCard({ product, index = 0, detailed, compact: compactProp
     // If already in cart, update quantity immediately
     if (isInCart) {
       updateItemQuantity({"productId":product.id,newQuantity})
-      toast.success(`Your cart's quantity of "${localizedProductName}" has been updated to ${newQuantity}`)
+      toast.success(t("ui.cartQtyUpdated",{name:localizedProductName,qty:newQuantity}))
     }
   }
 
@@ -115,7 +115,7 @@ export function ProductCard({ product, index = 0, detailed, compact: compactProp
       // If already in cart, update quantity immediately
       if (isInCart) {
         updateItemQuantity({"productId":product.id,newQuantity})
-        toast.success(`Your cart's quantity of "${localizedProductName}" has been updated to ${newQuantity}`)
+        toast.success(t("ui.cartQtyUpdated",{name:localizedProductName,qty:newQuantity}))
       }
     }
   }

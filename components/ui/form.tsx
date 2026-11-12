@@ -1,6 +1,8 @@
 "use client"
 
 import * as React from "react"
+import { useLocale } from "next-intl"
+import { localizeContent } from "@/lib/content-ar"
 import * as LabelPrimitive from "@radix-ui/react-label"
 import { Slot } from "@radix-ui/react-slot"
 import {
@@ -137,7 +139,8 @@ function FormDescription({ className, ...props }: React.ComponentProps<"p">) {
 
 function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
   const { error, formMessageId } = useFormField()
-  const body = error ? String(error?.message ?? "") : props.children
+  const locale = useLocale()
+  const body = error ? localizeContent(String(error?.message ?? ""), locale) : props.children
 
   if (!body) {
     return null

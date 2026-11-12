@@ -1,4 +1,5 @@
 'use client'
+import { useTranslations } from "next-intl"
 
 import React from 'react'
 import { useForm } from 'react-hook-form'
@@ -25,6 +26,7 @@ type Props = {
 
 
 export default function CustomerPrivacySettings({privacyPreferences}:Props) {
+  const tx = useTranslations("ui")
   const form = useForm<PrivacySettings>({
     resolver: zodResolver(insertUserPrivacyPreferencesSchema),
     defaultValues: {
@@ -38,8 +40,8 @@ export default function CustomerPrivacySettings({privacyPreferences}:Props) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Privacy Settings</CardTitle>
-        <CardDescription>Control what information is visible to other users</CardDescription>
+        <CardTitle>{tx("privacySettings")}</CardTitle>
+        <CardDescription>{tx("privacySettingsText")}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         <Form {...form}>

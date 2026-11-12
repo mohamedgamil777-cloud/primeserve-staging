@@ -1,3 +1,4 @@
+import { localizeContent } from "@/lib/content-ar"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -46,6 +47,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
       getTranslations({locale})
     ]
   )
+  const tu = await getTranslations({ locale, namespace: "ui" })
   const contactInfo = await db.query.contactInformation.findFirst({
     where: (contactInformation, { eq }) => eq(contactInformation.storeId, storeId),
     columns: { customerServicePhone: true, supportEmail: true },
@@ -102,7 +104,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <div>
             <div className="flex items-center gap-2 mb-2">
               <Badge>{getLocalizedValue(service.category.nameI18n,locale as "en")}</Badge>
-              <Badge variant="outline">{service.type}</Badge>
+              <Badge variant="outline">{localizeContent(service.type, locale)}</Badge>
             </div>
             <h1 className="text-3xl font-bold mb-4">{getLocalizedValue(service.nameI18n,locale as "en")}</h1>
             <p className="text-lg text-muted-foreground mb-6">{getLocalizedValue(service.shortDescriptionI18n,locale as "en")}</p>
@@ -119,7 +121,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               <div className="flex items-center gap-2">
                 <Star className="h-5 w-5 text-yellow-400 fill-current" />
                 <span className="font-semibold">{service.rating}</span>
-                <span className="text-muted-foreground">({service.reviewCount} reviews)</span>
+                <span className="text-muted-foreground">{tu("reviewsCount",{count:service.reviewCount ?? 0})}</span>
               </div>
             </div>
           </div>
@@ -156,7 +158,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     {service.inclusions.map((item, index) => (
                       <div key={index} className="flex items-center gap-2">
                         <CheckCircle className="h-5 w-5 text-green-500" />
-                        <span>{item}</span>
+                        <span>{localizeContent(item, locale)}</span>
                       </div>
                     ))}
                   </div>
@@ -177,7 +179,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     {service.features.map((feature, index) => (
                       <div key={index} className="flex items-center gap-2">
                         <CheckCircle className="h-5 w-5 text-primary" />
-                        <span>{feature}</span>
+                        <span>{localizeContent(feature, locale)}</span>
                       </div>
                     ))}
                   </div>
@@ -197,7 +199,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     {service.requirements.map((requirement, index) => (
                       <div key={index} className="flex items-center gap-2">
                         <AlertCircle className="h-5 w-5 text-orange-500" />
-                        <span>{requirement}</span>
+                        <span>{localizeContent(requirement, locale)}</span>
                       </div>
                     ))}
                   </div>

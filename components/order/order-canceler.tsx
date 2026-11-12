@@ -1,4 +1,5 @@
 "use client"
+import { useTranslations } from "next-intl"
 import { cancelOrder } from '@/actions/order'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
@@ -13,6 +14,7 @@ type Props = {
 }
 
 export default function OrderCanceler({order,children}: PropsWithChildren<Props>) {
+  const tx = useTranslations("ui")
   const queryClient = useQueryClient()
   const handleCancelOrder = async()=>{
     try {
@@ -23,7 +25,7 @@ export default function OrderCanceler({order,children}: PropsWithChildren<Props>
         toast.success(`Order has been canceld successfully.`)
       } 
     } catch (error) {
-      toast.error("Something went wrong, try again later.")
+      toast.error(tx("somethingWrong"))
     }
   }
   return (
@@ -40,16 +42,15 @@ export default function OrderCanceler({order,children}: PropsWithChildren<Props>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+          <AlertDialogTitle>{tx("sureTitle")}</AlertDialogTitle>
           <AlertDialogDescription>
-            This will permanently cancel the order with no way to resume it. This action cannot be
-            undone.
+            {tx("cancelOrderText")}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel>{tx("cancel")}</AlertDialogCancel>
           <AlertDialogAction onClick={handleCancelOrder} className="bg-red-600 hover:bg-red-700">
-            Proceed
+            {tx("proceed")}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

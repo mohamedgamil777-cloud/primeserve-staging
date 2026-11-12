@@ -17,12 +17,12 @@ export const serviceTimeLines = {
 } as const
 
 export const serviceBudgets = {
-  'under-1k':'Under $1,000',
-  '1k-5k':'$1,000 - $5,000',
-  '5k-10k':'$5,000 - $10,000',
-  '10k-25k':'$10,000 - $25,000',
-  '25k-50k':'$25,000 - $50,000',
-  'over-50k':'Over $50,000',
+  'under-1k':'Under EGP 1,000',
+  '1k-5k':'EGP 1,000 - 5,000',
+  '5k-10k':'EGP 5,000 - 10,000',
+  '10k-25k':'EGP 10,000 - 25,000',
+  '25k-50k':'EGP 25,000 - 50,000',
+  'over-50k':'Over EGP 50,000',
   'not-sure':'Not Sure'
 } as const
 

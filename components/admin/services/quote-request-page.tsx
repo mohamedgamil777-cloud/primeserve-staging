@@ -41,6 +41,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { updateServiceRequest } from '@/actions/serviceRequest'
 import { useTranslations } from 'next-intl'
+import { localizeContent } from '@/lib/content-ar'
 import { getLocalizedValue } from '@/types/internationalization'
 import { useLocale } from '@/hooks/use-locale'
 
@@ -189,7 +190,7 @@ export default function QuoteRequestPage({service}:Props) {
                           <SelectContent>
                             {Object.entries(serviceBudgets).map(([value, label]) => (
                               <SelectItem key={value} value={value}>
-                                {label}
+                                {localizeContent(label, locale)}
                               </SelectItem>
                             ))}
                           </SelectContent>
@@ -214,7 +215,7 @@ export default function QuoteRequestPage({service}:Props) {
                           <SelectContent>
                             {Object.entries(serviceTimeLines).map(([value, label]) => (
                               <SelectItem key={value} value={value}>
-                                {label}
+                                {localizeContent(label, locale)}
                               </SelectItem>
                             ))}
                           </SelectContent>
@@ -314,17 +315,17 @@ export default function QuoteRequestPage({service}:Props) {
 
             {/* <Card>
               <CardHeader>
-                <CardTitle>Supporting Documents</CardTitle>
-                <CardDescription>Upload any relevant files (optional)</CardDescription>
+                <CardTitle>{t("ui.supportingDocs")}</CardTitle>
+                <CardDescription>{t("ui.supportingDocsText")}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="border-2 border-dashed border-muted-foreground/25 rounded-lg p-8 text-center">
                   <Upload className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                  <p className="text-muted-foreground mb-2">Drag and drop files here, or click to browse</p>
+                  <p className="text-muted-foreground mb-2">{t("ui.dragDrop")}</p>
                   <p className="text-sm text-muted-foreground">
                     Supported formats: PDF, JPG, PNG, DOC, DOCX (Max 10MB each)
                   </p>
-                  <Button variant="outline" className="mt-4">Choose Files</Button>
+                  <Button variant="outline" className="mt-4">{t("ui.chooseFiles")}</Button>
                 </div>
               </CardContent>
             </Card> */}

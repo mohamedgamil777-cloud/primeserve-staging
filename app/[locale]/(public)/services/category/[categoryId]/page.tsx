@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server"
 import Link from "next/link"
 import { ChevronLeft } from "lucide-react"
 
@@ -18,6 +19,7 @@ export default async function CategoryServicesPage({ params }: { params: Promise
     params,
     getTenantId()
   ]) 
+  const tu = await getTranslations({ locale, namespace: "ui" })
   const [[category],_storeDisplaySettings] = await Promise.all([
     db
       .select({
@@ -71,13 +73,13 @@ export default async function CategoryServicesPage({ params }: { params: Promise
               <CardDescription className="text-white text-lg">{getLocalizedValue(category.longDescriptionI18n,locale as "en") ?? getLocalizedValue(category.descriptionI18n,locale as "en")}</CardDescription>
             </CardHeader>
             <CardContent className="p-0 pt-4">
-              <p className="text-sm">{category.servicesCount} services available</p>
+              <p className="text-sm">{tu("servicesAvailable",{count:Number(category.servicesCount)})}</p>
             </CardContent>
             <Link 
               className={cn(buttonVariants({"variant":"default"}),"block mt-4 w-fit font-bold")} 
               href={`/${locale}/contact`}
             >
-              Contact Us
+              {tu("contactUs")}
             </Link>
           </div>
         </div>
@@ -120,7 +122,7 @@ export default async function CategoryServicesPage({ params }: { params: Promise
                     <CardDescription className="text-white">{category.description}</CardDescription>
                   </CardHeader>
                   <CardContent className="p-0 pt-4">
-                    <p className="text-sm">{category.servicesCount} services available</p>
+                    <p className="text-sm">{tu("servicesAvailable",{count:Number(category.servicesCount)})}</p>
                   </CardContent>
                 </div>
               </div>
