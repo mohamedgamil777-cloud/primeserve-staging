@@ -30,11 +30,13 @@ interface ProductCardProps {
   compact?:boolean
 }
 
-export function ProductCard({ product, index = 0, detailed, compact }: ProductCardProps) {
+export function ProductCard({ product, index = 0, detailed, compact: compactProp }: ProductCardProps) {
   const t = useTranslations()
   const locale = useLocale()
   const router = useRouter()
   const isMobile = useIsMobile()
+  // Phones always get the smaller card so two fit side by side
+  const compact = compactProp || isMobile
   const [isHovered, setIsHovered] = useState(false)
   const [quantity, setQuantity] = useState(1)
   const { data:cart, addItems, removeItem, updateItemQuantity } = useCart()

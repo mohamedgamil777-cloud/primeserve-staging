@@ -5,6 +5,7 @@ import { and, eq, sql } from 'drizzle-orm'
 import React from 'react'
 import ServiceCategoryCard from './service-category-card'
 import { getTranslations } from 'next-intl/server'
+import { SERVICE_CATEGORY_PRIORITY, sortByPriority } from '@/lib/home-priority'
 
 
 export default async function AllServiceCategories({ locale }: {  locale: string }) {
@@ -40,8 +41,8 @@ export default async function AllServiceCategories({ locale }: {  locale: string
   return (
     <section className="mb-12">
       <h2 className="text-2xl font-bold mb-6">{t('service-categories')}</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {_serviceCategories.map((category) => (
+      <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
+        {sortByPriority(_serviceCategories, SERVICE_CATEGORY_PRIORITY).map((category) => (
           <ServiceCategoryCard key={category.id} category={category}/>
         ))}
       </div>

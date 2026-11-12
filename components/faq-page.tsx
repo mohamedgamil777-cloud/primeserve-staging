@@ -145,16 +145,13 @@ export default function FAQPage({storeFAQS}:{storeFAQS:FAQCategoryTree[]}) {
               {t('cant-find-the-answer-youre-looking-for-our-customer-support-team-is-here-to-help')}
             </p>
           </div>
-          <div className="grid gap-4 md:grid-cols-3 max-w-2xl mx-auto">
-            <Button variant="outline" className="h-auto p-4 flex-col gap-2">
-              <MessageCircle className="h-6 w-6" />
-              <span className="font-medium">{t('live-chat')}</span>
-              <span className="text-xs text-muted-foreground">{t('available-24-7')}</span>
-            </Button>
-            <Button variant="outline" className="h-auto p-4 flex-col gap-2">
-              <Phone className="h-6 w-6" />
-              <span className="font-medium">{t('call-us')}</span>
-              <span className="text-xs text-muted-foreground">1-800-STORE-US</span>
+          <div className="grid gap-4 sm:grid-cols-2 max-w-xl mx-auto">
+            <Button variant="outline" className="h-auto p-4 flex-col gap-2" asChild>
+              <a href="/support">
+                <MessageCircle className="h-6 w-6" />
+                <span className="font-medium">{t('supportHub.nav')}</span>
+                <span className="text-xs text-muted-foreground">{t('24hr-response')}</span>
+              </a>
             </Button>
             <Button variant="outline" className="h-auto p-4 flex-col gap-2" asChild>
               <a href="/contact">

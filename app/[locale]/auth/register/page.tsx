@@ -172,7 +172,7 @@ export default function SignupForm() {
                         <Input
                           {...field}
                           type="tel"
-                          placeholder="+1 (555) 123-4567"
+                          placeholder="010 1234 5678"
                           className="border-0 border-b-2 border-gray-300 rounded-none bg-transparent px-0 py-3 focus:border-blue-500 focus:ring-0 transition-colors duration-200"
                         />
                       </FormControl>

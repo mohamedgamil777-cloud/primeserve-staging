@@ -272,7 +272,7 @@ export default function CategoryPage({category:currentCategory,children,detailed
                   </div>
                 }
                 skeletonClassName=" h-auto"
-                containerClassName="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+                containerClassName="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3"
                 customEmptyStateComponent={
                   <PublicFilteredProductsEmpty />
                 }
