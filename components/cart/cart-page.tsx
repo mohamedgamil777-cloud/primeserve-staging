@@ -84,23 +84,6 @@ export default function CartPage({storeCartSettings,cartStyle}:Props) {
             <CartAvailableRewards rewardEnabled={!!storeCartSettings?.rewardEnabled}/>
             <div className=" row-span-2 md:order-2">
               <CartOrderSummary storeCartSettings={storeCartSettings}/>
-              <div className="mt-6 rounded-lg border p-6">
-                <h4 className="font-medium">{t('we-accept')}</h4>
-                <div className="mt-4 flex gap-2">
-                  <div className="rounded-md border bg-muted p-2">
-                    <img src="/placeholder.png?height=30&width=40" alt={t('visa')} className="h-6" />
-                  </div>
-                  <div className="rounded-md border bg-muted p-2">
-                    <img src="/placeholder.png?height=30&width=40" alt={t('mastercard')} className="h-6" />
-                  </div>
-                  <div className="rounded-md border bg-muted p-2">
-                    <img src="/placeholder.png?height=30&width=40" alt={t("paypal")} className="h-6" />
-                  </div>
-                  <div className="rounded-md border bg-muted p-2">
-                    <img src="/placeholder.png?height=30&width=40" alt={t('apple-pay')} className="h-6" />
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         )}

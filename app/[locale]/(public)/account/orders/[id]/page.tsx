@@ -228,7 +228,7 @@ export default async function OrderDetailsPage({params}:{"params":Promise<{"id":
                   <>
                     <Separator />
                     <div className="space-y-1">
-                      <p className="font-medium">Tracking Number</p>
+                      <p className="font-medium">{t('tracking-number')}</p>
                       <p className="text-sm">{order.shipping.trackingNumber}</p>
                       <Button variant="outline" size="sm" className="mt-2">
                         Track Package

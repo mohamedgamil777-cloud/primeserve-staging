@@ -1,4 +1,5 @@
 "use client"
+import { useTranslations } from "next-intl"
 import React from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
 import { Button } from '../ui/button'
@@ -14,14 +15,15 @@ import { useLocale } from 'next-intl'
 type Props = {}
 
 export default function WishlistOverview({}: Props) {
+  const tu = useTranslations("ui")
   const locale = useLocale()
   const { isLoading, data } = useWishlist({})
   const last5Items = data?.slice(0,5) ?? []
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Wishlist</CardTitle>
-        <CardDescription>Items you've saved for later</CardDescription>
+        <CardTitle>{tu("wishlist")}</CardTitle>
+        <CardDescription>{tu("savedForLater")}</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">

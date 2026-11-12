@@ -1,4 +1,5 @@
 "use client"
+import { useTranslations } from "next-intl"
 import React from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
 import { useOrders } from '@/hooks/use-orders'
@@ -14,14 +15,15 @@ import { useLocale } from 'next-intl'
 type Props = {}
 
 export default function RecentOrders({}: Props) {
+  const tu = useTranslations("ui")
   const locale = useLocale()
   const { isLoading, data } = useOrders({})
   const last5Orders = data?.pages?.flatMap(pg=>pg).flatMap(item=>item).slice(0,5) ?? []
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Recent Orders</CardTitle>
-        <CardDescription>Your most recent purchases</CardDescription>
+        <CardTitle>{tu("recentOrders")}</CardTitle>
+        <CardDescription>{tu("recentPurchases")}</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">

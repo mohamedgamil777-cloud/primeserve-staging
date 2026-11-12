@@ -1,4 +1,5 @@
 "use client"
+import { useTranslations } from "next-intl"
 import { OrderItem } from '@/types/order'
 import React from 'react'
 import { Badge } from '../ui/badge'
@@ -13,6 +14,7 @@ type Props = {
 }
 
 export default function CustomerOrder({order}: Props) {
+  const tu = useTranslations("ui")
   const locale = useLocale()
   return (
     <div className="rounded-lg border p-4">
@@ -41,15 +43,15 @@ export default function CustomerOrder({order}: Props) {
         </div>
         <div className="flex items-center gap-2 self-end sm:self-center">
           <Button variant="outline" size="sm" asChild>
-            <Link href={`/${locale}/account/orders/${order.id}`}>View Details</Link>
+            <Link href={`/${locale}/account/orders/${order.id}`}>{tu("viewDetails")}</Link>
           </Button>
           { order.status === "pending" 
             && 
             <OrderCanceler order={order}>
-              <Button variant={"destructive"} size="sm">Cancel</Button>
+              <Button variant={"destructive"} size="sm">{tu("cancel")}</Button>
             </OrderCanceler>
           }
-          {order.status === "delivered" && <Button size="sm">Buy Again</Button>}
+          {order.status === "delivered" && <Button size="sm">{tu("buyAgain")}</Button>}
         </div>
       </div>
     </div>

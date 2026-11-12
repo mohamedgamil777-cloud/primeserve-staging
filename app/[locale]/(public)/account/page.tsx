@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -13,6 +14,7 @@ import { orders, wishlists } from "@/db/schema"
 import RedirectToDashboard from "@/components/common/redirect-to-dashboard"
 
 export default async function AccountPage({ params }: { params: Promise<{ locale: string }> }) {
+  const tu = await getTranslations({ locale: (await params).locale, namespace: "ui" })
   const [session,{locale}] = await Promise.all([
     getSession(),
     params
@@ -40,33 +42,33 @@ export default async function AccountPage({ params }: { params: Promise<{ locale
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Account Overview</h1>
-        <p className="text-muted-foreground">Manage your account settings and preferences</p>
+        <h1 className="text-3xl font-bold tracking-tight">{tu("accountOverview")}</h1>
+        <p className="text-muted-foreground">{tu("manageAccount")}</p>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg">Personal Information</CardTitle>
-            <CardDescription>Manage your personal details</CardDescription>
+            <CardTitle className="text-lg">{tu("personalInfo")}</CardTitle>
+            <CardDescription>{tu("managePersonal")}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <p className="text-sm text-muted-foreground">First Name</p>
+                <p className="text-sm text-muted-foreground">{tu("firstName")}</p>
                 <p className="font-medium">{userInfo?.firstName}</p>
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Last Name</p>
+                <p className="text-sm text-muted-foreground">{tu("lastName")}</p>
                 <p className="font-medium">{userInfo?.lastName}</p>
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Email</p>
+                <p className="text-sm text-muted-foreground">{tu("email")}</p>
                 <p className="font-medium">{userInfo?.email}</p>
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Phone</p>
-                <p className="font-medium">{userInfo?.phone ?? "Not Provided"}</p>
+                <p className="text-sm text-muted-foreground">{tu("phone")}</p>
+                <p className="font-medium">{userInfo?.phone ?? tu("notProvided")}</p>
               </div>
             </div>
             <Button variant="outline" size="sm" asChild>
@@ -80,25 +82,25 @@ export default async function AccountPage({ params }: { params: Promise<{ locale
 
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg">Account Summary</CardTitle>
-            <CardDescription>Your account activity at a glance</CardDescription>
+            <CardTitle className="text-lg">{tu("accountSummary")}</CardTitle>
+            <CardDescription>{tu("activityGlance")}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <p className="text-sm text-muted-foreground">Member Since</p>
+                <p className="text-sm text-muted-foreground">{tu("memberSince")}</p>
                 <p className="font-medium">{formatDate(userInfo?.createdAt!)}</p>
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Account Status</p>
-                <Badge variant="outline">Active</Badge>
+                <p className="text-sm text-muted-foreground">{tu("accountStatus")}</p>
+                <Badge variant="outline">{tu("active")}</Badge>
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Total Orders</p>
+                <p className="text-sm text-muted-foreground">{tu("totalOrders")}</p>
                 <p className="font-medium">{ordersCount?.count ?? 0}</p>
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Wishlist Items</p>
+                <p className="text-sm text-muted-foreground">{tu("wishlistItems")}</p>
                 <p className="font-medium">{wishlistItemsCount?.count ?? 0}</p>
               </div>
             </div>
@@ -119,13 +121,13 @@ export default async function AccountPage({ params }: { params: Promise<{ locale
           <CardHeader className="pb-3">
             <div className="flex items-center gap-2">
               <Package className="h-5 w-5 text-muted-foreground" />
-              <CardTitle className="text-lg">Orders</CardTitle>
+              <CardTitle className="text-lg">{tu("orders")}</CardTitle>
             </div>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-muted-foreground">Track, view, and manage your order history.</p>
+            <p className="text-sm text-muted-foreground">{tu("ordersText")}</p>
             <Button variant="ghost" size="sm" className="mt-4 w-full" asChild>
-              <Link href={`/${locale}/account/orders`}>View Orders</Link>
+              <Link href={`/${locale}/account/orders`}>{tu("viewOrders")}</Link>
             </Button>
           </CardContent>
         </Card>
@@ -133,13 +135,13 @@ export default async function AccountPage({ params }: { params: Promise<{ locale
           <CardHeader className="pb-3">
             <div className="flex items-center gap-2">
               <Heart className="h-5 w-5 text-muted-foreground" />
-              <CardTitle className="text-lg">Wishlist</CardTitle>
+              <CardTitle className="text-lg">{tu("wishlist")}</CardTitle>
             </div>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-muted-foreground">Save items for later and keep track of products you love.</p>
+            <p className="text-sm text-muted-foreground">{tu("wishlistText")}</p>
             <Button variant="ghost" size="sm" className="mt-4 w-full" asChild>
-              <Link href={`/${locale}/account/wishlist`}>View Wishlist</Link>
+              <Link href={`/${locale}/account/wishlist`}>{tu("viewWishlist")}</Link>
             </Button>
           </CardContent>
         </Card>
@@ -147,13 +149,13 @@ export default async function AccountPage({ params }: { params: Promise<{ locale
           <CardHeader className="pb-3">
             <div className="flex items-center gap-2">
               <Bell className="h-5 w-5 text-muted-foreground" />
-              <CardTitle className="text-lg">Notifications</CardTitle>
+              <CardTitle className="text-lg">{tu("notifications")}</CardTitle>
             </div>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-muted-foreground">Manage your email preferences and notification settings.</p>
+            <p className="text-sm text-muted-foreground">{tu("notificationsText")}</p>
             <Button variant="ghost" size="sm" className="mt-4 w-full" asChild>
-              <Link href={`/${locale}/account/notifications`}>Manage Notifications</Link>
+              <Link href={`/${locale}/account/notifications`}>{tu("manageNotifications")}</Link>
             </Button>
           </CardContent>
         </Card>

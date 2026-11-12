@@ -12,9 +12,12 @@ import VerifyEmailPage from "@/components/auth/verify-email-page"
 
 export default async function AccountLayout({
   children,
+  params,
 }: {
   children: React.ReactNode
+  params: Promise<{ locale: string }>
 }) {
+  const { locale } = await params
   const [session,storeId] = await Promise.all([getSession(),getTenantId()])
   if(!session) redirect("/auth/login")
   if(session.user_role !== "customer") return <RedirectToDashboard role={session.user_role}/>
@@ -45,7 +48,7 @@ export default async function AccountLayout({
   return (
     <div className="container px-4 py-8 md:px-6 md:py-12 mx-auto">
       <Suspense fallback={<AccountDeletionPageSkeleton/>}>
-        <AccountDeletionPage>
+        <AccountDeletionPage locale={locale}>
           <div className="flex flex-col gap-8 md:flex-row">
             <AccountSidebar />
             <div className="flex-1">{children}</div>

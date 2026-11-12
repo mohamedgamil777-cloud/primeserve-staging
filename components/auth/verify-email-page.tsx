@@ -1,4 +1,5 @@
 "use client"
+import { useTranslations } from "next-intl"
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
@@ -14,6 +15,7 @@ import { verifyEmail, resendVerificationEmail as sendVerificationEmail } from "@
 import { toast } from "sonner"
 
 export default function VerifyEmailPage({resendEmailOnMount}:{resendEmailOnMount?:boolean}) {
+  const tu = useTranslations("ui")
   const locale = useLocale()
   const [verificationToken, setVerificationToken] = useState("")
   const [verificationStatus, setVerificationStatus] = useState<"loading" | "success" | "error" | "pending">("pending")
@@ -48,7 +50,7 @@ export default function VerifyEmailPage({resendEmailOnMount}:{resendEmailOnMount
         toast.error(res.error)
       }else{
         setVerificationStatus("success")
-        toast.success("Email verified successfully, Your account has been activated. You can now sign in.",)
+        toast.success(tu("verifiedToast"),)
       }
       // Redirect to dashboard after 3 seconds
       setTimeout(() => {
@@ -56,7 +58,7 @@ export default function VerifyEmailPage({resendEmailOnMount}:{resendEmailOnMount
       }, 3000)
     } catch (error) {
       setVerificationStatus("error")
-      toast.error("Verification failed, The verification link is invalid or has expired.")
+      toast.error(tu("verifyFailedToast"))
     }
   }
 
@@ -66,9 +68,9 @@ export default function VerifyEmailPage({resendEmailOnMount}:{resendEmailOnMount
     try {
       const res = await sendVerificationEmail()
       if(res.error) toast.error(res.error)
-      else toast.success("Verification email sent, Please check your email for the new verification link.")
+      else toast.success(tu("verifySentToast"))
     } catch (error) {
-      toast.error("Failed to send verification email. Please try again.")
+      toast.error(tu("verifySendFailed"))
     } finally {
       setIsResending(false)
     }
@@ -89,8 +91,8 @@ export default function VerifyEmailPage({resendEmailOnMount}:{resendEmailOnMount
             <CardContent className="pt-6">
               <div className="text-center space-y-4">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-                <h3 className="text-lg font-semibold">Verifying your email</h3>
-                <p className="text-sm text-muted-foreground">Please wait while we verify your email address...</p>
+                <h3 className="text-lg font-semibold">{tu("verifying")}</h3>
+                <p className="text-sm text-muted-foreground">{tu("verifyingText")}</p>
               </div>
             </CardContent>
           </Card>
@@ -115,8 +117,8 @@ export default function VerifyEmailPage({resendEmailOnMount}:{resendEmailOnMount
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
                 <CheckCircle className="h-6 w-6 text-green-600 dark:text-green-400" />
               </div>
-              <CardTitle>Email verified successfully</CardTitle>
-              <CardDescription>Your account has been activated and you can now sign in.</CardDescription>
+              <CardTitle>{tu("verifiedTitle")}</CardTitle>
+              <CardDescription>{tu("verifiedText")}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="text-center space-y-4">
@@ -124,7 +126,7 @@ export default function VerifyEmailPage({resendEmailOnMount}:{resendEmailOnMount
                   You will be redirected to the sign in page in a few seconds.
                 </p>
                 <Button asChild className="w-full">
-                  <Link href={`/${locale}/auth/login`}>Sign in to your account</Link>
+                  <Link href={`/${locale}/auth/login`}>{tu("signInToAccount")}</Link>
                 </Button>
               </div>
             </CardContent>
@@ -150,8 +152,8 @@ export default function VerifyEmailPage({resendEmailOnMount}:{resendEmailOnMount
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-100 dark:bg-red-900">
                 <AlertCircle className="h-6 w-6 text-red-600 dark:text-red-400" />
               </div>
-              <CardTitle>Verification failed</CardTitle>
-              <CardDescription>The verification link is invalid or has expired.</CardDescription>
+              <CardTitle>{tu("verifyFailedTitle")}</CardTitle>
+              <CardDescription>{tu("verifyFailedText")}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="text-center space-y-4">
@@ -165,7 +167,7 @@ export default function VerifyEmailPage({resendEmailOnMount}:{resendEmailOnMount
                   Re-Enter verification Code
                 </Button>
                 <Button variant={"outline"} onClick={resendVerificationEmail} disabled={isResending} className="w-full">
-                  {isResending ? "Sending..." : "Send new verification email"}
+                  {isResending ? tu("sending") : tu("sendNewVerification")}
                 </Button>
               </div>
             </CardContent>
@@ -192,8 +194,8 @@ export default function VerifyEmailPage({resendEmailOnMount}:{resendEmailOnMount
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to store
           </Link>
-          <h2 className="text-3xl font-bold tracking-tight">Verify your email</h2>
-          <p className="mt-2 text-sm text-muted-foreground">Check your email for a verification link.</p>
+          <h2 className="text-3xl font-bold tracking-tight">{tu("verifyYourEmail")}</h2>
+          <p className="mt-2 text-sm text-muted-foreground">{tu("checkEmailForLink")}</p>
         </div>
 
         <Card>
@@ -201,7 +203,7 @@ export default function VerifyEmailPage({resendEmailOnMount}:{resendEmailOnMount
             <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900">
               <Mail className="h-6 w-6 text-blue-600 dark:text-blue-400" />
             </div>
-            <CardTitle>Check your email</CardTitle>
+            <CardTitle>{tu("checkYourEmail")}</CardTitle>
             <CardDescription>We've sent a verification link to {email || "your email address"}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -226,10 +228,10 @@ export default function VerifyEmailPage({resendEmailOnMount}:{resendEmailOnMount
                 </InputOTPGroup>
               </InputOTP>
               <Button onClick={()=>handleVerifyEmail(verificationStatus)} disabled={isResending || verificationToken.length !== 6} variant="default" className="w-full">
-                {isResending ? "Verifiying..." : "Verifiy Code"}
+                {isResending ? tu("verifyingShort") : tu("verifyCode")}
               </Button>
               <Button onClick={resendVerificationEmail} disabled={isResending} variant="outline" className="w-full">
-                {isResending ? "Sending..." : "Resend verification email"}
+                {isResending ? tu("sending") : tu("resendVerification")}
               </Button>
             </div>
           </CardContent>

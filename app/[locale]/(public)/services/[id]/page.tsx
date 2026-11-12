@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import { Clock, DollarSign, Star, CheckCircle, AlertCircle, Calendar, Phone, Mail, MapPin } from "lucide-react"
+import { Clock, DollarSign, Star, CheckCircle, AlertCircle, Calendar, Phone, Mail } from "lucide-react"
 import Link from "next/link"
 import { db } from "@/db"
 import { getTenantId } from "@/lib/tenant"
@@ -46,6 +46,12 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
       getTranslations({locale})
     ]
   )
+  const contactInfo = await db.query.contactInformation.findFirst({
+    where: (contactInformation, { eq }) => eq(contactInformation.storeId, storeId),
+    columns: { customerServicePhone: true, supportEmail: true },
+  })
+  const supportPhone = contactInfo?.customerServicePhone?.trim() || null
+  const supportEmail = contactInfo?.supportEmail?.trim() || null
   const service = await db.query.services.findFirst({
     "where":(services,{eq,and})=>and(
       eq(services.storeId,storeId),
@@ -292,26 +298,22 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               <div className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-primary" />
                 <div>
-                  <div className="font-semibold">(555) 123-4567</div>
-                  <div className="text-sm text-muted-foreground">Mon-Fri 8AM-6PM</div>
+                  {supportPhone
+                    ? <a dir="ltr" href={`tel:${supportPhone.replace(/\s/g, "")}`} className="font-semibold hover:underline">{supportPhone}</a>
+                    : <Link href={`/${locale}/contact`} className="font-semibold hover:underline">{t('contact')}</Link>}
+                  <div className="text-sm text-muted-foreground">{t('available-24-7')}</div>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
-                <Mail className="h-5 w-5 text-primary" />
-                <div>
-                  <div className="font-semibold">services@primeserve.com</div>
-                  <div className="text-sm text-muted-foreground">{t('24-7-support')}</div>
+              {supportEmail && (
+                <div className="flex items-center gap-3">
+                  <Mail className="h-5 w-5 text-primary" />
+                  <div>
+                    <a href={`mailto:${supportEmail}`} className="break-all font-semibold hover:underline">{supportEmail}</a>
+                    <div className="text-sm text-muted-foreground">{t('well-respond-within-24-hours')}</div>
+                  </div>
                 </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <MapPin className="h-5 w-5 text-primary" />
-                <div>
-                  <div className="font-semibold">{t('service-area')}</div>
-                  <div className="text-sm text-muted-foreground">50 mile radius</div>
-                </div>
-              </div>
+              )}
             </CardContent>
           </Card>
 

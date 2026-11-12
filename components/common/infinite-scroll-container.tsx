@@ -1,4 +1,5 @@
 "use client"
+import { useTranslations } from "next-intl"
 
 import React, { JSX, useEffect, useMemo } from "react"
 import { cn } from "@/lib/utils"
@@ -50,6 +51,7 @@ const InfiniteScrollContainer = <T,>({
 	skeletonClassName,
 	customSkeletonComponent
 }: InfiniteScrollContainerProps<T>): JSX.Element => {
+  const tu = useTranslations("ui")
 	const { data, isFetchingNextPage, hasNextPage, fetchNextPage, isLoading } = query
 	const [loadMoreRef, inView] = useInView({ threshold: 0.1, rootMargin: "200px" })
 
@@ -92,7 +94,7 @@ const InfiniteScrollContainer = <T,>({
             {(data?.pages.length === 0 || data?.pages.at(0)?.length === 0) && (
                 customEmptyStateComponent
                 ??
-                <p className={"text-lg text-center my-14"}>No Results Found.</p>
+                <p className={"text-lg text-center my-14"}>{tu("noResults")}</p>
             )}
         </>
 	)

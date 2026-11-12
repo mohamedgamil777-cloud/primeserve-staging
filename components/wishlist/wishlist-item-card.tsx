@@ -1,4 +1,5 @@
 "use client"
+import { useTranslations } from "next-intl"
 import { formatDate } from '@/lib/date'
 import { genProductImageUrl } from '@/lib/product'
 import { WishlistItem } from '@/types/wishlist'
@@ -17,6 +18,7 @@ type Props = {
 }
 
 export default function WishlistItemCard({item}: Props) {
+  const tu = useTranslations("ui")
   const locale = useLocale()
   const { addItems:addItemsToCart } = useCart()
   const { removeItem:removeItemFromWishlist } = useWishlist({})
@@ -53,11 +55,11 @@ export default function WishlistItemCard({item}: Props) {
         <p className="text-sm text-muted-foreground">Category: {getLocalizedValue(item.category,locale)}</p>
         <p className="text-sm text-muted-foreground">Added on: {formatDate(item.addedOn)}</p>
         <p className="font-medium mt-1">EGP {item.price.toFixed(2)}</p>
-        {!item.inStock && <p className="text-sm text-destructive mt-1">Out of stock</p>}
+        {!item.inStock && <p className="text-sm text-destructive mt-1">{tu("outOfStock")}</p>}
       </div>
       <div className="flex flex-col sm:flex-row gap-2 mt-4 sm:mt-0">
         <Button variant="outline" size="sm" className="flex-1" asChild>
-          <Link href={`/${locale}/products/${item.id}`}>View Product</Link>
+          <Link href={`/${locale}/products/${item.id}`}>{tu("viewProduct")}</Link>
         </Button>
         <Button 
           onClick={handleAddToCart} 
@@ -72,7 +74,7 @@ export default function WishlistItemCard({item}: Props) {
           onClick={handleRemoveFromWishList}
         >
           <Trash2 className="h-4 w-4" />
-          <span className="sr-only">Remove</span>
+          <span className="sr-only">{tu("remove")}</span>
         </Button>
       </div>
     </div>

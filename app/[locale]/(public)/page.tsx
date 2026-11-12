@@ -102,9 +102,9 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       </Link>
       <div className={cn("container px-4 md:px-6 mx-auto py-16 space-y-0 flex flex-col items-start justify-center text-left",locale === "ar" && "text-right")}>
         <div className="space-y-2">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">{"How to check your services"}</h2>
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">{t("ui.howItWorks")}</h2>
           <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-            {"Your Corporate Hub"}
+            {t("ui.howItWorksText")}
           </p>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl"
 import React from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
 import { Button } from '../ui/button'
@@ -13,14 +14,15 @@ import { useLocale } from 'next-intl'
 type Props = {}
 
 export default function AddressesOverview({}: Props) {
+  const tu = useTranslations("ui")
   const locale = useLocale()
   const { isLoading, data } = useAddresses()
   const newest2Addresses = data?.slice(0,2) ?? []
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Saved Addresses</CardTitle>
-        <CardDescription>Manage your shipping and billing addresses</CardDescription>
+        <CardTitle>{tu("savedAddresses")}</CardTitle>
+        <CardDescription>{tu("manageAddresses")}</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">

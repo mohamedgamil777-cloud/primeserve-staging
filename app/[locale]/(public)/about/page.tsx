@@ -32,6 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
+  const tu = await getTranslations({ locale: (await params).locale, namespace: "ui" })
   const t = await getTranslations({"locale":(await params).locale})
   const storeId = await getTenantId()
   console.log(await params,t('get-it-on'))
@@ -116,10 +117,10 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   ]
 
   const stats = [
-    { label: "Years in Business", value: storeInfo?.aboutPageContent?.yearsInBusiness, icon: Award },
-    { label: "Happy Customers", value: storeInfo?.aboutPageContent?.happyCustomers, icon: Users },
+    { label: tu("yearsInBusiness"), value: storeInfo?.aboutPageContent?.yearsInBusiness, icon: Award },
+    { label: tu("happyCustomers"), value: storeInfo?.aboutPageContent?.happyCustomers, icon: Users },
     // { label: "Store Locations", value: branches.length, icon: MapPin },
-    { label: "Products Available", value: storeInfo?.aboutPageContent?.productsAvailable, icon: Star },
+    { label: tu("productsAvailable"), value: storeInfo?.aboutPageContent?.productsAvailable, icon: Star },
   ]
 
   return (
@@ -195,12 +196,10 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         </section>
 
         {/* Team Section */}
-        <section>
+        {!!storeInfo?.teamMembers?.length && <section>
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold tracking-tight mb-4">Meet Our Team</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Our passionate team of professionals is dedicated to making your shopping experience exceptional.
-            </p>
+            <h2 className="text-3xl font-bold tracking-tight mb-4">{tu("meetTeam")}</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">{tu("meetTeamText")}</p>
           </div>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {storeInfo?.teamMembers.map((member, index) => (
@@ -220,7 +219,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               </Card>
             ))}
           </div>
-        </section>
+        </section>}
 
         {/* Store Locations */}
         {/* <section>

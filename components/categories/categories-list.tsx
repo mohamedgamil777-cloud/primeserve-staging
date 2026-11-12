@@ -1,4 +1,5 @@
 "use client"
+import { useTranslations } from "next-intl"
 
 import { use, useState } from "react"
 import Link from "next/link"
@@ -13,6 +14,7 @@ import { getLocalizedValue } from "@/types/internationalization"
 import { useLocale } from "@/hooks/use-locale"
 
 export default function CategoriesList({categoriesPromise}:{categoriesPromise:Promise<DetailedCategory[]>}) {
+  const tu = useTranslations("ui")
   const locale = useLocale()
   const categories = use(categoriesPromise)
   const [searchQuery, setSearchQuery] = useState("")
@@ -41,7 +43,7 @@ export default function CategoriesList({categoriesPromise}:{categoriesPromise:Pr
         <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
         <Input
           type="search"
-          placeholder="Search categories..."
+          placeholder={tu("searchCategories")}
           className="w-full pl-8"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
@@ -50,8 +52,8 @@ export default function CategoriesList({categoriesPromise}:{categoriesPromise:Pr
 
       <Tabs defaultValue="grid" className="space-y-4">
         <TabsList>
-          <TabsTrigger value="grid">Grid View</TabsTrigger>
-          <TabsTrigger value="list">List View</TabsTrigger>
+          <TabsTrigger value="grid">{tu("gridView")}</TabsTrigger>
+          <TabsTrigger value="list">{tu("listView")}</TabsTrigger>
         </TabsList>
 
         <TabsContent value="grid" className="space-y-8">

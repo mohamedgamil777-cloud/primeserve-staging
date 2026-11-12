@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl"
 import { Check } from 'lucide-react'
 import React from 'react'
 import { Button } from '../ui/button'
@@ -7,6 +8,7 @@ import { motion } from "framer-motion"
 type Props = {orderId:string}
 
 export default function OrderConfirmed({orderId}: Props) {
+  const tu = useTranslations("ui")
   const router = useRouter()
   return (
     <div className="container flex flex-col items-center justify-center px-4 py-16 md:px-6">
@@ -19,19 +21,19 @@ export default function OrderConfirmed({orderId}: Props) {
         <div className="flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
           <Check className="h-10 w-10 text-green-600" />
         </div>
-        <h1 className="text-3xl font-bold">Order Confirmed!</h1>
+        <h1 className="text-3xl font-bold">{tu("orderConfirmed")}</h1>
         <p className="max-w-md text-muted-foreground">
           Thank you for your purchase. Your order has been confirmed and will be shipped soon.
         </p>
         <div className="mt-4 rounded-lg border p-4">
           <p className="font-medium">Order #{orderId}</p>
-          <p className="text-sm text-muted-foreground">A confirmation email has been sent to your email address.</p>
+          <p className="text-sm text-muted-foreground">{tu("confirmationSent")}</p>
         </div>
         <div className="mt-8 flex gap-4">
           <Button variant="outline" onClick={() => router.push("/")}>
             Return to Home
           </Button>
-          <Button onClick={() => router.push("/products")}>Continue Shopping</Button>
+          <Button onClick={() => router.push("/products")}>{tu("continueShopping")}</Button>
         </div>
       </motion.div>
     </div>

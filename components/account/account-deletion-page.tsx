@@ -1,3 +1,5 @@
+import Link from "next/link"
+import { getTranslations } from "next-intl/server"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
@@ -11,7 +13,8 @@ import { differenceInDays } from "date-fns"
 import { formatDate, getDateNDaysFrom } from "@/lib/date"
 
 
-export default async function AccountDeletionPage({children}:PropsWithChildren) {
+export default async function AccountDeletionPage({children, locale}:PropsWithChildren<{ locale: string }>) {
+  const tu = await getTranslations({ locale, namespace: "ui" })
   const [session] = await Promise.all([
     getSession(),
     
@@ -31,27 +34,27 @@ export default async function AccountDeletionPage({children}:PropsWithChildren) 
   const handleDownloadData = async () => {
     try {
       // Simulate data download
-      toast.success("Your data export has been started. You'll receive an email when it's ready.")
+      toast.success(tu("exportStarted"))
     } catch (error) {
-      toast.error("Failed to start data export. Please try again.")
+      toast.error(tu("exportFailed"))
     }
   }
 
   const dataToDelete = [
-    "Personal information (name, email, phone)",
-    "Order history and purchase records",
-    "Wishlist and saved items",
-    "Payment methods and billing addresses",
-    "Reward points and loyalty status",
-    "Account preferences and settings",
-    "Communication history and support tickets",
+    tu("del1"),
+    tu("del2"),
+    tu("del3"),
+    tu("del4"),
+    tu("del5"),
+    tu("del6"),
+    tu("del7"),
   ]
 
 
   const dataRetained = [
-    "Anonymized analytics data (for business insights)",
-    "Legal compliance records (as required by law)",
-    "Financial transaction records (for tax purposes)",
+    tu("ret1"),
+    tu("ret2"),
+    tu("ret3"),
   ]
 
 
@@ -60,8 +63,8 @@ export default async function AccountDeletionPage({children}:PropsWithChildren) 
       <div className="flex items-center gap-3">
         <AlertTriangle className="h-8 w-8 text-destructive" />
         <div>
-          <h1 className="text-2xl font-bold text-destructive">Account Scheduled for Deletion</h1>
-          <p className="text-muted-foreground">Your account deletion is currently pending</p>
+          <h1 className="text-2xl font-bold text-destructive">{tu("delScheduledTitle")}</h1>
+          <p className="text-muted-foreground">{tu("delPending")}</p>
         </div>
       </div>
 
@@ -76,16 +79,16 @@ export default async function AccountDeletionPage({children}:PropsWithChildren) 
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="text-center p-4 bg-muted/50 rounded-lg">
-              <div className="text-sm text-muted-foreground">Deletion Requested</div>
+              <div className="text-sm text-muted-foreground">{tu("delRequested")}</div>
               <div className="font-medium">{formatDate(pendingDeletionRequest.requestedAt)}</div>
             </div>
             <div className="text-center p-4 bg-destructive/10 rounded-lg border border-destructive/20">
-              <div className="text-sm text-destructive">Scheduled Deletion</div>
+              <div className="text-sm text-destructive">{tu("delScheduled")}</div>
               <div className="font-bold text-destructive">{formatDate(scheduledDate)}</div>
-              <div className="text-sm text-destructive">at 12:00PM</div>
+              <div className="text-sm text-destructive">{tu("at12")}</div>
             </div>
             <div className="text-center p-4 bg-orange-50 dark:bg-orange-950/20 rounded-lg">
-              <div className="text-sm text-orange-600 dark:text-orange-400">Days Remaining</div>
+              <div className="text-sm text-orange-600 dark:text-orange-400">{tu("daysRemaining")}</div>
               <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
                 {daysRemaining}
               </div>
@@ -95,7 +98,7 @@ export default async function AccountDeletionPage({children}:PropsWithChildren) 
           <div className="flex items-center gap-2 p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg">
             <Clock className="h-4 w-4 text-blue-600" />
             <span className="text-sm text-blue-600 dark:text-blue-400">
-              You have {daysRemaining} days to cancel this deletion request
+              {tu("daysToCancel", { days: daysRemaining })}
             </span>
           </div>
         </CardContent>
@@ -104,13 +107,13 @@ export default async function AccountDeletionPage({children}:PropsWithChildren) 
       {/* Action Buttons */}
       <Card>
         <CardHeader>
-          <CardTitle>Cancel Account Deletion</CardTitle>
-          <CardDescription>You can cancel the deletion request and keep your account active</CardDescription>
+          <CardTitle>{tu("cancelDeletion")}</CardTitle>
+          <CardDescription>{tu("cancelDeletionText")}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <AccountDeletionCancelButton/>
           <p className="text-sm text-muted-foreground">
-            Cancelling will immediately stop the deletion process and restore full access to your account.
+            {tu("cancellingText")}
           </p>
         </CardContent>
       </Card>
@@ -120,9 +123,9 @@ export default async function AccountDeletionPage({children}:PropsWithChildren) 
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Download className="h-5 w-5" />
-            Download Your Data
+            {tu("downloadData")}
           </CardTitle>
-          <CardDescription>Export a copy of your data before deletion</CardDescription>
+          <CardDescription>{tu("exportCopy")}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <Button 
@@ -131,9 +134,9 @@ export default async function AccountDeletionPage({children}:PropsWithChildren) 
             className="w-full md:w-auto"
           >
             <Download className="h-4 w-4 mr-2" />
-            Request Data Export
+            {tu("requestExport")}
           </Button>
-          <p className="text-sm text-muted-foreground">We'll email you a link to download your data within 24 hours.</p>
+          <p className="text-sm text-muted-foreground">{tu("exportEmail")}</p>
         </CardContent>
       </Card>
 
@@ -141,8 +144,8 @@ export default async function AccountDeletionPage({children}:PropsWithChildren) 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle className="text-destructive">Data to be Deleted</CardTitle>
-            <CardDescription>The following information will be permanently removed</CardDescription>
+            <CardTitle className="text-destructive">{tu("dataDeleted")}</CardTitle>
+            <CardDescription>{tu("dataDeletedText")}</CardDescription>
           </CardHeader>
           <CardContent>
             <ul className="space-y-2">
@@ -158,8 +161,8 @@ export default async function AccountDeletionPage({children}:PropsWithChildren) 
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-orange-600">Data Retained</CardTitle>
-            <CardDescription>Some data may be retained for legal or business purposes</CardDescription>
+            <CardTitle className="text-orange-600">{tu("dataRetained")}</CardTitle>
+            <CardDescription>{tu("dataRetainedText")}</CardDescription>
           </CardHeader>
           <CardContent>
             <ul className="space-y-2">
@@ -179,27 +182,26 @@ export default async function AccountDeletionPage({children}:PropsWithChildren) 
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-orange-600">
             <Shield className="h-5 w-5" />
-            Important Information
+            {tu("importantInfo")}
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           <div className="space-y-2">
-            <h4 className="font-medium">After Deletion:</h4>
+            <h4 className="font-medium">{tu("afterDeletion")}</h4>
             <ul className="text-sm text-muted-foreground space-y-1 ml-4">
-              <li>• You will not be able to recover your account or data</li>
-              <li>• Any pending orders will be cancelled</li>
-              <li>• Unused reward points will be forfeited</li>
-              <li>• You will need to create a new account to shop with us again</li>
+              <li>{tu("after1")}</li>
+              <li>{tu("after2")}</li>
+              <li>{tu("after3")}</li>
+              <li>{tu("after4")}</li>
             </ul>
           </div>
 
           <Separator />
 
           <div className="space-y-2">
-            <h4 className="font-medium">Legal Compliance:</h4>
+            <h4 className="font-medium">{tu("legalCompliance")}</h4>
             <p className="text-sm text-muted-foreground">
-              Some data may be retained for legal, regulatory, or legitimate business purposes as outlined in our
-              Privacy Policy. This includes transaction records required for tax purposes and fraud prevention.
+              {tu("legalText")}
             </p>
           </div>
         </CardContent>
@@ -208,30 +210,15 @@ export default async function AccountDeletionPage({children}:PropsWithChildren) 
       {/* Contact Support */}
       <Card>
         <CardHeader>
-          <CardTitle>Need Help?</CardTitle>
-          <CardDescription>Contact our support team if you have questions about account deletion</CardDescription>
+          <CardTitle>{tu("needHelp")}</CardTitle>
+          <CardDescription>{tu("deletionHelpText")}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="flex items-center gap-3 p-3 border rounded-lg">
-              <Mail className="h-5 w-5 text-primary" />
-              <div>
-                <div className="font-medium">Email Support</div>
-                <div className="text-sm text-muted-foreground">privacy@example.com</div>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 p-3 border rounded-lg">
-              <Phone className="h-5 w-5 text-primary" />
-              <div>
-                <div className="font-medium">Phone Support</div>
-                <div className="text-sm text-muted-foreground">1-800-SUPPORT</div>
-              </div>
-            </div>
+          <div className="flex flex-wrap gap-3">
+            <Button asChild variant="outline"><Link href={`/${locale}/contact`}><Mail className="h-4 w-4 me-2" />{tu("contactUs")}</Link></Button>
+            <Button asChild variant="outline"><Link href={`/${locale}/support`}><Phone className="h-4 w-4 me-2" />{tu("supportHub")}</Link></Button>
           </div>
-          <p className="text-sm text-muted-foreground">
-            Our privacy team is available Monday-Friday, 9 AM - 6 PM EST to assist with account deletion questions and
-            concerns.
-          </p>
+          <p className="text-sm text-muted-foreground">{tu("deletionHelpLinks")}</p>
         </CardContent>
       </Card>
     </div>
