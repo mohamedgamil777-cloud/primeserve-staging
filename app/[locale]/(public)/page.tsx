@@ -91,7 +91,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         </Link>
       </section>
       <Link href={"/account/rewards"}>
-        <div className="bg-[#34ca80] font-bold text-white gap-4 px-4 py-2 flex items-center justify-center">
+        <div className="bg-[#0B1F33] font-bold text-white gap-4 px-4 py-2 flex items-center justify-center">
           <span className="text-sm sm:text-base">
             Earn points on every order. Join our Loyalty Program today.
           </span>

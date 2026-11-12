@@ -51,7 +51,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-[#004957] py-16">
+      <section className="bg-[#0B1F33] py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-white">{t('get-in-touch')}</h1>

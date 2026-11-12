@@ -53,10 +53,10 @@ export function HeroSection({heroSectionData}:{heroSectionData?:HeroSectionData}
             transition={{ duration: 0.5, delay: 0.6 }}
             className="flex flex-col sm:flex-row gap-4 pt-4"
           >
-            <Button asChild size="lg" variant={"default"} className="w-48 font-bold border-[#34ca80] bg-[#34ca80] hover:bg-[#09a962]/10 dark:text-white">
+            <Button asChild size="lg" variant={"default"} className="w-48 font-bold border-[#F26522] bg-[#F26522] hover:bg-[#d9541a] dark:text-white">
               <Link href={`/${locale}/${heroSectionData?.heroMainButtonLink ?? "#"}`}>{heroSectionData?.heroMainButtonTextI18n ? (getLocalizedValue(heroSectionData.heroMainButtonTextI18n,locale) ?? heroSectionData?.heroMainButtonText) : ""}</Link>
             </Button>
-            <Button asChild variant="default" size="lg" className="w-48 font-bold border-[#34ca80] bg-[#34ca80] hover:bg-[#09a962]/10 dark:text-white">
+            <Button asChild variant="default" size="lg" className="w-48 font-bold border-[#F26522] bg-[#F26522] hover:bg-[#d9541a] dark:text-white">
               <Link href={`/${locale}/${heroSectionData?.heroSecondaryButtonLink ?? "#"}`}>{heroSectionData?.heroSecondaryButtonTextI18n ? (getLocalizedValue(heroSectionData.heroSecondaryButtonTextI18n,locale) ?? heroSectionData?.heroSecondaryButtonText) : ""}</Link>
             </Button>
           </motion.div>

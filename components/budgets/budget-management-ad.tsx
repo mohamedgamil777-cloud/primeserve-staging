@@ -19,7 +19,7 @@ export default function BudgetManagementAd({}: Props) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="relative overflow-hidden rounded-3xl bg-[#1c2a35] p-8 text-white shadow-xl"
+      className="relative overflow-hidden rounded-3xl bg-[#0B1F33] p-8 text-white shadow-xl"
     >
       {/* Subtle decorative elements */}
       <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-black/10"></div>
@@ -54,7 +54,7 @@ export default function BudgetManagementAd({}: Props) {
           <div className="flex flex-col items-start justify-center gap-4">
             <Link 
               href={`/${locale}/account/budget`}
-              className={cn(buttonVariants({"variant":"default","size":"lg"}),"group flex w-full min-w-[220px] items-center justify-between rounded-2xl bg-white px-6 py-5 text-emerald-700 shadow-lg hover:bg-white/90 hover:shadow-emerald-500/20 md:w-auto")}
+              className={cn(buttonVariants({"variant":"default","size":"lg"}),"group flex w-full min-w-[220px] items-center justify-between rounded-2xl bg-[#F26522] px-6 py-5 text-white shadow-lg hover:bg-[#d9541a] md:w-auto")}
             >
               <div className="flex items-center">
                 <Crown className="mr-2 h-5 w-5" />

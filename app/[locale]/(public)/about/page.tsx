@@ -125,7 +125,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-[#004957] py-20">
+      <section className="relative bg-[#0B1F33] py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-white">{storeInfo?.aboutPageContent?.heroTitle}</h1>

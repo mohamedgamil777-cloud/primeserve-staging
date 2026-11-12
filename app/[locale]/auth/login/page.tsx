@@ -58,7 +58,7 @@ export default function LoginForm() {
   return (
     <>
       <Header/>
-      <div className="min-h-screen bg-gradient-to-r from-[#1e324a] to-[#097d74] flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-r from-[#0B1F33] to-[#00796B] flex items-center justify-center p-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -155,7 +155,7 @@ export default function LoginForm() {
                 <Button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full bg-gradient-to-r from-[#1e324a] to-[#097d74] hover:from-blue-600 hover:to-[#097d74] text-white font-medium py-3 rounded-lg transition-all duration-200 transform hover:scale-[1.02]"
+                  className="w-full bg-gradient-to-r from-[#0B1F33] to-[#00796B] hover:from-[#132f4c] hover:to-[#00796B] text-white font-medium py-3 rounded-lg transition-all duration-200 transform hover:scale-[1.02]"
                 >
                   {isLoading ? "Logging in..." : "Login"}
                 </Button>
@@ -169,7 +169,7 @@ export default function LoginForm() {
               >
                 <Link
                   href={`/${locale}/auth/forgot-password`}
-                  className="from-[#1e324a] to-[#097d74] text-primary text-sm font-medium transition-colors duration-200"
+                  className="from-[#0B1F33] to-[#00796B] text-primary text-sm font-medium transition-colors duration-200"
                 >
                   Forgot Password?
                 </Link>

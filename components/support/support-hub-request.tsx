@@ -27,12 +27,12 @@ import { supportPriorities, supportTypes, type SupportType } from "@/types/suppo
 import { useCurrentUser } from "@/hooks/use-current-user"
 
 const typeStyles: Record<SupportType, { icon: LucideIcon; circle: string; button: string }> = {
-  procurement: { icon: ShoppingCart, circle: "bg-slate-100 text-[#0b2545]", button: "border-[#f26522] text-[#f26522] hover:bg-[#f26522]/10" },
-  facility: { icon: Building2, circle: "bg-orange-50 text-[#f26522]", button: "border-[#f26522] text-[#f26522] hover:bg-[#f26522]/10" },
-  hr: { icon: Users, circle: "bg-emerald-50 text-emerald-700", button: "border-emerald-600 text-emerald-700 hover:bg-emerald-50" },
-  technical: { icon: Headphones, circle: "bg-blue-50 text-[#0b2545]", button: "border-[#1e3a8a] text-[#1e3a8a] hover:bg-blue-50" },
-  finance: { icon: FileText, circle: "bg-orange-50 text-[#f26522]", button: "border-[#f26522] text-[#f26522] hover:bg-[#f26522]/10" },
-  general: { icon: MessageSquareMore, circle: "bg-emerald-50 text-emerald-700", button: "border-emerald-600 text-emerald-700 hover:bg-emerald-50" },
+  procurement: { icon: ShoppingCart, circle: "bg-[#EEF2F6] text-[#0B1F33]", button: "border-[#F26522] text-[#F26522] hover:bg-[#F26522]/10" },
+  facility: { icon: Building2, circle: "bg-[#FFF3EC] text-[#F26522]", button: "border-[#F26522] text-[#F26522] hover:bg-[#F26522]/10" },
+  hr: { icon: Users, circle: "bg-[#E8F5F3] text-[#00796B]", button: "border-[#00796B] text-[#00796B] hover:bg-[#E8F5F3]" },
+  technical: { icon: Headphones, circle: "bg-[#EAF2FF] text-[#0B1F33]", button: "border-[#0B1F33] text-[#0B1F33] hover:bg-[#EAF2FF]" },
+  finance: { icon: FileText, circle: "bg-[#FFF3EC] text-[#F26522]", button: "border-[#F26522] text-[#F26522] hover:bg-[#F26522]/10" },
+  general: { icon: MessageSquareMore, circle: "bg-[#E8F5F3] text-[#00796B]", button: "border-[#00796B] text-[#00796B] hover:bg-[#E8F5F3]" },
 }
 
 export default function SupportHubRequest({ sidebar }: { sidebar: React.ReactNode }) {
@@ -89,9 +89,9 @@ export default function SupportHubRequest({ sidebar }: { sidebar: React.ReactNod
   }
 
   const label = (text: string, required = true) => (
-    <FormLabel className="text-xs font-semibold text-[#0b2545]">
+    <FormLabel className="text-xs font-semibold text-[#0B1F33]">
       {text}
-      {required && <span className="text-[#f26522]"> *</span>}
+      {required && <span className="text-[#F26522]"> *</span>}
     </FormLabel>
   )
 
@@ -99,7 +99,7 @@ export default function SupportHubRequest({ sidebar }: { sidebar: React.ReactNod
     <>
       {/* Support types */}
       <section className="container mx-auto px-4 md:px-6 py-12">
-        <h2 className="text-center text-2xl md:text-3xl font-bold text-[#0b2545] mb-8">{t("chooseTitle")}</h2>
+        <h2 className="text-center text-2xl md:text-3xl font-bold text-[#0B1F33] mb-8">{t("chooseTitle")}</h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           {supportTypes.map((type) => {
             const style = typeStyles[type]
@@ -109,7 +109,7 @@ export default function SupportHubRequest({ sidebar }: { sidebar: React.ReactNod
                 <div className={cn("mb-4 flex h-16 w-16 items-center justify-center rounded-full", style.circle)}>
                   <Icon className="h-8 w-8" />
                 </div>
-                <h3 className="mb-2 font-bold text-[#0b2545]">{t(`types.${type}.title`)}</h3>
+                <h3 className="mb-2 font-bold text-[#0B1F33]">{t(`types.${type}.title`)}</h3>
                 <p className="mb-5 flex-1 text-sm text-muted-foreground">{t(`types.${type}.text`)}</p>
                 <button
                   type="button"
@@ -128,7 +128,7 @@ export default function SupportHubRequest({ sidebar }: { sidebar: React.ReactNod
       <section id="request" className="container mx-auto px-4 md:px-6 pb-12 scroll-mt-24">
         <div className="grid gap-6 lg:grid-cols-3">
           <div ref={formRef} className="scroll-mt-24 rounded-xl border bg-white p-6 shadow-sm lg:col-span-2">
-            <h2 className="mb-6 text-xl font-bold text-[#0b2545]">{t("formTitle")}</h2>
+            <h2 className="mb-6 text-xl font-bold text-[#0B1F33]">{t("formTitle")}</h2>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                 <div className="grid gap-4 md:grid-cols-3">
@@ -193,7 +193,7 @@ export default function SupportHubRequest({ sidebar }: { sidebar: React.ReactNod
                   <button
                     type="submit"
                     disabled={isSending}
-                    className="inline-flex items-center gap-2 rounded-md bg-[#f26522] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#d9541a] disabled:opacity-60"
+                    className="inline-flex items-center gap-2 rounded-md bg-[#F26522] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#d9541a] disabled:opacity-60"
                   >
                     {isSending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4 rtl:-scale-x-100" />}
                     {isSending ? t("sending") : t("send")}

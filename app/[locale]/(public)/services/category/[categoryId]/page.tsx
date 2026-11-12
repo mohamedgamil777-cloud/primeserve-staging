@@ -52,7 +52,7 @@ export default async function CategoryServicesPage({ params }: { params: Promise
 
   return (
     <>
-      <Card className="bg-[#192e5b] rounded-none">
+      <Card className="bg-[#0B1F33] rounded-none">
         <div className="flex flex-col sm:flex-row gap-4 p-6">
           {category.image && (
             <div className="w-full sm:w-1/3 max-w-80">
@@ -67,7 +67,7 @@ export default async function CategoryServicesPage({ params }: { params: Promise
           )}
           <div className="flex-1 flex flex-col justify-center">
             <CardHeader className="p-0">
-              <CardTitle className={`text-[#81CDC8] text-4xl font-bold`}>{getLocalizedValue(category.nameI18n,locale as "en")}</CardTitle>
+              <CardTitle className={`text-[#F26522] text-4xl font-bold`}>{getLocalizedValue(category.nameI18n,locale as "en")}</CardTitle>
               <CardDescription className="text-white text-lg">{getLocalizedValue(category.longDescriptionI18n,locale as "en") ?? getLocalizedValue(category.descriptionI18n,locale as "en")}</CardDescription>
             </CardHeader>
             <CardContent className="p-0 pt-4">
@@ -103,7 +103,7 @@ export default async function CategoryServicesPage({ params }: { params: Promise
           <div className="space-y-6">
             {/* Category Header */}
             {/* <Card className="bg-muted/50"> */}
-            {/* <Card className="bg-[#192e5b]">
+            {/* <Card className="bg-[#0B1F33]">
               <div className="flex flex-col sm:flex-row gap-4 p-6">
                 {category.image && (
                   <div className="w-full sm:w-1/3">
@@ -116,7 +116,7 @@ export default async function CategoryServicesPage({ params }: { params: Promise
                 )}
                 <div className="flex-1">
                   <CardHeader className="p-0">
-                    <CardTitle className={`text-[#81CDC8] text-3xl`}>{category.name}</CardTitle>
+                    <CardTitle className={`text-[#F26522] text-3xl`}>{category.name}</CardTitle>
                     <CardDescription className="text-white">{category.description}</CardDescription>
                   </CardHeader>
                   <CardContent className="p-0 pt-4">

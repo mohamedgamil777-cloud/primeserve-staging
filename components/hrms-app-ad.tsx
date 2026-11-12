@@ -17,7 +17,7 @@ export default function HrmsAppAd({}: Props) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="overflow-hidden rounded-3xl bg-[#1c2a35] p-8 text-white"
+      className="overflow-hidden rounded-3xl bg-[#0B1F33] p-8 text-white"
     >
       <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
         <div className="space-y-4">
@@ -30,7 +30,7 @@ export default function HrmsAppAd({}: Props) {
             <a 
               target='_blank'
               href={"https://hrms.codmium.com/"}
-              className={cn(buttonVariants({"variant":"default"}),"rounded-2xl bg-white text-indigo-700 hover:bg-white/90")}
+              className={cn(buttonVariants({"variant":"default"}),"rounded-2xl bg-[#F26522] text-white hover:bg-[#d9541a]")}
             >
               {t('explore-plans')}
             </a>
