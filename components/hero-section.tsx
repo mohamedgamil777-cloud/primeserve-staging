@@ -17,8 +17,10 @@ export function HeroSection({heroSectionData}:{heroSectionData?:HeroSectionData}
         <Image 
           src={heroSectionData?.heroBackgroundImage ? `/api/imgs/stores/${heroSectionData?.heroBackgroundImage}` : hero} 
           alt="Hero Image" 
-          height={900}
-          width={900}
+          height={640}
+          width={1920}
+          sizes="100vw"
+          priority
           className="w-full h-full object-cover"
         />
       </div>

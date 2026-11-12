@@ -32,7 +32,7 @@ export const POST = async (req:Request) => {
         })
 
         const [img] = await Promise.all([
-            saveImgFromFile(900,path.join(process.cwd(), "public","imgs","stores"),`hero-${storeId}-${Math.floor(Math.random()*9999)}.webp`,_image),
+            saveImgFromFile(1920,path.join(process.cwd(), "public","imgs","stores"),`hero-${storeId}-${Math.floor(Math.random()*9999)}.webp`,_image),
         ])
         await db.update(storeAssets)
             .set({"heroBackgroundImage":img,"updatedAt":new Date()})
