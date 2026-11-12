@@ -51,6 +51,11 @@ export function Header() {
       active: pathname === `/${locale}/about`,
     },
     {
+      href: `/${locale}/support`,
+      label: t('supportHub.nav'),
+      active: pathname === `/${locale}/support`,
+    },
+    {
       href: `/${locale}/contact`,
       label: t('contact'),
       active: pathname === `/${locale}/contact`,
