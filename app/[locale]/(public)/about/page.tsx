@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { MapPin, Phone, Mail, Clock, Users, Award, Target, Eye, ArrowRight, Building2, Box, BarChart3, ShoppingCart, Settings, Zap, Layers, Leaf, ShieldCheck, Lightbulb, PlayCircle, type LucideIcon } from "lucide-react"
+import { MapPin, Phone, Mail, Clock, Users, Award, Target, Eye, ArrowRight, Box, ShoppingCart, Settings, Zap, Layers, Leaf, ShieldCheck, Lightbulb, LayoutGrid, Laptop, Truck, Check, type LucideIcon } from "lucide-react"
 import Link from "next/link"
 import { getTenantId } from "@/lib/tenant"
 import { db } from "@/db"
@@ -120,117 +120,150 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   const locale = (await params).locale
   const ta = await getTranslations({ locale, namespace: "aboutPage" })
 
-  const highlights = [
-    { icon: Building2, t: "s1t", x: "s1x" },
-    { icon: Box, t: "s2t", x: "s2x" },
-    { icon: Users, t: "s3t", x: "s3x" },
-    { icon: BarChart3, t: "s4t", x: "s4x" },
+  const stats = [
+    { icon: Users, v: "st1v", l: "st1l" },
+    { icon: Box, v: "st2v", l: "st2l" },
+    { icon: LayoutGrid, v: "st3v", l: "st3l" },
+    { icon: Layers, v: "st4v", l: "st4l" },
   ]
   const solutions = [
-    { icon: ShoppingCart, tone: "orange" as const, t: "c1t", x: "c1x", href: `/${locale}/categories` },
-    { icon: Settings, tone: "teal" as const, t: "c2t", x: "c2x", href: `/${locale}/services` },
-    { icon: Users, tone: "orange" as const, t: "c3t", x: "c3x", href: `/${locale}/employee-experience` },
+    { icon: ShoppingCart, tone: "teal" as const, t: "c1t", x: "c1x", href: `/${locale}/categories` },
+    { icon: Settings, tone: "orange" as const, t: "c2t", x: "c2x", href: `/${locale}/services` },
+    { icon: Users, tone: "teal" as const, t: "c3t", x: "c3x", href: `/${locale}/employee-experience` },
   ]
-  const principles = [
-    { icon: Zap, tone: "orange" as const, n: 1 },
-    { icon: Award, tone: "teal" as const, n: 2 },
-    { icon: Layers, tone: "orange" as const, n: 3 },
-    { icon: Leaf, tone: "teal" as const, n: 4 },
-    { icon: ShieldCheck, tone: "orange" as const, n: 5 },
-    { icon: Lightbulb, tone: "teal" as const, n: 6 },
+  const steps = [Target, Layers, Laptop, Truck]
+  const values = [
+    { icon: Zap, tone: "orange" as const },
+    { icon: Award, tone: "teal" as const },
+    { icon: Layers, tone: "orange" as const },
+    { icon: Leaf, tone: "teal" as const },
+    { icon: ShieldCheck, tone: "orange" as const },
+    { icon: Lightbulb, tone: "teal" as const },
   ]
+  const toneText = (tone: "teal" | "orange") => (tone === "teal" ? "text-brand-teal" : "text-brand-orange")
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-white">
-        <span aria-hidden className="pointer-events-none absolute -bottom-32 -start-40 hidden h-72 w-72 rounded-full bg-brand-green-soft xl:block" />
-        <div className="container relative mx-auto grid items-center gap-10 px-4 py-12 md:px-6 lg:grid-cols-[1fr_1.15fr] lg:py-16">
-          <div className="space-y-6">
-            <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.16em] text-brand-teal sm:text-sm">
-              <span className="h-0.5 w-10 bg-brand-orange" />
-              {ta("eyebrow")}
-            </div>
-            <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight text-brand-navy md:text-5xl xl:text-6xl">
-              {ta("h1a")}<br /><span className="text-brand-orange">{ta("h1b")}</span>
-            </h1>
-            <p className="max-w-xl text-lg leading-relaxed text-brand-navy-2">{ta("heroText")}</p>
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Link href={`/${locale}/services`} className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-brand-orange px-6 font-semibold text-white shadow-sm transition-opacity hover:opacity-90">
-                {ta("explore")}
-                <ArrowRight className="h-4 w-4 rtl:rotate-180" />
-              </Link>
-              <Link href={`/${locale}/contact`} className="inline-flex h-12 items-center justify-center gap-2 rounded-xl border-2 border-brand-navy px-6 font-semibold text-brand-navy transition-colors hover:bg-brand-navy hover:text-white">
-                <PlayCircle className="h-5 w-5" />
-                {ta("talk")}
-              </Link>
-            </div>
-          </div>
-          <div className="relative">
-            <img src="/imgs/banners/hero-devices.webp" alt="" className="w-full rounded-3xl border border-brand-border object-cover shadow-[0_20px_50px_-24px_rgba(11,31,51,0.35)]" />
-          </div>
-        </div>
+      {/* Banner */}
+      <div className="relative h-48 w-full overflow-hidden sm:h-64 lg:h-80">
+        <img src="/imgs/banners/contact-building.webp" alt="" className="h-full w-full object-cover" />
+      </div>
 
-        {/* Highlights strip */}
-        <div className="container relative mx-auto px-4 pb-4 md:px-6">
-          <div className="grid grid-cols-1 gap-4 rounded-2xl border border-brand-teal/10 bg-brand-green-soft p-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
-            {highlights.map((h, i) => (
-              <div key={i} className="flex items-center gap-3 lg:justify-center lg:border-s lg:border-brand-teal/15 lg:px-4 lg:first:border-s-0">
-                <h.icon className="h-8 w-8 shrink-0 text-brand-teal" strokeWidth={1.6} />
-                <div>
-                  <div className="font-bold text-brand-navy">{ta(h.t)}</div>
-                  <div className="text-sm text-brand-navy-2/80">{ta(h.x)}</div>
-                </div>
-              </div>
-            ))}
+      {/* Intro */}
+      <section className="relative overflow-hidden">
+        <img src="/imgs/about/mark.png" alt="" aria-hidden className="pointer-events-none absolute end-10 top-6 hidden w-56 opacity-[0.08] grayscale lg:block" />
+        <div className="container relative mx-auto px-4 py-10 md:px-6 md:py-12">
+          <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.16em] text-brand-teal sm:text-sm">
+            <span className="h-0.5 w-10 bg-brand-orange" />
+            {ta("eyebrow")}
           </div>
+          <h1 className="mt-4 text-4xl font-extrabold leading-[1.1] tracking-tight text-brand-navy md:text-5xl xl:text-6xl">
+            {ta("h1a")}<br /><span className="text-brand-orange">{ta("h1b")}</span>
+          </h1>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-brand-navy-2">{ta("heroText")}</p>
         </div>
       </section>
 
-      {/* Business solutions */}
-      <section className="container mx-auto px-4 py-14 md:px-6 md:py-16">
+      {/* At a glance */}
+      <section className="container mx-auto px-4 md:px-6">
+        <div className="grid grid-cols-2 items-center gap-6 rounded-2xl border border-brand-teal/10 bg-brand-green-soft p-6 lg:grid-cols-[1.2fr_repeat(4,1fr)] lg:gap-0 lg:py-7">
+          <div className="col-span-2 lg:col-span-1 lg:pe-6">
+            <span className="block h-0.5 w-10 bg-brand-orange" />
+            <h2 className="mt-3 text-2xl font-extrabold leading-tight text-brand-navy sm:text-3xl">{ta("glance")}</h2>
+          </div>
+          {stats.map((st, i) => (
+            <div key={i} className="text-center lg:border-s lg:border-brand-teal/15">
+              <st.icon className="mx-auto h-8 w-8 text-brand-teal" strokeWidth={1.6} />
+              <div className="mt-2 text-3xl font-extrabold text-brand-navy" dir="ltr">{ta(st.v)}</div>
+              <div className="mt-1 text-sm text-brand-navy-2/80">{ta(st.l)}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* What makes us different */}
+      <section className="container mx-auto px-4 py-12 md:px-6 md:py-14">
         <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">{ta("solTitle")}</h2>
         <p className="mt-2 text-brand-navy-2/80">{ta("solText")}</p>
         <div className="mt-8 grid gap-5 md:grid-cols-3">
           {solutions.map((c, i) => (
-            <Link key={i} href={c.href} className="group flex h-full gap-4 rounded-2xl border border-brand-border bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md sm:p-6">
-              <IconBox icon={c.icon} tone={c.tone} />
+            <Link key={i} href={c.href} className={`group flex h-full gap-4 rounded-2xl border p-5 transition-all hover:-translate-y-0.5 hover:shadow-md sm:p-6 ${c.tone === "teal" ? "border-brand-teal/10 bg-brand-green-soft" : "border-brand-orange/10 bg-brand-orange-soft"}`}>
+              <c.icon className={`h-10 w-10 shrink-0 ${toneText(c.tone)}`} strokeWidth={1.5} />
               <div className="flex flex-1 flex-col">
                 <h3 className="text-lg font-bold text-brand-navy">{ta(c.t)}</h3>
-                <p className="mt-1.5 flex-1 text-sm leading-relaxed text-brand-navy-2/80">{ta(c.x)}</p>
-                <span className="mt-3 flex h-7 w-7 items-center justify-center self-end rounded-full bg-brand-orange-soft text-brand-orange transition-colors group-hover:bg-brand-orange group-hover:text-white">
-                  <ArrowRight className="h-4 w-4 rtl:rotate-180" />
-                </span>
+                <p className="mt-1.5 flex-1 text-sm leading-relaxed text-brand-navy-2/85">{ta(c.x)}</p>
+                <ArrowRight className={`mt-3 h-5 w-5 self-end transition-transform group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1 ${toneText(c.tone)}`} />
               </div>
             </Link>
           ))}
         </div>
       </section>
 
-      {/* Purpose, mission, vision */}
-      <section className="bg-brand-gray py-14 md:py-16">
-        <div className="container mx-auto grid gap-6 px-4 md:px-6 lg:grid-cols-[0.8fr_1fr_1fr]">
-          <div className="flex flex-col justify-center">
-            <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">{t('our-purpose')}</h2>
-            <p className="mt-3 text-lg text-brand-navy-2/85">{ta("purposeText")}</p>
+      {/* How it works */}
+      <section className="container mx-auto px-4 md:px-6">
+        <div className="grid gap-8 rounded-2xl border border-brand-border bg-brand-gray p-6 sm:p-8 lg:grid-cols-[0.9fr_2.6fr] lg:items-center">
+          <div>
+            <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy">{ta("howTitle")}</h2>
+            <span className="mt-3 block h-0.5 w-10 bg-brand-orange" />
+            <p className="mt-3 text-brand-navy-2/85">{ta("howText")}</p>
           </div>
-          <PurposeCard icon={Target} tone="teal" title={t('our-mission')} text={ta("mission")} />
-          <PurposeCard icon={Eye} tone="orange" title={t('our-vision')} text={ta("vision")} />
+          <ol className="relative grid grid-cols-2 gap-y-8 sm:grid-cols-4">
+            <span aria-hidden className="absolute inset-x-[12%] top-8 hidden h-px bg-brand-teal/25 sm:block" />
+            {steps.map((Icon, i) => (
+              <li key={i} className="relative flex flex-col items-center px-2 text-center">
+                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-green-soft text-brand-teal ring-8 ring-brand-gray">
+                  <Icon className="h-8 w-8" strokeWidth={1.6} />
+                </span>
+                <span className="-mt-3 flex h-7 w-7 items-center justify-center rounded-full bg-brand-orange text-sm font-bold text-white ring-4 ring-brand-gray">{i + 1}</span>
+                <span className="mt-3 text-sm font-semibold leading-snug text-brand-navy">{ta(`step${i + 1}`)}</span>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
-      {/* Principles */}
-      <section className="container mx-auto px-4 py-14 md:px-6 md:py-16">
-        <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">{ta("prTitle")}</h2>
-        <p className="mt-2 text-brand-navy-2/80">{ta("prText")}</p>
-        <div className="mt-10 grid grid-cols-2 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
-          {principles.map((p) => (
-            <div key={p.n} className="pe-4 lg:border-s lg:border-brand-border lg:px-4 lg:first:border-s-0 lg:first:ps-0">
-              <p.icon className={`h-8 w-8 ${p.tone === "teal" ? "text-brand-teal" : "text-brand-orange"}`} strokeWidth={1.6} />
-              <h3 className="mt-3 text-lg font-bold text-brand-navy">{ta(`p${p.n}t`)}</h3>
-              <p className="mt-1 text-sm leading-relaxed text-brand-navy-2/80">{ta(`p${p.n}x`)}</p>
+      {/* Purpose, mission, vision */}
+      <section className="container mx-auto grid gap-6 px-4 py-12 md:px-6 md:py-14 lg:grid-cols-[0.8fr_1fr_1fr]">
+        <div className="flex flex-col justify-center">
+          <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">{t('our-purpose')}</h2>
+          <p className="mt-3 text-brand-navy-2/85">{ta("purposeText")}</p>
+        </div>
+        <PurposeCard icon={Target} tone="teal" title={t('our-mission')} text={ta("mission")} />
+        <PurposeCard icon={Eye} tone="orange" title={t('our-vision')} text={ta("vision")} />
+      </section>
+
+      {/* Values */}
+      <section className="container mx-auto grid gap-8 px-4 md:px-6 lg:grid-cols-[0.8fr_2.2fr] lg:items-center">
+        <div>
+          <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">{t('our-values')}</h2>
+          <p className="mt-3 text-brand-navy-2/85">{ta("valuesText")}</p>
+        </div>
+        <div className="grid grid-cols-3 gap-y-6 sm:grid-cols-6">
+          {values.map((v, i) => (
+            <div key={i} className="flex flex-col items-center gap-2 px-2 text-center sm:border-s sm:border-brand-border sm:first:border-s-0">
+              <v.icon className={`h-9 w-9 ${toneText(v.tone)}`} strokeWidth={1.6} />
+              <span className="font-bold text-brand-navy">{ta(`v${i + 1}`)}</span>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Why choose us */}
+      <section className="container mx-auto grid items-center gap-10 px-4 py-12 md:px-6 md:py-16 lg:grid-cols-2">
+        <div className="relative">
+          <span aria-hidden className="absolute -start-3 -top-3 h-24 w-24 rounded-tl-3xl border-s-[10px] border-t-[10px] border-brand-orange rtl:rounded-tl-none rtl:rounded-tr-3xl" />
+          <img src="/imgs/services/e434d7b7-3d01-4719-b58a-182c67cad12b-ai01.webp" alt="" className="relative aspect-[16/9] w-full rounded-3xl object-cover shadow-[0_20px_50px_-24px_rgba(11,31,51,0.35)]" />
+        </div>
+        <div>
+          <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">{ta("whyTitle")}</h2>
+          <ul className="mt-6 space-y-3.5">
+            {[1, 2, 3, 4, 5].map((n) => (
+              <li key={n} className="flex items-start gap-3 text-lg text-brand-navy-2">
+                <Check className="mt-1 h-5 w-5 shrink-0 text-brand-orange" strokeWidth={3} />
+                {ta(`why${n}`)}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -359,14 +392,6 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         </div>
       </section>
     </div>
-  )
-}
-
-function IconBox({ icon: Icon, tone }: { icon: LucideIcon; tone: "teal" | "orange" }) {
-  return (
-    <span className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl ${tone === "teal" ? "bg-brand-green-soft text-brand-teal" : "bg-brand-orange-soft text-brand-orange"}`}>
-      <Icon className="h-7 w-7" strokeWidth={1.6} />
-    </span>
   )
 }
 
