@@ -80,8 +80,8 @@ export function Header() {
                 <Link
                   href={route.href}
                   className={cn(
-                    "text-sm font-medium transition-colors hover:text-primary",
-                    route.active ? "text-primary" : "text-muted-foreground",
+                    "relative text-sm font-medium transition-colors hover:text-brand-orange",
+                    route.active ? "text-brand-orange after:absolute after:inset-x-0 after:-bottom-[22px] after:h-0.5 after:rounded-full after:bg-brand-orange" : "text-brand-navy/80",
                   )}
                 >
                   {route.label}

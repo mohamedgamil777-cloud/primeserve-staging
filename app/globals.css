@@ -4,6 +4,15 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* PrimeServe brand palette (use as bg-brand-navy, text-brand-orange, ...) */
+  --color-brand-navy: var(--ps-navy);
+  --color-brand-navy-2: var(--ps-navy-2);
+  --color-brand-orange: var(--ps-orange);
+  --color-brand-teal: var(--ps-teal);
+  --color-brand-orange-soft: var(--ps-orange-soft);
+  --color-brand-green-soft: var(--ps-green-soft);
+  --color-brand-gray: var(--ps-gray);
+  --color-brand-border: var(--ps-border);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -44,6 +53,14 @@
 }
 
 :root {
+  --ps-navy: #0B1F33;
+  --ps-navy-2: #102A43;
+  --ps-orange: #F26522;
+  --ps-teal: #00796B;
+  --ps-orange-soft: #FFF3EC;
+  --ps-green-soft: #E8F5F3;
+  --ps-gray: #F8FAFC;
+  --ps-border: #E5E7EB;
   --radius: 0.5rem;
   --background: #FFFFFF;
   --foreground: #0B1F33;
