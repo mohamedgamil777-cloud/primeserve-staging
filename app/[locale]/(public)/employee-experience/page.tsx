@@ -29,12 +29,12 @@ export default async function EmployeeExperiencePage({ params }: { params: Promi
     { icon: Star, tone: "orange" as const, n: 4 },
   ]
   const pillars = [
-    { icon: Timer, tone: "teal" as const },
-    { icon: Wrench, tone: "orange" as const },
-    { icon: Megaphone, tone: "blue" as const },
-    { icon: BookOpen, tone: "teal" as const },
-    { icon: Trophy, tone: "orange" as const },
-    { icon: CalendarHeart, tone: "blue" as const },
+    { icon: Timer, tone: "teal" as const, image: "leave" },
+    { icon: Wrench, tone: "orange" as const, image: "facility" },
+    { icon: Megaphone, tone: "blue" as const, image: "posts" },
+    { icon: BookOpen, tone: "teal" as const, image: "kpi" },
+    { icon: Trophy, tone: "orange" as const, image: "profile" },
+    { icon: CalendarHeart, tone: "blue" as const, image: "dashboard" },
   ]
   const benefits = [
     { icon: Timer, tone: "teal" as const },
@@ -119,6 +119,7 @@ export default async function EmployeeExperiencePage({ params }: { params: Promi
                   index={n}
                   icon={p.icon}
                   tone={p.tone}
+                  image={`/imgs/employee-experience/${p.image}.webp`}
                   title={t(`pillars.p${n}t`)}
                   text={t(`pillars.p${n}x`)}
                   bullets={[t(`pillars.p${n}b1`), t(`pillars.p${n}b2`), t(`pillars.p${n}b3`)]}
