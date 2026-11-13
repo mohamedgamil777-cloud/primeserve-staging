@@ -2,7 +2,7 @@ import Link from "next/link"
 import type { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 import {
-  ArrowRight, BookOpen, Building2, CalendarHeart, Check, Gauge, Laptop, Layers, Megaphone,
+  ArrowRight, BookOpen, BriefcaseBusiness, CalendarCheck, GraduationCap, Building2, CalendarHeart, Check, Gauge, Laptop, Layers, Megaphone,
   MessageCircle, Palette, Rocket, ShieldCheck, Smartphone, Smile, Sparkles, Star, Timer, Trophy, Users, Wrench, Database,
 } from "lucide-react"
 import { AttendanceScreen, HomeScreen, LeaveScreen, PhoneFrame } from "@/components/employee-experience/phone-mockups"
@@ -29,12 +29,12 @@ export default async function EmployeeExperiencePage({ params }: { params: Promi
     { icon: Star, tone: "orange" as const, n: 4 },
   ]
   const pillars = [
-    { icon: Timer, tone: "teal" as const, image: "leave" },
-    { icon: Wrench, tone: "orange" as const, image: "facility" },
-    { icon: Megaphone, tone: "blue" as const, image: "posts" },
-    { icon: BookOpen, tone: "teal" as const, image: "kpi" },
-    { icon: Trophy, tone: "orange" as const, image: "profile" },
-    { icon: CalendarHeart, tone: "blue" as const, image: "dashboard" },
+    { icon: Users, image: "services" },
+    { icon: BriefcaseBusiness, image: "workplace" },
+    { icon: Megaphone, image: "communication" },
+    { icon: GraduationCap, image: "learning" },
+    { icon: Trophy, image: "recognition", accent: "gold" as const },
+    { icon: CalendarCheck, image: "engagement" },
   ]
   const benefits = [
     { icon: Timer, tone: "teal" as const },
@@ -107,18 +107,24 @@ export default async function EmployeeExperiencePage({ params }: { params: Promi
       </section>
 
       {/* Six pillars */}
-      <section id="platform" className="scroll-mt-24 bg-[#F8FAFC] py-14 md:py-20">
+      <section id="platform" className="scroll-mt-24 bg-[#F8FAF9] py-14 md:py-20">
         <div className="container mx-auto px-4 md:px-6">
-          <SectionHeading eyebrow={t("pillars.eyebrow")} title={t("pillars.title")} text={t("pillars.text")} center />
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto max-w-3xl space-y-3 text-center">
+            <div className="flex items-center justify-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-[#087F78] sm:text-sm">
+              <span className="h-px w-8 bg-[#C18A45]" />
+              {t("pillars.eyebrow")}
+            </div>
+            <h2 className="text-3xl font-extrabold tracking-tight text-[#142B4A] sm:text-4xl">{t("pillars.title")}</h2>
+            <p className="text-base text-[#142B4A]/70 sm:text-lg">{t("pillars.text")}</p>
+          </div>
+          <div className="mt-12 grid gap-6 lg:grid-cols-2">
             {pillars.map((p, i) => {
               const n = i + 1
               return (
                 <PillarCard
                   key={n}
-                  index={n}
                   icon={p.icon}
-                  tone={p.tone}
+                  accent={p.accent}
                   image={`/imgs/employee-experience/${p.image}.webp`}
                   title={t(`pillars.p${n}t`)}
                   text={t(`pillars.p${n}x`)}

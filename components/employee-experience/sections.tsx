@@ -49,30 +49,42 @@ export function FeatureCard({ icon, title, text, tone }: { icon: LucideIcon; tit
   )
 }
 
-export function PillarCard({ index, icon, title, text, bullets, tone, image }: { index: number; icon: LucideIcon; title: string; text: string; bullets: string[]; tone?: Tone; image?: string }) {
+
+export function PillarCard({ icon: Icon, title, text, bullets, accent = "teal", image }: { icon: LucideIcon; title: string; text: string; bullets: string[]; accent?: "teal" | "gold"; image?: string }) {
   return (
-    <div className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-[#E5E7EB] bg-white shadow-[0_4px_20px_-8px_rgba(11,31,51,0.12)] transition-all hover:-translate-y-1 hover:border-[#00796B]/30 hover:shadow-[0_16px_36px_-14px_rgba(11,31,51,0.28)]">
-      {image && (
-        <div className="relative bg-gradient-to-br from-[#EEF2F6] via-[#F8FAFC] to-[#E8F5F3] px-5 pt-5 sm:px-6 sm:pt-6">
-          <div className="overflow-hidden rounded-t-2xl border-x-[6px] border-t-[6px] border-[#0B1F33] bg-white shadow-[0_10px_30px_-12px_rgba(11,31,51,0.45)]">
-            <img
-              src={image}
-              alt={title}
-              loading="lazy"
-              className="aspect-[16/8] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-            />
+    <div className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-[#E8ECEA] bg-[#F8FAF9] shadow-[0_2px_14px_-8px_rgba(20,43,74,0.14)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_32px_-16px_rgba(20,43,74,0.26)] sm:flex-row">
+      <div className="relative z-10 flex-1 p-6 sm:p-7 lg:py-8">
+        <div className="flex items-start gap-4">
+          <span className={cn("flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#E9F0EC]", accent === "gold" ? "text-[#C18A45]" : "text-[#087F78]")}>
+            <Icon className="h-7 w-7" strokeWidth={1.75} />
+          </span>
+          <div className="min-w-0">
+            <h3 className="text-xl font-bold leading-tight text-[#142B4A] sm:text-2xl">{title}</h3>
+            <p className="mt-1.5 text-[15px] leading-relaxed text-[#142B4A]/70">{text}</p>
           </div>
         </div>
-      )}
-      <div className="relative flex-1 p-6 sm:p-7">
-        <span className="absolute top-5 text-5xl font-black text-[#EEF2F6] ltr:right-6 rtl:left-6" dir="ltr">0{index}</span>
-        <IconBadge icon={icon} tone={tone} className="relative" />
-        <h3 className="relative mt-5 text-xl font-bold text-[#0B1F33]">{title}</h3>
-        <p className="relative mt-2 text-[#667085]">{text}</p>
-        <ul className="relative mt-5 space-y-2.5 border-t border-[#EEF2F6] pt-5">
-          {bullets.map((b, i) => <CheckItem key={i}>{b}</CheckItem>)}
+        <ul className="mt-6 space-y-3 border-t border-[#E8ECEA] pt-5">
+          {bullets.map((b, i) => (
+            <li key={i} className="flex items-start gap-3 text-[15px] text-[#142B4A]">
+              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#E9F0EC] text-[#087F78]">
+                <Check className="h-3 w-3" strokeWidth={3} />
+              </span>
+              {b}
+            </li>
+          ))}
         </ul>
       </div>
+      {image && (
+        <div className="relative flex shrink-0 items-end justify-center px-6 pb-0 sm:w-[44%] sm:px-0 sm:pt-4">
+          <span aria-hidden className="absolute bottom-0 h-3/4 w-3/4 rounded-full bg-[#E9F0EC]/60 blur-2xl" />
+          <img
+            src={image}
+            alt=""
+            loading="lazy"
+            className="relative w-full max-w-[300px] object-contain transition-transform duration-500 [mask-composite:intersect] group-hover:-translate-y-1 sm:max-w-none [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_88%,transparent),linear-gradient(to_right,transparent,black_12%,black_88%,transparent)] sm:[mask-image:linear-gradient(to_bottom,transparent,black_10%,black_88%,transparent),linear-gradient(to_right,transparent,black_14%)] sm:rtl:[mask-image:linear-gradient(to_bottom,transparent,black_10%,black_88%,transparent),linear-gradient(to_left,transparent,black_14%)]"
+          />
+        </div>
+      )}
     </div>
   )
 }
