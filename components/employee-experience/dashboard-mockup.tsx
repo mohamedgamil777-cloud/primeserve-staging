@@ -35,7 +35,7 @@ export function DashboardMockup({ className }: { className?: string }) {
         <div className="flex aspect-[16/10] overflow-hidden rounded-[0.8cqw] bg-[#F8FAFC]" dir={dir}>
           <aside className="flex w-[21%] flex-col gap-[0.6cqw] px-[1.4cqw] py-[2cqw] text-white" style={{ background: "#0B1F33" }}>
             <div className="mb-[1.6cqw] flex items-center gap-[0.8cqw] text-[length:1.9cqw] font-bold">
-              <span className="h-[2.4cqw] w-[2.4cqw] rounded-[0.6cqw] bg-gradient-to-br from-[#F26522] to-[#00796B]" />
+              <span className="flex h-[2.8cqw] w-[2.8cqw] items-center justify-center rounded-[0.6cqw] bg-white p-[0.3cqw]"><img src="/imgs/about/mark.png" alt="" className="h-full w-full object-contain" /></span>
               PrimeServe
             </div>
             {nav.map((n, i) => (

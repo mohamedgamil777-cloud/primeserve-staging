@@ -7,6 +7,7 @@ import {
 } from "lucide-react"
 import { AttendanceScreen, HomeScreen, LeaveScreen, PhoneFrame } from "@/components/employee-experience/phone-mockups"
 import { DashboardMockup } from "@/components/employee-experience/dashboard-mockup"
+import { MobileEmployeeExperience } from "@/components/employee-experience/mobile-page"
 import { CheckItem, FeatureCard, PillarCard, SectionHeading, Eyebrow } from "@/components/employee-experience/sections"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -52,6 +53,8 @@ export default async function EmployeeExperiencePage({ params }: { params: Promi
 
   return (
     <main className="flex flex-col overflow-x-hidden bg-white">
+      <div className="md:hidden"><MobileEmployeeExperience locale={locale} /></div>
+      <div className="hidden flex-col md:flex">
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[#F1F8F9] to-white">
         <div className="pointer-events-none absolute -top-40 h-[34rem] w-[34rem] rounded-full bg-gradient-to-br from-[#7DD3C8]/50 to-[#0B6E69]/10 blur-2xl ltr:-right-40 rtl:-left-40" />
@@ -212,6 +215,7 @@ export default async function EmployeeExperiencePage({ params }: { params: Promi
           </div>
         </div>
       </section>
+      </div>
     </main>
   )
 }

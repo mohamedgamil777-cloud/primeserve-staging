@@ -69,7 +69,7 @@ function BottomNav({ color }: { color: string }) {
 
 const tileColors = ["#00796B", "#F26522", "#2563EB", "#0B6E69", "#F59E0B", "#475569"]
 
-export function HomeScreen({ color = EE_TEAL, company, logo }: { color?: string; company?: string; logo?: string }) {
+export function HomeScreen({ color = EE_TEAL, company, logo, logoSrc }: { color?: string; company?: string; logo?: string; logoSrc?: string }) {
   const t = useTranslations("eePage.m")
   const tiles = [
     { icon: Clock, label: t("attendance") },
@@ -85,6 +85,7 @@ export function HomeScreen({ color = EE_TEAL, company, logo }: { color?: string;
         <div className="flex items-center justify-between">
           <ArrowLeft className="h-[5cqw] w-[5cqw] rtl:rotate-180" />
           <span className="flex items-center gap-[1.5cqw] text-[length:5cqw] font-bold">
+            {logoSrc && <span className="flex h-[6.5cqw] w-[6.5cqw] items-center justify-center rounded-[1.6cqw] bg-white p-[0.8cqw]"><img src={logoSrc} alt="" className="h-full w-full object-contain" /></span>}
             {logo && <span className="flex h-[5.5cqw] w-[5.5cqw] items-center justify-center rounded-[1.5cqw] bg-white text-[length:3.4cqw] font-black" style={{ color }}>{logo}</span>}
             {company ?? t("company")}
           </span>
