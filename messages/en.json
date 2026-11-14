@@ -1546,7 +1546,7 @@
   "suppliesPage": {
     "eyebrow": "Corporate Supplies",
     "title": "Everything Your Workplace Needs",
-    "text": "From office essentials to facility supplies and corporate hospitality, source what your business needs in one place.",
+    "text": "From cleaning and facility supplies to pantry, office essentials, safety equipment and corporate gifts, all in one place.",
     "explore": "Explore category",
     "filterTitle": "Filter Products",
     "category": "Category",
@@ -1560,6 +1560,9 @@
     "safetyT": "Health & Safety",
     "safetyX": "Protective equipment and workplace safety essentials.",
     "giftsT": "Corporate Gifts & Branding",
-    "giftsX": "Promotional merchandise, giveaways and branded materials."
+    "giftsX": "Promotional merchandise, giveaways and branded materials.",
+    "badgeRange": "Wide Range",
+    "badgeQuality": "Trusted Quality",
+    "badgeSupply": "Reliable Supply"
   }
 }

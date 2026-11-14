@@ -1,7 +1,7 @@
 "use client"
 
 import { PropsWithChildren } from "react"
-import { ArrowRight, Coffee, Filter, Gift, Layers, Search, ShieldCheck, SprayCan, type LucideIcon } from "lucide-react"
+import { ArrowRight, BadgeCheck, Coffee, Filter, Gift, Layers, Search, ShieldCheck, SprayCan, Truck, type LucideIcon } from "lucide-react"
 import { genCategoryImageUrl } from "@/lib/category"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -159,6 +159,13 @@ export default function CategoryPage({category:currentCategory,children,detailed
               {ts("title")}<span className="text-brand-orange">.</span>
             </h1>
             <p className="mt-5 text-lg leading-relaxed text-brand-navy-2">{ts("text")}</p>
+            <ul className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
+              {([[Layers,"badgeRange"],[BadgeCheck,"badgeQuality"],[Truck,"badgeSupply"]] as const).map(([Icon,k],i)=>(
+                <li key={k} className={cn("flex items-center gap-2 text-sm font-bold text-brand-navy", i>0 && "sm:border-s sm:border-brand-border sm:ps-5")}>
+                  <Icon className="h-5 w-5 text-brand-teal" />{ts(k)}
+                </li>
+              ))}
+            </ul>
           </div>
           <img src="/imgs/supplies/hero.webp" alt="" className="mt-6 aspect-[16/7] w-full rounded-2xl object-cover lg:hidden" />
         </div>
