@@ -55,7 +55,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         icon: serviceCategories.icon,
         image: serviceCategories.image,
         createdAt: serviceCategories.createdAt,
-        servicesCount: sql<number>`COUNT(${services.id})`.as('servicesCount'),
+        servicesCount: sql<number>`COUNT(${services.id}) FILTER (WHERE ${services.isActive})`.as('servicesCount'),
       })
       .from(serviceCategories)
       .where(
@@ -77,7 +77,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   ]) 
 
   // Show the most important B2B services and supplies first
-  const serviceCategoriesOrdered = sortByPriority(_serviceCategories, SERVICE_CATEGORY_PRIORITY)
+  const serviceCategoriesOrdered = sortByPriority(_serviceCategories.filter(c => Number(c.servicesCount) > 0), SERVICE_CATEGORY_PRIORITY)
   const categoriesOrdered = _categories.map(c => ({ ...c, subcategories: sortByPriority(c.subcategories, SUPPLY_SUBCATEGORY_PRIORITY) }))
 
   const steps = [

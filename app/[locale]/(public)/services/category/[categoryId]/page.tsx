@@ -33,7 +33,7 @@ export default async function CategoryServicesPage({ params }: { params: Promise
           longDescriptionI18n: serviceCategories.longDescriptionI18n,
           icon: serviceCategories.icon,
           createdAt: serviceCategories.createdAt,
-          servicesCount: sql<number>`COUNT(${services.id})`.as('servicesCount'),
+          servicesCount: sql<number>`COUNT(${services.id}) FILTER (WHERE ${services.isActive})`.as('servicesCount'),
       })
       .from(serviceCategories)
       .where(

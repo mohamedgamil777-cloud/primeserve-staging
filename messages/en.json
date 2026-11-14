@@ -44,7 +44,7 @@
   "contact": "Contact Us",
   "search-products": "Search products...",
   "toggle-menu": "Toggle menu",
-  "discover-our-latest-advisory-services-and-supplies-tailored-for-your-bussiness": "Discover our latest advisory, services, and supplies tailored for your business.",
+  "discover-our-latest-advisory-services-and-supplies-tailored-for-your-bussiness": "Corporate supplies, operational services and employee solutions for businesses in Egypt, all in one platform.",
   "facebook": "Facebook",
   "instagram": "Instagram",
   "twitter": "Twitter",
@@ -618,7 +618,7 @@
   "please-enter-a-valid-email-address": "Please enter a valid email address",
   "youve-successfully-subscribed-to-our-newsletter": "You've successfully subscribed to our newsletter.",
   "stay-updated": "Stay Updated",
-  "subscribe-to-our-newsletter-to-receive-updates-on-new-arrivals-special-offers-and-exclusive-discounts": "Subscribe to our newsletter to receive updates on new arrivals, special offers, and exclusive discounts.",
+  "subscribe-to-our-newsletter-to-receive-updates-on-new-arrivals-special-offers-and-exclusive-discounts": "Get procurement updates, new services, workplace tips and corporate offers in your inbox.",
   "subscribe": "Subscribe",
   "by-subscribing-you-agree-to-our-terms-of-service-and-privacy-policy": "By subscribing, you agree to our Terms of Service and Privacy Policy.",
   "professional-services-you-can-trust": "Professional Services You Can Trust",
@@ -638,7 +638,7 @@
   "budgetm-managment": "Budget Management",
   "discover-our-newest-arrivals-and-best-sellers-quality-products-at-competitive-prices": "Everyday supplies for your offices and branches, at competitive prices.",
   "shop-the-latest-trends": "Shop Office Supplies",
-  "explore-a-wide-range-of-expert-services-tailored-to-your-personal-and-business-needs-all-in-one-place": "Explore a wide range of expert services tailored to your personal and business needs — all in one place.",
+  "explore-a-wide-range-of-expert-services-tailored-to-your-personal-and-business-needs-all-in-one-place": "Professional services that help your business run its operations, maintain its facilities and support its people.",
   "need-a-custom-solution": "Need a Custom Solution?",
   "we-offer-customized-service-packages-for-businesses-and-large-scale-installations-contact-us-for-a-personalized-quote": "We offer customized service packages for businesses and large-scale installations. Contact us for a personalized quote.",
   "get-custom-quote": "Get Custom Quote",
@@ -960,8 +960,8 @@
         "a": "Procurement and supply orders, facility services such as maintenance and cleaning, HR and employee services, technical help with the website, finance and invoice questions, and any other business support need."
       },
       "q3": {
-        "q": "Can I attach files or photos?",
-        "a": "Yes. After you send your request, our team will contact you and you can share any files or photos with them directly by email or WhatsApp."
+        "q": "How can I share files or photos?",
+        "a": "The form doesn't take attachments yet. After you send your request, our team will contact you and you can share files or photos with them directly."
       },
       "q4": {
         "q": "How long does it take to get a response?",
@@ -1154,10 +1154,10 @@
     "exploreSolutions": "Explore Solutions",
     "trustSecure": "Secure & Reliable",
     "trustScalable": "Scalable Platform",
-    "trustUsers": "Trusted by 1M+ Users",
+    "trustUsers": "Built for growing workplaces",
     "heroAlt": "PrimeServe dashboard on a laptop and phone",
-    "loyaltyText": "Earn points on every order. Join our Loyalty Program today.",
-    "loyaltyCta": "Sign In",
+    "loyaltyText": "Company accounts earn rewards points on every order.",
+    "loyaltyCta": "View rewards",
     "step1Title": "Browse",
     "step1Text": "Pick the services and supplies your workplace needs.",
     "step2Title": "Order or Book",
@@ -1169,7 +1169,7 @@
     "ctaTitle": "Ready to Simplify Your Workplace?",
     "ctaText": "Get the services and supplies your business needs from one trusted partner.",
     "shopSupplies": "Shop Supplies",
-    "servicesAvailable": "{count} services available",
+    "servicesAvailable": "{count, plural, =0 {No services yet} one {1 service available} other {# services available}}",
     "subcategoriesCount": "{count} subcategories",
     "reviewsCount": "({count} reviews)",
     "toggleTheme": "Toggle theme",
@@ -1351,7 +1351,8 @@
       "brandA": "Nile Group",
       "brandB": "Delta Co.",
       "brandC": "Your Brand",
-      "thisWeek": "This Week"
+      "thisWeek": "This Week",
+      "demoNote": "Illustrative demo data"
     },
     "mobile": {
       "eyebrow": "Employee Experience",
@@ -1521,7 +1522,7 @@
     "st2l": "Products & SKUs",
     "st3v": "20+",
     "st3l": "Integrated Services",
-    "st4v": "9",
+    "st4v": "8",
     "st4l": "Service Categories",
     "howTitle": "How PrimeServe Works",
     "howText": "A simple and seamless journey from your need to delivery and ongoing support.",

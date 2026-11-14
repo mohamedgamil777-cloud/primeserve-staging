@@ -44,7 +44,7 @@
   "contact": "اتصل بنا",
   "search-products": "ابحث عن المنتجات...",
   "toggle-menu": "تبديل القائمة",
-  "discover-our-latest-advisory-services-and-supplies-tailored-for-your-bussiness": "اكتشف أحدث خدماتنا الاستشارية والمستلزمات المصممة خصيصًا لعملك",
+  "discover-our-latest-advisory-services-and-supplies-tailored-for-your-bussiness": "مستلزمات الشركات والخدمات التشغيلية وحلول الموظفين للشركات في مصر، كلها في منصة واحدة.",
   "facebook": "فيسبوك",
   "instagram": "إنستغرام",
   "twitter": "تويتر",
@@ -618,7 +618,7 @@
   "please-enter-a-valid-email-address": "الرجاء إدخال عنوان بريد إلكتروني صالح",
   "youve-successfully-subscribed-to-our-newsletter": "لقد اشتركت بنجاح في نشرتنا الإخبارية.",
   "stay-updated": "ابق على اطلاع",
-  "subscribe-to-our-newsletter-to-receive-updates-on-new-arrivals-special-offers-and-exclusive-discounts": "اشترك في نشرتنا الإخبارية لتلقي التحديثات حول الوافدين الجديد، العروض الخاصة، والخصومات الحصرية.",
+  "subscribe-to-our-newsletter-to-receive-updates-on-new-arrivals-special-offers-and-exclusive-discounts": "احصل على تحديثات المشتريات والخدمات الجديدة ونصائح بيئة العمل وعروض الشركات في بريدك.",
   "subscribe": "اشتراك",
   "by-subscribing-you-agree-to-our-terms-of-service-and-privacy-policy": "بمجرد الاشتراك، فإنك توافق على شروط الخدمة وسياسة الخصوصية الخاصة بنا.",
   "professional-services-you-can-trust": "خدمات احترافية يمكنك الوثوق بها",
@@ -638,7 +638,7 @@
   "budgetm-managment": "إدارة الميزانية",
   "discover-our-newest-arrivals-and-best-sellers-quality-products-at-competitive-prices": "مستلزمات يومية لمكاتبك وفروعك بأسعار تنافسية.",
   "shop-the-latest-trends": "تسوق مستلزمات المكاتب",
-  "explore-a-wide-range-of-expert-services-tailored-to-your-personal-and-business-needs-all-in-one-place": "استكشف مجموعة واسعة من الخدمات الخبيرة المصممة خصيصًا لاحتياجاتك الشخصية والعملية — كل ذلك في مكان واحد.",
+  "explore-a-wide-range-of-expert-services-tailored-to-your-personal-and-business-needs-all-in-one-place": "خدمات احترافية تساعد شركتك على إدارة عملياتها وصيانة مرافقها ودعم موظفيها.",
   "need-a-custom-solution": "هل تحتاج إلى حل مخصص؟",
   "we-offer-customized-service-packages-for-businesses-and-large-scale-installations-contact-us-for-a-personalized-quote": "نقدم حزم خدمات مخصصة للشركات والتركيبات واسعة النطاق. اتصل بنا للحصول على عرض أسعار شخصي.",
   "get-custom-quote": "احصل على عرض أسعار مخصص",
@@ -960,8 +960,8 @@
         "a": "طلبات المشتريات والمستلزمات، وخدمات المرافق مثل الصيانة والنظافة، وخدمات الموارد البشرية والموظفين، والمساعدة الفنية في الموقع، واستفسارات المالية والفواتير، وأي احتياج آخر لدعم أعمالك."
       },
       "q3": {
-        "q": "هل يمكنني إرفاق ملفات أو صور؟",
-        "a": "نعم. بعد إرسال طلبك سيتواصل معك فريقنا، ويمكنك مشاركة أي ملفات أو صور معهم مباشرة عبر البريد الإلكتروني أو واتساب."
+        "q": "كيف أشارك ملفات أو صورًا؟",
+        "a": "النموذج لا يدعم المرفقات حاليًا. بعد إرسال طلبك سيتواصل معك فريقنا ويمكنك مشاركة الملفات أو الصور معهم مباشرة."
       },
       "q4": {
         "q": "كم يستغرق الرد على طلبي؟",
@@ -1154,10 +1154,10 @@
     "exploreSolutions": "استكشف الحلول",
     "trustSecure": "آمنة وموثوقة",
     "trustScalable": "منصة قابلة للتوسع",
-    "trustUsers": "يثق بها أكثر من مليون مستخدم",
+    "trustUsers": "مصممة لبيئات العمل المتنامية",
     "heroAlt": "لوحة تحكم PrimeServe على حاسوب محمول وهاتف",
-    "loyaltyText": "اكسب نقاطًا مع كل طلب. انضم إلى برنامج الولاء اليوم.",
-    "loyaltyCta": "تسجيل الدخول",
+    "loyaltyText": "حسابات الشركات تكسب نقاط مكافآت مع كل طلب.",
+    "loyaltyCta": "عرض المكافآت",
     "step1Title": "تصفّح",
     "step1Text": "اختر الخدمات والمستلزمات التي تحتاجها بيئة عملك.",
     "step2Title": "اطلب أو احجز",
@@ -1169,7 +1169,7 @@
     "ctaTitle": "هل أنت مستعد لتبسيط بيئة عملك؟",
     "ctaText": "احصل على الخدمات والمستلزمات التي تحتاجها شركتك من شريك واحد موثوق.",
     "shopSupplies": "تسوّق المستلزمات",
-    "servicesAvailable": "{count} خدمة متاحة",
+    "servicesAvailable": "{count, plural, =0 {لا توجد خدمات بعد} one {خدمة واحدة متاحة} two {خدمتان متاحتان} few {# خدمات متاحة} other {# خدمة متاحة}}",
     "subcategoriesCount": "{count} فئات فرعية",
     "reviewsCount": "({count} تقييم)",
     "toggleTheme": "تغيير المظهر",
@@ -1351,7 +1351,8 @@
       "brandA": "مجموعة النيل",
       "brandB": "شركة الدلتا",
       "brandC": "علامتك",
-      "thisWeek": "هذا الأسبوع"
+      "thisWeek": "هذا الأسبوع",
+      "demoNote": "بيانات توضيحية"
     },
     "mobile": {
       "eyebrow": "تجربة الموظف",
@@ -1521,7 +1522,7 @@
     "st2l": "منتج وصنف",
     "st3v": "+20",
     "st3l": "خدمة متكاملة",
-    "st4v": "9",
+    "st4v": "8",
     "st4l": "فئات خدمات",
     "howTitle": "كيف تعمل PrimeServe",
     "howText": "رحلة بسيطة وسلسة من احتياجك حتى التسليم والدعم المستمر.",

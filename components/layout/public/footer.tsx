@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { Facebook, Instagram, Twitter } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 
 export async function Footer({locale}:{locale:string}) {
@@ -13,20 +12,6 @@ export async function Footer({locale}:{locale:string}) {
             <p className="max-w-xs text-sm text-white/70">
               {t('discover-our-latest-advisory-services-and-supplies-tailored-for-your-bussiness')}
             </p>
-            <div className="flex space-x-4">
-              <Link href={`/${locale}/#`} className="text-white/70 transition-colors hover:text-[#F26522]">
-                <Facebook className="h-5 w-5" />
-                <span className="sr-only">{t('facebook')}</span>
-              </Link>
-              <Link href={`/${locale}/#`} className="text-white/70 transition-colors hover:text-[#F26522]">
-                <Instagram className="h-5 w-5" />
-                <span className="sr-only">{t('instagram')}</span>
-              </Link>
-              <Link href={`/${locale}/#`} className="text-white/70 transition-colors hover:text-[#F26522]">
-                <Twitter className="h-5 w-5" />
-                <span className="sr-only">{t('twitter')}</span>
-              </Link>
-            </div>
           </div>
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-white">{t('shop')}</h3>

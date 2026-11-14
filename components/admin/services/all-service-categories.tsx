@@ -24,7 +24,7 @@ export default async function AllServiceCategories({ locale }: {  locale: string
       icon: serviceCategories.icon,
       image: serviceCategories.image,
       createdAt: serviceCategories.createdAt,
-      servicesCount: sql<number>`COUNT(${services.id})`.as('servicesCount'),
+      servicesCount: sql<number>`COUNT(${services.id}) FILTER (WHERE ${services.isActive})`.as('servicesCount'),
     })
     .from(serviceCategories)
     .where(
@@ -42,7 +42,7 @@ export default async function AllServiceCategories({ locale }: {  locale: string
     <section className="mb-12">
       <h2 className="text-2xl font-bold mb-6">{t('service-categories')}</h2>
       <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
-        {sortByPriority(_serviceCategories, SERVICE_CATEGORY_PRIORITY).map((category) => (
+        {sortByPriority(_serviceCategories.filter(c => Number(c.servicesCount) > 0), SERVICE_CATEGORY_PRIORITY).map((category) => (
           <ServiceCategoryCard key={category.id} category={category}/>
         ))}
       </div>

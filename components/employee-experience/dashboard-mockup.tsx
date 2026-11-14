@@ -32,7 +32,8 @@ export function DashboardMockup({ className }: { className?: string }) {
   return (
     <div className={cn("@container", className)}>
       <div className="rounded-t-[2.2cqw] bg-[#1F2937] p-[1.4cqw] shadow-[0_30px_60px_-25px_rgba(11,31,51,0.5)]">
-        <div className="flex aspect-[16/10] overflow-hidden rounded-[0.8cqw] bg-[#F8FAFC]" dir={dir}>
+        <div className="relative flex aspect-[16/10] overflow-hidden rounded-[0.8cqw] bg-[#F8FAFC]" dir={dir}>
+          <span className="absolute bottom-[1.4cqw] end-[1.4cqw] z-10 rounded-full bg-[#0B1F33]/85 px-2 py-0.5 text-[10px] font-semibold text-white sm:text-xs">{t("demoNote")}</span>
           <aside className="flex w-[21%] flex-col gap-[0.6cqw] px-[1.4cqw] py-[2cqw] text-white" style={{ background: "#0B1F33" }}>
             <div className="mb-[1.6cqw] flex items-center gap-[0.8cqw] text-[length:1.9cqw] font-bold">
               <span className="flex h-[2.8cqw] w-[2.8cqw] items-center justify-center rounded-[0.6cqw] bg-white p-[0.3cqw]"><img src="/imgs/about/mark.png" alt="" className="h-full w-full object-contain" /></span>
