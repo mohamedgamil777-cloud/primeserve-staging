@@ -99,3 +99,32 @@ export function CheckItem({ children, light }: { children: React.ReactNode; ligh
     </li>
   )
 }
+
+// Bold banner that announces the six app experiences, with one chip per experience.
+export function SixExperiencesBanner({ eyebrow, titleA, titleB, text, items, compact }: { eyebrow: string; titleA: string; titleB: string; text: string; items: { icon: LucideIcon; label: string }[]; compact?: boolean }) {
+  return (
+    <div className={cn("relative overflow-hidden rounded-3xl bg-brand-navy text-white shadow-[0_24px_60px_-28px_rgba(11,31,51,0.6)]", compact ? "p-5" : "p-8 md:p-12")}>
+      <span aria-hidden className="pointer-events-none absolute -end-16 -top-16 h-56 w-56 rounded-full bg-brand-teal/35" />
+      <span aria-hidden className="pointer-events-none absolute -bottom-20 -start-10 h-48 w-48 rounded-full bg-brand-orange/20" />
+      <div className={cn("relative", !compact && "text-center")}>
+        <div className={cn("flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-brand-orange sm:text-sm", !compact && "justify-center")}>
+          <span className="h-0.5 w-8 bg-brand-orange" />{eyebrow}
+        </div>
+        <h2 className={cn("mt-3 font-extrabold leading-[1.1] tracking-tight", compact ? "text-[1.7rem]" : "text-4xl md:text-5xl lg:text-6xl")}>
+          {titleA} <span className="text-brand-orange">{titleB}</span>
+        </h2>
+        <p className={cn("mt-3 text-white/80", compact ? "text-sm" : "mx-auto max-w-2xl text-lg")}>{text}</p>
+      </div>
+      <ul className={cn("relative grid", compact ? "mt-5 grid-cols-2 gap-2.5" : "mt-10 grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6")}>
+        {items.map((it, i) => (
+          <li key={i} className={cn("flex items-center gap-2.5 rounded-2xl border border-white/10 bg-white/[0.07]", compact ? "p-2.5" : "flex-col p-4 text-center lg:gap-3")}>
+            <span className={cn("flex shrink-0 items-center justify-center rounded-xl", i % 2 ? "bg-brand-orange text-white" : "bg-brand-teal text-white", compact ? "h-9 w-9" : "h-12 w-12")}>
+              <it.icon className={compact ? "h-5 w-5" : "h-6 w-6"} strokeWidth={1.8} />
+            </span>
+            <span className={cn("font-semibold leading-tight", compact ? "text-[13px]" : "text-sm md:text-base")}>{it.label}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}

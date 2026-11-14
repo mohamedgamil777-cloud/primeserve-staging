@@ -1230,7 +1230,7 @@
     },
     "pillars": {
       "eyebrow": "The Platform",
-      "title": "One Platform. Six Powerful Experiences.",
+      "title": "One App. Six Powerful Experiences.",
       "text": "Each experience works on its own and together, so your people get one simple app and your managers get one clear view.",
       "p1t": "Employee Services",
       "p1x": "Attendance, leave, and everyday HR requests in a few taps.",
@@ -1261,7 +1261,9 @@
       "p6x": "Build a stronger culture through company events and activities.",
       "p6b1": "Company and team events",
       "p6b2": "Employee initiatives and campaigns",
-      "p6b3": "Participation and engagement"
+      "p6b3": "Participation and engagement",
+      "titleA": "One App.",
+      "titleB": "Six Powerful Experiences."
     },
     "management": {
       "eyebrow": "Management Experience",

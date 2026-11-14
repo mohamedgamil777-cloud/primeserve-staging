@@ -8,7 +8,7 @@ import {
 import { AttendanceScreen, HomeScreen, LeaveScreen, PhoneFrame } from "@/components/employee-experience/phone-mockups"
 import { DashboardMockup } from "@/components/employee-experience/dashboard-mockup"
 import { MobileEmployeeExperience } from "@/components/employee-experience/mobile-page"
-import { CheckItem, FeatureCard, PillarCard, SectionHeading, Eyebrow } from "@/components/employee-experience/sections"
+import { CheckItem, FeatureCard, PillarCard, SectionHeading, Eyebrow, SixExperiencesBanner } from "@/components/employee-experience/sections"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const t = await getTranslations({ locale: (await params).locale, namespace: "eePage" })
@@ -112,14 +112,13 @@ export default async function EmployeeExperiencePage({ params }: { params: Promi
       {/* Six pillars */}
       <section id="platform" className="scroll-mt-24 bg-[#F8FAF9] py-14 md:py-20">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="mx-auto max-w-3xl space-y-3 text-center">
-            <div className="flex items-center justify-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-[#087F78] sm:text-sm">
-              <span className="h-px w-8 bg-[#C18A45]" />
-              {t("pillars.eyebrow")}
-            </div>
-            <h2 className="text-3xl font-extrabold tracking-tight text-[#142B4A] sm:text-4xl">{t("pillars.title")}</h2>
-            <p className="text-base text-[#142B4A]/70 sm:text-lg">{t("pillars.text")}</p>
-          </div>
+          <SixExperiencesBanner
+            eyebrow={t("pillars.eyebrow")}
+            titleA={t("pillars.titleA")}
+            titleB={t("pillars.titleB")}
+            text={t("pillars.text")}
+            items={pillars.map((p, i) => ({ icon: p.icon, label: t(`pillars.p${i + 1}t`) }))}
+          />
           <div className="mt-12 grid gap-6 lg:grid-cols-2">
             {pillars.map((p, i) => {
               const n = i + 1

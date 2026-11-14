@@ -7,6 +7,7 @@ import {
 } from "lucide-react"
 import { HomeScreen, PhoneFrame } from "./phone-mockups"
 import { DashboardMockup } from "./dashboard-mockup"
+import { SixExperiencesBanner } from "./sections"
 
 const svc = (f: string) => `/imgs/services/${f}`
 const rows = [
@@ -30,6 +31,7 @@ const ink = (tone: string) => (tone === "teal" ? "text-brand-teal" : "text-brand
 
 export async function MobileEmployeeExperience({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: "eePage.mobile" })
+  const tp = await getTranslations({ locale, namespace: "eePage.pillars" })
   const demoHref = `/${locale}/support`
   const connect = [Settings, MessagesSquare, Users]
 
@@ -79,8 +81,14 @@ export async function MobileEmployeeExperience({ locale }: { locale: string }) {
 
       {/* Six modules */}
       <section id="platform-m" className="scroll-mt-20 px-4 pb-8">
-        <h2 className="text-2xl font-extrabold tracking-tight text-brand-navy">{t("platformTitle")}</h2>
-        <p className="mt-1 text-sm text-brand-navy-2/80">{t("platformText")}</p>
+        <SixExperiencesBanner
+          compact
+          eyebrow={tp("eyebrow")}
+          titleA={tp("titleA")}
+          titleB={tp("titleB")}
+          text={t("platformText")}
+          items={rows.map((r, i) => ({ icon: r.icon, label: t(`r${i + 1}t`) }))}
+        />
         <div className="mt-4 space-y-3">
           {rows.map((r, i) => (
             <Link key={i} href={demoHref} className="flex items-center overflow-hidden rounded-2xl border border-brand-border bg-white shadow-sm">
