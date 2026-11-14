@@ -7,13 +7,13 @@ import React from 'react'
 
 type Props = {}
 
-export default async function page({ params }: { params: Promise<{ id: string }> }) {
-  const [{ id:serviceId },storeId,session] = await Promise.all([
+export default async function page({ params }: { params: Promise<{ id: string, locale: string }> }) {
+  const [{ id:serviceId, locale },storeId,session] = await Promise.all([
     params,
     getTenantId(),
     getSession()
   ])
-  if(!session) redirect("/auth/login")
+  if(!session) redirect(`/${locale}/contact`)
   if(session.user_role !== "customer") redirect("/")
 
   const service = await db.query.services.findFirst({

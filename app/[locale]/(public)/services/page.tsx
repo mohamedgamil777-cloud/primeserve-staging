@@ -26,7 +26,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
             </Link>
           </Button>
           <Button size="lg" variant="outline" asChild>
-            <Link href="/services/quote">
+            <Link href={`/${locale}/contact`}>
               <Quote className="mr-2 h-5 w-5" />
               Request Quote
             </Link>
@@ -114,7 +114,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button size="lg" asChild>
-            <Link href={`/${locale}/services/quote`}>{t('get-custom-quote')}</Link>
+            <Link href={`/${locale}/contact`}>{t('get-custom-quote')}</Link>
           </Button>
           <Button size="lg" variant="outline" asChild>
             <Link href={`/${locale}/contact`}>{t('contact-sales')}</Link>
