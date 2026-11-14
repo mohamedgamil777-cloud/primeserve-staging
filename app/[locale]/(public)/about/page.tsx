@@ -164,18 +164,27 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         </div>
       </section>
 
-      {/* At a glance */}
-      <section className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-2 items-center gap-6 rounded-2xl border border-brand-teal/10 bg-brand-green-soft p-6 lg:grid-cols-[1.2fr_repeat(4,1fr)] lg:gap-0 lg:py-7">
-          <div className="col-span-2 lg:col-span-1 lg:pe-6">
-            <span className="block h-0.5 w-10 bg-brand-orange" />
-            <h2 className="mt-3 text-2xl font-extrabold leading-tight text-brand-navy sm:text-3xl">{ta("glance")}</h2>
-          </div>
-          {stats.map((st, i) => (
-            <div key={i} className="text-center lg:border-s lg:border-brand-teal/15">
-              <st.icon className="mx-auto h-8 w-8 text-brand-teal" strokeWidth={1.6} />
-              <div className="mt-2 text-3xl font-extrabold text-brand-navy" dir="ltr">{ta(st.v)}</div>
-              <div className="mt-1 text-sm text-brand-navy-2/80">{ta(st.l)}</div>
+      {/* Purpose, mission, vision */}
+      <section className="container mx-auto grid gap-6 px-4 pb-12 md:px-6 md:pb-14 lg:grid-cols-[0.8fr_1fr_1fr]">
+        <div className="flex flex-col justify-center">
+          <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">{t('our-purpose')}</h2>
+          <p className="mt-3 text-brand-navy-2/85">{ta("purposeText")}</p>
+        </div>
+        <PurposeCard icon={Target} tone="teal" title={t('our-mission')} text={ta("mission")} />
+        <PurposeCard icon={Eye} tone="orange" title={t('our-vision')} text={ta("vision")} />
+      </section>
+
+      {/* Values */}
+      <section className="container mx-auto grid gap-8 px-4 pb-4 md:px-6 lg:grid-cols-[0.8fr_2.2fr] lg:items-center">
+        <div>
+          <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">{t('our-values')}</h2>
+          <p className="mt-3 text-brand-navy-2/85">{ta("valuesText")}</p>
+        </div>
+        <div className="grid grid-cols-3 gap-y-6 sm:grid-cols-6">
+          {values.map((v, i) => (
+            <div key={i} className="flex flex-col items-center gap-2 px-2 text-center sm:border-s sm:border-brand-border sm:first:border-s-0">
+              <v.icon className={`h-9 w-9 ${toneText(v.tone)}`} strokeWidth={1.6} />
+              <span className="font-bold text-brand-navy">{ta(`v${i + 1}`)}</span>
             </div>
           ))}
         </div>
@@ -195,6 +204,23 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 <ArrowRight className={`mt-3 h-5 w-5 self-end transition-transform group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1 ${toneText(c.tone)}`} />
               </div>
             </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* At a glance */}
+      <section className="container mx-auto px-4 pb-12 md:px-6 md:pb-14">
+        <div className="grid grid-cols-2 items-center gap-6 rounded-2xl border border-brand-teal/10 bg-brand-green-soft p-6 lg:grid-cols-[1.2fr_repeat(4,1fr)] lg:gap-0 lg:py-7">
+          <div className="col-span-2 lg:col-span-1 lg:pe-6">
+            <span className="block h-0.5 w-10 bg-brand-orange" />
+            <h2 className="mt-3 text-2xl font-extrabold leading-tight text-brand-navy sm:text-3xl">{ta("glance")}</h2>
+          </div>
+          {stats.map((st, i) => (
+            <div key={i} className="text-center lg:border-s lg:border-brand-teal/15">
+              <st.icon className="mx-auto h-8 w-8 text-brand-teal" strokeWidth={1.6} />
+              <div className="mt-2 text-3xl font-extrabold text-brand-navy" dir="ltr">{ta(st.v)}</div>
+              <div className="mt-1 text-sm text-brand-navy-2/80">{ta(st.l)}</div>
+            </div>
           ))}
         </div>
       </section>
@@ -219,32 +245,6 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               </li>
             ))}
           </ol>
-        </div>
-      </section>
-
-      {/* Purpose, mission, vision */}
-      <section className="container mx-auto grid gap-6 px-4 py-12 md:px-6 md:py-14 lg:grid-cols-[0.8fr_1fr_1fr]">
-        <div className="flex flex-col justify-center">
-          <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">{t('our-purpose')}</h2>
-          <p className="mt-3 text-brand-navy-2/85">{ta("purposeText")}</p>
-        </div>
-        <PurposeCard icon={Target} tone="teal" title={t('our-mission')} text={ta("mission")} />
-        <PurposeCard icon={Eye} tone="orange" title={t('our-vision')} text={ta("vision")} />
-      </section>
-
-      {/* Values */}
-      <section className="container mx-auto grid gap-8 px-4 md:px-6 lg:grid-cols-[0.8fr_2.2fr] lg:items-center">
-        <div>
-          <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">{t('our-values')}</h2>
-          <p className="mt-3 text-brand-navy-2/85">{ta("valuesText")}</p>
-        </div>
-        <div className="grid grid-cols-3 gap-y-6 sm:grid-cols-6">
-          {values.map((v, i) => (
-            <div key={i} className="flex flex-col items-center gap-2 px-2 text-center sm:border-s sm:border-brand-border sm:first:border-s-0">
-              <v.icon className={`h-9 w-9 ${toneText(v.tone)}`} strokeWidth={1.6} />
-              <span className="font-bold text-brand-navy">{ta(`v${i + 1}`)}</span>
-            </div>
-          ))}
         </div>
       </section>
 
