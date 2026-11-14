@@ -1542,5 +1542,363 @@
     "why3": "Multiple operational and professional solutions.",
     "why4": "Centralized support and account management.",
     "why5": "Scalable to grow with your business."
+  },
+  "appDemo": {
+    "metaTitle": "Employee App Demo",
+    "page": {
+      "badge": "Interactive demo",
+      "title1": "Try the PrimeServe",
+      "title2": "Employee App",
+      "text": "Tap through the app the way your employees would. Check in, request leave, send recognition, join an event, and more.",
+      "hint": "Tap anything inside the phone",
+      "jump": "Jump to an experience",
+      "restart": "Restart demo",
+      "lang": "العربية",
+      "langHref": "ar",
+      "cta": "Request a Demo",
+      "ctaText": "Want it under your company's name, logo and colors?",
+      "note": "All names and data in this demo are samples for illustration only.",
+      "back": "Back to Employee Experience"
+    },
+    "app": {
+      "demo": "Demo",
+      "greeting": "Good morning,",
+      "name": "Sara Ali",
+      "role": "Marketing Team",
+      "empId": "Employee ID",
+      "company": "PrimeServe",
+      "tabs": {
+        "home": "Home",
+        "services": "Services",
+        "feed": "Feed",
+        "rewards": "Rewards",
+        "profile": "Profile"
+      },
+      "mods": [
+        "Employee Services",
+        "Workplace Services",
+        "Communication",
+        "Learning",
+        "Rewards",
+        "Events"
+      ],
+      "modsShort": [
+        "HR Services",
+        "Workplace",
+        "News",
+        "Learning",
+        "Rewards",
+        "Events"
+      ],
+      "allServices": "All Services",
+      "allServicesText": "Everything your company offers, in one app.",
+      "today": "Today",
+      "notIn": "You haven't checked in yet",
+      "inAt": "Checked in at {time}",
+      "outAt": "Checked out at {time}",
+      "checkIn": "Check In",
+      "checkOut": "Check Out",
+      "done": "Have a great evening!",
+      "yourApps": "Your services",
+      "latest": "Latest update",
+      "upcoming": "Upcoming",
+      "seeAll": "See all",
+      "points": "points",
+      "submit": "Submit request",
+      "cancel": "Cancel",
+      "toastSent": "Request sent. You'll be notified of updates.",
+      "status": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "received": "Received",
+        "progress": "In progress",
+        "done": "Completed",
+        "ready": "Ready"
+      },
+      "hr": {
+        "leaveBalance": "Leave balance",
+        "annual": "Annual",
+        "sick": "Sick",
+        "remote": "Remote",
+        "daysLeft": "{n} days left",
+        "requestLeave": "Request Leave",
+        "hrLetter": "HR Letter",
+        "myRequests": "My requests",
+        "leaveType": "Leave type",
+        "leaveTypes": [
+          "Annual leave",
+          "Sick leave",
+          "Work from home"
+        ],
+        "duration": "Duration",
+        "durations": [
+          "1 day",
+          "2 days",
+          "1 week"
+        ],
+        "letterType": "Letter type",
+        "letters": [
+          "Salary certificate",
+          "Experience letter",
+          "Embassy letter"
+        ],
+        "delivery": "Delivery",
+        "deliveries": [
+          "Digital copy",
+          "Printed & stamped"
+        ],
+        "seed": [
+          {
+            "title": "Annual leave · 2 days",
+            "date": "Nov 3",
+            "status": "approved"
+          },
+          {
+            "title": "Salary certificate",
+            "date": "Oct 28",
+            "status": "ready"
+          }
+        ]
+      },
+      "wp": {
+        "card": "Workplace card",
+        "cardText": "Show at reception and partner outlets",
+        "newRequest": "New request",
+        "cats": [
+          "Maintenance",
+          "IT Support",
+          "Office Supplies",
+          "Cleaning",
+          "Meeting Room",
+          "Pantry"
+        ],
+        "what": "What do you need?",
+        "items": [
+          [
+            "Air conditioning",
+            "Lighting",
+            "Furniture repair"
+          ],
+          [
+            "Laptop issue",
+            "Access & accounts",
+            "New equipment"
+          ],
+          [
+            "Stationery",
+            "Printer paper & ink",
+            "Desk items"
+          ],
+          [
+            "Desk area",
+            "Meeting room",
+            "Kitchen"
+          ],
+          [
+            "Today",
+            "Tomorrow",
+            "Next week"
+          ],
+          [
+            "Coffee & tea",
+            "Water",
+            "Snacks"
+          ]
+        ],
+        "urgency": "Priority",
+        "urgencies": [
+          "Normal",
+          "Urgent"
+        ],
+        "track": "Track requests",
+        "seed": [
+          {
+            "title": "IT Support · New equipment",
+            "date": "Nov 10",
+            "status": "done"
+          }
+        ]
+      },
+      "feed": {
+        "filters": [
+          "All",
+          "Announcements",
+          "Team"
+        ],
+        "pinned": "Pinned",
+        "like": "Like",
+        "comments": "{n} comments",
+        "posts": [
+          {
+            "author": "HR Team",
+            "kind": 1,
+            "time": "2h",
+            "text": "Our new hybrid work policy starts next month. Read the highlights and share your questions with HR.",
+            "likes": 48,
+            "comments": 12
+          },
+          {
+            "author": "CEO Office",
+            "kind": 1,
+            "time": "1d",
+            "text": "Thank you all for an outstanding quarter. Every team played a part in this success.",
+            "likes": 126,
+            "comments": 34
+          },
+          {
+            "author": "Omar Hassan",
+            "kind": 2,
+            "time": "3h",
+            "text": "Big thanks to the design team for launching the new brand guidelines this week!",
+            "likes": 21,
+            "comments": 5
+          },
+          {
+            "author": "Wellbeing Club",
+            "kind": 2,
+            "time": "2d",
+            "text": "Steps challenge starts Sunday. Join your team and let's get moving!",
+            "likes": 37,
+            "comments": 9
+          }
+        ]
+      },
+      "learn": {
+        "inProgress": "In progress",
+        "completed": "Completed",
+        "hours": "Learning hours",
+        "myCourses": "My courses",
+        "lessons": "{n} lessons",
+        "continue": "Continue lesson",
+        "start": "Start course",
+        "finished": "Course completed!",
+        "earned": "You earned +{n} points",
+        "lesson": "Lesson {n}",
+        "courses": [
+          {
+            "title": "Effective Communication",
+            "cat": "Soft skills",
+            "lessons": 4,
+            "progress": 50
+          },
+          {
+            "title": "Customer Excellence",
+            "cat": "Service",
+            "lessons": 4,
+            "progress": 25
+          },
+          {
+            "title": "Workplace Safety Basics",
+            "cat": "Compliance",
+            "lessons": 4,
+            "progress": 0
+          },
+          {
+            "title": "Time Management",
+            "cat": "Productivity",
+            "lessons": 4,
+            "progress": 0
+          }
+        ]
+      },
+      "rewards": {
+        "balance": "Your points",
+        "send": "Send recognition",
+        "who": "Who do you want to thank?",
+        "badge": "Choose a badge",
+        "badges": [
+          "Team Player",
+          "Great Idea",
+          "Above & Beyond"
+        ],
+        "sendBtn": "Send",
+        "sent": "Recognition sent to {name}!",
+        "wall": "Recognition wall",
+        "gave": "{from} recognized {to}",
+        "catalog": "Redeem rewards",
+        "redeem": "Redeem",
+        "redeemed": "Redeemed! Check your email for details.",
+        "notEnough": "Not enough points yet",
+        "items": [
+          {
+            "title": "Coffee voucher",
+            "pts": 150
+          },
+          {
+            "title": "Shopping voucher",
+            "pts": 800
+          },
+          {
+            "title": "Extra day off",
+            "pts": 2000
+          }
+        ],
+        "people": [
+          "Omar Hassan",
+          "Mona Adel",
+          "Karim Fawzy"
+        ],
+        "seedWall": [
+          {
+            "from": "Mona Adel",
+            "to": "Karim Fawzy",
+            "badge": 2
+          }
+        ]
+      },
+      "events": {
+        "going": "Going",
+        "join": "Join",
+        "attending": "{n} attending",
+        "list": [
+          {
+            "day": "21",
+            "mon": "NOV",
+            "title": "Annual Team Gathering",
+            "place": "Main Hall · 6:00 PM",
+            "count": 86
+          },
+          {
+            "day": "28",
+            "mon": "NOV",
+            "title": "Blood Donation Day",
+            "place": "Ground Floor · 10:00 AM",
+            "count": 41
+          },
+          {
+            "day": "05",
+            "mon": "DEC",
+            "title": "Family Fun Day",
+            "place": "Outdoor Club · 11:00 AM",
+            "count": 120
+          }
+        ],
+        "poll": "Quick poll",
+        "pollQ": "Where should our next team outing be?",
+        "pollOpts": [
+          "Beach trip",
+          "Desert safari",
+          "Bowling night"
+        ],
+        "pollBase": [
+          12,
+          9,
+          6
+        ],
+        "votes": "{n} votes",
+        "thanks": "Thanks for voting!"
+      },
+      "profile": {
+        "dept": "Department",
+        "manager": "Manager",
+        "managerName": "Mona Adel",
+        "joined": "Joined",
+        "joinedVal": "March 2022",
+        "language": "Language",
+        "notifications": "Notifications",
+        "on": "On",
+        "note": "This is a demo. Your version carries your company's name, logo, and colors."
+      }
+    }
   }
 }
