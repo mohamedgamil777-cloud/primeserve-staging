@@ -1542,5 +1542,24 @@
     "why3": "Multiple operational and professional solutions.",
     "why4": "Centralized support and account management.",
     "why5": "Scalable to grow with your business."
+  },
+  "suppliesPage": {
+    "eyebrow": "Corporate Supplies",
+    "title": "Everything Your Workplace Needs",
+    "text": "From office essentials to facility supplies and corporate hospitality, source what your business needs in one place.",
+    "explore": "Explore category",
+    "filterTitle": "Filter Products",
+    "category": "Category",
+    "listTitle": "Popular Corporate Supplies",
+    "cleaningT": "Cleaning & Hygiene",
+    "cleaningX": "Professional cleaning, hygiene and facility essentials.",
+    "pantryT": "Pantry & Hospitality",
+    "pantryX": "Refreshments and hospitality essentials for your workplace.",
+    "officeT": "Office & Stationery",
+    "officeX": "Everyday office supplies and workplace essentials.",
+    "safetyT": "Health & Safety",
+    "safetyX": "Protective equipment and workplace safety essentials.",
+    "giftsT": "Corporate Gifts & Branding",
+    "giftsX": "Promotional merchandise, giveaways and branded materials."
   }
 }

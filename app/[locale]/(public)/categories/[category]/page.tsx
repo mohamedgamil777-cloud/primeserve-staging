@@ -54,7 +54,7 @@ export default async function page({params,searchParams}:Props) {
   // })()
 
   return (
-    <div className="container px-4 py-8 md:px-6 md:py-12">
+    <div className="pb-8 md:pb-12">
       <CategoryPage detailedProducts={_storeDisplaySettings?.productStyle === "detailed"} category={currentCategory}>
         {/* <Suspense
           key={JSON.stringify(categoryFilters)}
