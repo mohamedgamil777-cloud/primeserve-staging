@@ -32,7 +32,7 @@ export default function ServiceCategoryCard({category,className}: Props) {
           />
         </div>
         <CardContent className="flex flex-1 flex-col gap-1.5 p-3 sm:p-5">
-          <h3 className="font-bold text-[#0B1F33] sm:text-lg">{name}</h3>
+          <h3 className="border-s-4 border-brand-orange ps-2.5 text-base font-extrabold leading-snug text-brand-navy sm:text-xl">{name}</h3>
           {description && (
             <p className="hidden text-sm text-[#667085] line-clamp-2 sm:[display:-webkit-box]">{description}</p>
           )}
