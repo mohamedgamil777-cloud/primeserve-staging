@@ -1564,5 +1564,10 @@
     "badgeRange": "Wide Range",
     "badgeQuality": "Trusted Quality",
     "badgeSupply": "Reliable Supply"
+  },
+  "homeHighlight": {
+    "supplies": "Corporate Supplies",
+    "services": "Services",
+    "suppliesText": "Everyday supplies your company needs, from pantry and office items to cleaning and safety essentials."
   }
 }

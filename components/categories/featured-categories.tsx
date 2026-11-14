@@ -26,9 +26,9 @@ export function FeaturedCategories({categories,isExtended}:Props) {
           <div key={category.id} className="container px-4 md:px-6 mx-auto">
             <div className="flex flex-col items-start justify-center space-y-4 text-start">
               <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter text-[#0B1F33] sm:text-4xl">{getLocalizedValue(category.nameI18n,locale)}</h2>
+                <h2 className="inline-block border-s-4 border-brand-orange ps-3 text-3xl font-extrabold tracking-tight text-brand-navy sm:text-5xl"><span className="bg-[linear-gradient(transparent_62%,rgb(242_101_34/0.22)_62%)] px-1">{category.id === "627710ad-9b87-4a11-8417-d6da296553d0" ? t("homeHighlight.supplies") : getLocalizedValue(category.nameI18n,locale)}</span></h2>
                 <p className="max-w-[900px] text-[#667085] md:text-lg">
-                  {getLocalizedValue(category.descriptionI18n,locale)}
+                  {category.id === "627710ad-9b87-4a11-8417-d6da296553d0" ? t("homeHighlight.suppliesText") : getLocalizedValue(category.descriptionI18n,locale)}
                 </p>
               </div>
             </div>

@@ -13,7 +13,7 @@ export function FeaturedServiceCategories({categories}:{categories:Pick<Detailed
         <div className="flex flex-col items-start justify-center space-y-4 text-start">
           <div className="space-y-2">
             {/* <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Book a Service</h2> */}
-            <h2 className="text-3xl font-bold tracking-tighter text-[#0B1F33] sm:text-4xl">{t('services')}</h2>
+            <h2 className="inline-block border-s-4 border-brand-orange ps-3 text-3xl font-extrabold tracking-tight text-brand-navy sm:text-5xl"><span className="bg-[linear-gradient(transparent_62%,rgb(242_101_34/0.22)_62%)] px-1">{t('homeHighlight.services')}</span></h2>
             <p className="max-w-[900px] text-[#667085] md:text-lg">
               {t('professional-services-you-can-trust')}
             </p>
