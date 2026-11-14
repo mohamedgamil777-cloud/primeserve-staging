@@ -43,7 +43,7 @@ export function Header() {
     {
       href: `/${locale}/categories`,
       label: t('supplies'),
-      active: pathname === `/${locale}/categories`,
+      active: pathname.startsWith(`/${locale}/categories`),
     },
     {
       href: `/${locale}/employee-experience`,

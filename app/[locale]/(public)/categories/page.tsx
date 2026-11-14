@@ -6,10 +6,14 @@ import { db } from "@/db"
 import { range } from "@/lib/utils"
 import { Skeleton } from "@/components/ui/skeleton"
 import { getTranslations } from "next-intl/server"
+import { redirect } from "next/navigation"
 
 export const dynamic = 'force-dynamic';
 export default async function CategoriesPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+  // With a single supplies category, send visitors straight to its page
+  const allCategories = await db.query.categories.findMany({ columns: { id: true } })
+  if (allCategories.length === 1) redirect(`/${locale}/categories/${allCategories[0].id}`)
   const categoriesPromise = db.query.categories.findMany({
     "with":{
       "subcategories":true
