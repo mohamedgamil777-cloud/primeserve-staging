@@ -33,6 +33,7 @@ const ink = (tone: string) => (tone === "teal" ? "text-brand-teal" : "text-brand
 export async function MobileEmployeeExperience({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: "eePage.mobile" })
   const tp = await getTranslations({ locale, namespace: "eePage.pillars" })
+  const te = await getTranslations({ locale, namespace: "eePage" })
   const demoHref = `/${locale}/support`
   return (
     <div className="bg-white">
@@ -90,12 +91,13 @@ export async function MobileEmployeeExperience({ locale }: { locale: string }) {
             prevLabel={t("prev")}
             nextLabel={t("next")}
             slideLabel={tp("title")}
+            appLabel={te("nav")}
             slides={rows.map((r, i) => ({
               img: r.img,
               tone: r.tone,
               title: t(`r${i + 1}t`),
               text: t(`r${i + 1}x`),
-              bullets: [1, 2, 3].map((b) => tp(`p${i + 1}b${b}`)),
+              tiles: [1, 2, 3].map((b) => t(`tile${i + 1}${b}`)),
             }))}
           />
         </div>
