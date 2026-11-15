@@ -8,6 +8,7 @@ import { useLocale, useTranslations } from 'next-intl'
 import Link from 'next/link'
 import Image from 'next/image'
 import hrAppIcon from "@/public/imgs/hr_app_ico.png"
+import { CountUp } from './employee-experience/count-up'
 
 type Props = {}
 
@@ -31,6 +32,10 @@ export default function HrmsAppAd({}: Props) {
       <p className="mt-4 text-white/80">
         {t('unleash-your-creativity-with-our-cutting-edge-comprehensive-suite-of-professional-hr-tools-and-resources-bundled-in-one-awesome-app')}
       </p>
+      <div className="mt-5 flex items-center gap-4 rounded-2xl bg-white/10 px-4 py-3">
+        <span className="text-4xl font-extrabold leading-none text-[#F26522]"><CountUp to={40} suffix="%" /></span>
+        <span className="font-semibold">{t('ui.statHr')}</span>
+      </div>
       <div className="mt-auto flex flex-wrap gap-3 pt-6">
         <Link
           href={`/${locale}/employee-experience`}

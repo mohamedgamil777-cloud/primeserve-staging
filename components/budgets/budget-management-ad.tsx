@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 import budgetIcon from "@/public/imgs/budget.png"
 import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
+import { CountUp } from '../employee-experience/count-up';
 
 type Props = {}
 
@@ -59,8 +60,9 @@ export default function BudgetManagementAd({}: Props) {
           <span className="font-semibold">{t('start-now')}</span>
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 rtl:rotate-180" />
         </Link>
-        <p className="text-sm text-gray-400">
-          {t('used-by-50-000-smart-shoppers')}
+        <p className="flex items-center gap-2 text-sm font-semibold text-white">
+          <span className="text-3xl font-extrabold leading-none text-[#F26522]"><CountUp to={100} suffix="%" /></span>
+          {t('ui.statBudget')}
         </p>
       </div>
     </motion.div>

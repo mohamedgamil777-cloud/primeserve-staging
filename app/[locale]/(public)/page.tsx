@@ -11,10 +11,11 @@ import BudgetManagementAd from "@/components/budgets/budget-management-ad"
 import Link from "next/link"
 import { getTranslations } from "next-intl/server"
 import YouTubeVideo from "@/components/common/youtube-video"
-import { ArrowRight, ClipboardCheck, Layers, Search, ShieldCheck, Truck, Users } from "lucide-react"
+import { ArrowRight, ClipboardCheck, Search, Truck } from "lucide-react"
 import Image from "next/image"
 import { SERVICE_CATEGORY_PRIORITY, SUPPLY_SUBCATEGORY_PRIORITY, sortByPriority } from "@/lib/home-priority"
 import heroDevices from "@/public/imgs/banners/hero-devices.webp"
+import { CountUp } from "@/components/employee-experience/count-up"
 
 export const dynamic = 'force-dynamic';
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
@@ -120,11 +121,18 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 <ArrowRight className="h-4 w-4 rtl:rotate-180" />
               </Link>
             </div>
-            <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 pt-2 text-sm font-medium text-[#0B1F33] lg:justify-start">
-              <li className="flex items-center gap-2"><ShieldCheck className="h-5 w-5 text-[#00796B]" />{t("ui.trustSecure")}</li>
-              <li className="flex items-center gap-2"><Layers className="h-5 w-5 text-[#00796B]" />{t("ui.trustScalable")}</li>
-              <li className="flex items-center gap-2"><Users className="h-5 w-5 text-[#00796B]" />{t("ui.trustUsers")}</li>
-            </ul>
+            <dl className="grid grid-cols-3 rounded-2xl border border-[#00796B]/10 bg-[#E8F5F3] py-4">
+              {[
+                { to: 30, suffix: "%", label: t("ui.statProcurement") },
+                { to: 50, suffix: "%", label: t("ui.statAdmin") },
+                { to: 1, suffix: "", label: t("ui.statPartner") },
+              ].map((s, i) => (
+                <div key={i} className="flex flex-col items-center gap-1 border-s border-[#00796B]/15 px-2 text-center first:border-s-0">
+                  <dt className="text-3xl font-extrabold leading-none text-[#F26522] sm:text-4xl"><CountUp to={s.to} suffix={s.suffix} /></dt>
+                  <dd className="text-xs font-semibold leading-snug text-[#0B1F33] sm:text-sm">{s.label}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
           <div className="relative">
             <Image
@@ -174,6 +182,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   </div>
                 </li>
               ))}
+              <li className="flex items-center gap-4 rounded-2xl bg-[#0B1F33] p-5 text-white">
+                <span className="text-4xl font-extrabold leading-none text-[#F26522]"><CountUp to={95} suffix="%" /></span>
+                <span className="font-semibold">{t("ui.statOnTime")}</span>
+              </li>
             </ol>
           </div>
         </div>
@@ -196,6 +208,9 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <div className="absolute -bottom-20 h-56 w-56 rounded-full bg-white/5 ltr:-left-20 rtl:-right-20" />
           <div className="relative space-y-4">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{t("ui.ctaTitle")}</h2>
+            <p className="text-xl font-bold sm:text-2xl">
+              {t("ui.statSaveA")} <span className="text-4xl font-extrabold text-[#F26522] sm:text-5xl"><CountUp to={20} suffix="%" /></span> {t("ui.statSaveB")}
+            </p>
             <p className="mx-auto max-w-2xl text-white/80 md:text-lg">{t("ui.ctaText")}</p>
             <div className="flex flex-col justify-center gap-3 pt-2 sm:flex-row">
               <Link

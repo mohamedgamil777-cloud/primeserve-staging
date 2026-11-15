@@ -1201,7 +1201,15 @@
     "gold": "Gold",
     "progressPlatinum": "Progress to Platinum",
     "pointsEarned": "Points Earned",
-    "discountRate": "Discount Rate"
+    "discountRate": "Discount Rate",
+    "statProcurement": "lower procurement costs",
+    "statAdmin": "less admin time on requests",
+    "statPartner": "partner instead of many suppliers",
+    "statHr": "fewer HR requests by email and WhatsApp",
+    "statBudget": "visibility on team spending",
+    "statOnTime": "of orders delivered on time",
+    "statSaveA": "Save",
+    "statSaveB": "by buying services and supplies from one partner"
   },
   "eePage": {
     "nav": "Employee Experience",
