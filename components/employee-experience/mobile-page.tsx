@@ -8,6 +8,7 @@ import {
 import { HomeScreen, PhoneFrame } from "./phone-mockups"
 import { DashboardMockup } from "./dashboard-mockup"
 import { SixExperiencesBanner } from "./sections"
+import { PlatformIntro } from "./platform-intro"
 
 const svc = (f: string) => `/imgs/services/${f}`
 const rows = [
@@ -65,6 +66,8 @@ export async function MobileEmployeeExperience({ locale }: { locale: string }) {
           </Link>
         </div>
       </section>
+
+      <PlatformIntro locale={locale} />
 
       {/* Connected workplace */}
       <section className="px-4 pb-8">

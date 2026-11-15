@@ -8,6 +8,7 @@ import {
 import { AttendanceScreen, HomeScreen, LeaveScreen, PhoneFrame } from "@/components/employee-experience/phone-mockups"
 import { DashboardMockup } from "@/components/employee-experience/dashboard-mockup"
 import { MobileEmployeeExperience } from "@/components/employee-experience/mobile-page"
+import { PlatformIntro } from "@/components/employee-experience/platform-intro"
 import { CheckItem, FeatureCard, PillarCard, SectionHeading, Eyebrow, SixExperiencesBanner } from "@/components/employee-experience/sections"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -98,6 +99,8 @@ export default async function EmployeeExperiencePage({ params }: { params: Promi
           </div>
         </div>
       </section>
+
+      <PlatformIntro locale={locale} />
 
       {/* Connect cards */}
       <section className="container mx-auto px-4 py-14 md:px-6 md:py-20">

@@ -1405,6 +1405,17 @@
       "b6x": "A flexible platform that grows with you.",
       "ctaTitle": "Ready to Transform Your Employee Experience?",
       "ctaText": "See how PrimeServe can work for your organization."
+    },
+    "intro": {
+      "title": "A great workplace comes down to one thing: how easily your people get what they need.",
+      "text": "Leave requests, HR letters, announcements and service orders shouldn't live in WhatsApp groups, paper forms and endless emails. PrimeServe brings every employee service into one branded app, and gives management one dashboard to see and act on everything as it happens.",
+      "tagline": "Less chasing. Faster answers. Happier, more engaged teams.",
+      "p1t": "Everything in One App",
+      "p1x": "Employees request, track and receive services, letters and approvals from their phone, in Arabic or English.",
+      "p2t": "Less Routine Work for HR",
+      "p2x": "Requests arrive complete and are tracked from start to finish, so HR spends time on people, not paperwork.",
+      "p3t": "Real-Time Visibility for Management",
+      "p3x": "Attendance, requests and engagement on one live dashboard, so decisions don't wait for reports."
     }
   },
   "authPage": {
