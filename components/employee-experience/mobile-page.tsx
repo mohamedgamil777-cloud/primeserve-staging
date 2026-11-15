@@ -9,6 +9,7 @@ import { HomeScreen, PhoneFrame } from "./phone-mockups"
 import { DashboardMockup } from "./dashboard-mockup"
 import { ConnectedStats, SixExperiencesBanner } from "./sections"
 import { PlatformIntro } from "./platform-intro"
+import { PillarCarousel } from "./pillar-carousel"
 
 const svc = (f: string) => `/imgs/services/${f}`
 const rows = [
@@ -27,7 +28,6 @@ const benefits = [
   { icon: ShieldCheck, tone: "orange" },
   { icon: TrendingUp, tone: "teal" },
 ] as const
-const soft = (tone: string) => (tone === "teal" ? "bg-brand-green-soft text-brand-teal" : "bg-brand-orange-soft text-brand-orange")
 const ink = (tone: string) => (tone === "teal" ? "text-brand-teal" : "text-brand-orange")
 
 export async function MobileEmployeeExperience({ locale }: { locale: string }) {
@@ -85,22 +85,19 @@ export async function MobileEmployeeExperience({ locale }: { locale: string }) {
           text={t("platformText")}
           items={rows.map((r, i) => ({ icon: r.icon, label: t(`r${i + 1}t`) }))}
         />
-        <div className="mt-4 space-y-3">
-          {rows.map((r, i) => (
-            <Link key={i} href={demoHref} className="flex items-center overflow-hidden rounded-2xl border border-brand-border bg-white shadow-sm">
-              <img src={r.img} alt="" loading="lazy" className="h-[72px] w-[84px] shrink-0 object-cover" />
-              <span className={`-ms-4 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ring-4 ring-white ${soft(r.tone)}`}>
-                <r.icon className="h-5 w-5" strokeWidth={1.8} />
-              </span>
-              <span className="ms-3 min-w-0 flex-1 border-s border-brand-border py-2 ps-3">
-                <span className="block font-bold leading-tight text-brand-navy">{t(`r${i + 1}t`)}</span>
-                <span className="mt-0.5 block text-xs leading-snug text-brand-navy-2/80">{t(`r${i + 1}x`)}</span>
-              </span>
-              <span className="mx-2 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-green-soft text-brand-teal">
-                <ArrowRight className="h-4 w-4 rtl:rotate-180" />
-              </span>
-            </Link>
-          ))}
+        <div className="mt-5">
+          <PillarCarousel
+            prevLabel={t("prev")}
+            nextLabel={t("next")}
+            slideLabel={tp("title")}
+            slides={rows.map((r, i) => ({
+              img: r.img,
+              tone: r.tone,
+              title: t(`r${i + 1}t`),
+              text: t(`r${i + 1}x`),
+              bullets: [1, 2, 3].map((b) => tp(`p${i + 1}b${b}`)),
+            }))}
+          />
         </div>
       </section>
 
