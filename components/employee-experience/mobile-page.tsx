@@ -70,7 +70,7 @@ export async function MobileEmployeeExperience({ locale }: { locale: string }) {
       <section className="px-4 pb-8">
         <h2 className="text-2xl font-extrabold tracking-tight text-brand-navy">{t("connectTitle")}</h2>
         <div className="mt-4">
-          <ConnectedStats compact upTo={t("upTo")} items={[40, 30, 25].map((value, i) => ({ value, label: t(`connect${i + 1}`) }))} />
+          <ConnectedStats compact items={[40, 30, 25].map((value, i) => ({ value, label: t(`connect${i + 1}`) }))} />
         </div>
       </section>
 

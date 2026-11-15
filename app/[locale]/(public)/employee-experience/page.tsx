@@ -106,7 +106,7 @@ export default async function EmployeeExperiencePage({ params }: { params: Promi
       <section className="container mx-auto px-4 py-14 md:px-6 md:py-20">
         <SectionHeading title={t("connect.title")} center />
         <div className="mx-auto mt-8 max-w-4xl">
-          <ConnectedStats upTo={t("mobile.upTo")} items={[40, 30, 25].map((value, i) => ({ value, label: t(`mobile.connect${i + 1}`) }))} />
+          <ConnectedStats items={[40, 30, 25].map((value, i) => ({ value, label: t(`mobile.connect${i + 1}`) }))} />
         </div>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {connect.map((c) => (
