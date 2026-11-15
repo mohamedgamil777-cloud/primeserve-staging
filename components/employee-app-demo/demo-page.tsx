@@ -13,6 +13,7 @@ export function EmployeeAppDemo({ locale }: { locale: string }) {
   const mods = ta.raw("mods") as string[]
   const [screen, setScreen] = useState<Screen>({ name: "home" })
   const [run, setRun] = useState(0)
+  const [showPreview, setShowPreview] = useState(true)
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#F8FAFC] text-[#0B1F33]">
@@ -68,15 +69,6 @@ export function EmployeeAppDemo({ locale }: { locale: string }) {
             </div>
           </div>
 
-          <div className="hidden max-w-[520px] lg:block">
-            <div className="flex items-start gap-3 rounded-2xl border border-[#F26522]/30 bg-[#FFF3EC] p-4 text-start">
-              <Info className="mt-0.5 h-5 w-5 shrink-0 text-[#F26522]" />
-              <div className="leading-snug">
-                <div className="text-sm font-bold text-[#0B1F33]">{t("previewTitle")}</div>
-                <div className="mt-0.5 text-sm text-[#475467]">{t("previewText")}</div>
-              </div>
-            </div>
-          </div>
           <div className="hidden flex-wrap items-center gap-3 pt-2 lg:flex">
             <Link
               href={`/${locale}/support`}
@@ -102,13 +94,6 @@ export function EmployeeAppDemo({ locale }: { locale: string }) {
 
         {/* Below the phone on small screens */}
         <section className="space-y-4 text-center lg:hidden">
-          <div className="flex items-start gap-3 rounded-2xl border border-[#F26522]/30 bg-[#FFF3EC] p-4 text-start">
-            <Info className="mt-0.5 h-5 w-5 shrink-0 text-[#F26522]" />
-            <div className="leading-snug">
-              <div className="text-sm font-bold text-[#0B1F33]">{t("previewTitle")}</div>
-              <div className="mt-0.5 text-sm text-[#475467]">{t("previewText")}</div>
-            </div>
-          </div>
           <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
             <Link href={`/${locale}/support`} className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-[#F26522] px-6 font-semibold text-white">
               {t("cta")}
@@ -125,6 +110,25 @@ export function EmployeeAppDemo({ locale }: { locale: string }) {
           <p className="text-xs text-[#98A2B3]">{t("note")}</p>
         </section>
       </div>
+      {showPreview && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="preview-title">
+          <div className="absolute inset-0 bg-[#0B1F33]/55 backdrop-blur-[2px] animate-in fade-in" onClick={() => setShowPreview(false)} />
+          <div className="relative w-full max-w-md rounded-3xl bg-white p-6 text-center shadow-2xl animate-in fade-in zoom-in-95 duration-300 sm:p-8">
+            <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#FFF3EC] text-[#F26522]"><Info className="h-7 w-7" /></span>
+            <h2 id="preview-title" className="mt-4 text-2xl font-extrabold text-[#0B1F33]">{t("previewTitle")}</h2>
+            <p className="mt-2 text-base leading-relaxed text-[#475467]">{t("previewText")}</p>
+            <div className="mt-6 flex flex-col gap-3">
+              <button onClick={() => setShowPreview(false)} className="inline-flex h-12 items-center justify-center rounded-xl bg-[#F26522] px-6 font-semibold text-white shadow-[0_8px_20px_-8px_rgba(242,101,34,0.7)] hover:bg-[#d9541a]" autoFocus>
+                {t("previewStart")}
+              </button>
+              <Link href={`/${locale}/support`} className="inline-flex h-12 items-center justify-center gap-2 rounded-xl border-2 border-[#0B1F33] px-6 font-semibold text-[#0B1F33] hover:bg-[#0B1F33] hover:text-white">
+                {t("cta")}
+                <ArrowRight className="h-4 w-4 rtl:rotate-180" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   )
 }

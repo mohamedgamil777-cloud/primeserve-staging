@@ -1588,7 +1588,8 @@
       "note": "All names and data in this demo are samples for illustration only.",
       "back": "Back to Employee Experience",
       "previewTitle": "Preview version",
-      "previewText": "This is a quick preview, not the full workflow. To see the full version, press Request a Demo."
+      "previewText": "This is a quick preview, not the full workflow. To see the full version, press Request a Demo.",
+      "previewStart": "Start the preview"
     },
     "app": {
       "demo": "Demo",
