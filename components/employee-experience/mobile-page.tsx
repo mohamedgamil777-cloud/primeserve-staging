@@ -57,9 +57,9 @@ export async function MobileEmployeeExperience({ locale }: { locale: string }) {
         </div>
         <p className="relative mt-5 text-base leading-relaxed text-brand-navy-2">{t("text")}</p>
         <div className="relative mt-5 flex flex-col gap-3">
-          <a href="#platform-m" className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-brand-orange font-semibold text-white shadow-sm">
+          <Link href={`/${locale}/demo`} className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-brand-orange font-semibold text-white shadow-sm">
             {t("explore")}<ArrowRight className="h-4 w-4 rtl:rotate-180" />
-          </a>
+          </Link>
           <Link href={demoHref} className="inline-flex h-12 items-center justify-center rounded-xl border-2 border-brand-navy font-semibold text-brand-navy">
             {t("demo")}
           </Link>

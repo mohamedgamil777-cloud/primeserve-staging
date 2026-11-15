@@ -71,7 +71,7 @@ export default async function EmployeeExperiencePage({ params }: { params: Promi
             </h1>
             <p className="mx-auto max-w-xl text-base text-[#475467] sm:text-lg lg:mx-0">{t("hero.text")}</p>
             <div className="flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
-              <a href="#platform" className={primaryBtn}>{t("hero.explore")}<ArrowRight className="h-4 w-4 rtl:rotate-180" /></a>
+              <Link href={`/${locale}/demo`} className={primaryBtn}>{t("hero.explore")}<ArrowRight className="h-4 w-4 rtl:rotate-180" /></Link>
               <Link href={demoHref} className={outlineBtn}>{t("hero.demo")}</Link>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 pt-1 text-sm font-medium text-[#0B1F33] lg:justify-start">
