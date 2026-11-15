@@ -1,7 +1,7 @@
 "use client"
 // Phone-only carousel of the six Employee Experience pillars, each shown as a phone mockup.
-// Swipe, arrows and dots; no autoplay, no links.
-import { useEffect, useRef, useState } from "react"
+// Swipe, arrows and dots; no autoplay, no links. Slides scale and fade with the scroll position.
+import { useCallback, useEffect, useRef, useState } from "react"
 import {
   Award, BarChart3, BatteryFull, Bell, BookOpen, Building2, CalendarCheck, CalendarDays, CalendarHeart, ChevronLeft, ChevronRight,
   Coins, FileText, Gift, GraduationCap, Medal, Megaphone, MessageCircleMore, Newspaper, Package, PlayCircle, Settings, Signal,
@@ -21,27 +21,50 @@ const tileIcons = [
 
 export type PillarSlide = { img: string; title: string; text: string; tiles: string[]; tone: "teal" | "orange" }
 
-export function PillarCarousel({ slides, prevLabel, nextLabel, slideLabel, appLabel }: {
-  slides: PillarSlide[]; prevLabel: string; nextLabel: string; slideLabel: string; appLabel: string
+export function PillarCarousel({ slides, prevLabel, nextLabel, slideLabel }: {
+  slides: PillarSlide[]; prevLabel: string; nextLabel: string; slideLabel: string
 }) {
   const track = useRef<HTMLDivElement>(null)
   const items = useRef<(HTMLDivElement | null)[]>([])
+  const phones = useRef<(HTMLDivElement | null)[]>([])
   const [active, setActive] = useState(0)
+
+  // Scale, fade and lower each phone by its distance from the centre, so slides follow the finger smoothly.
+  const paint = useCallback(() => {
+    const root = track.current
+    if (!root) return
+    const mid = root.scrollLeft + root.clientWidth / 2
+    let best = 0
+    let bestDist = Infinity
+    items.current.forEach((el, i) => {
+      const phone = phones.current[i]
+      if (!el || !phone) return
+      const center = el.offsetLeft + el.offsetWidth / 2
+      const d = Math.min(Math.abs(center - mid) / el.offsetWidth, 1)
+      if (Math.abs(center - mid) < bestDist) { bestDist = Math.abs(center - mid); best = i }
+      phone.style.transform = `translateY(${d * 14}px) scale(${1 - d * 0.14})`
+      phone.style.opacity = String(1 - d * 0.45)
+    })
+    setActive(best)
+  }, [])
 
   useEffect(() => {
     const root = track.current
     if (!root) return
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) setActive(Number((e.target as HTMLElement).dataset.index))
-        })
-      },
-      { root, threshold: 0.6 },
-    )
-    items.current.forEach((el) => el && io.observe(el))
-    return () => io.disconnect()
-  }, [])
+    let frame = 0
+    const onScroll = () => {
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(paint)
+    }
+    paint()
+    root.addEventListener("scroll", onScroll, { passive: true })
+    window.addEventListener("resize", onScroll)
+    return () => {
+      cancelAnimationFrame(frame)
+      root.removeEventListener("scroll", onScroll)
+      window.removeEventListener("resize", onScroll)
+    }
+  }, [paint])
 
   const go = (i: number) => {
     const n = (i + slides.length) % slides.length
@@ -57,7 +80,7 @@ export function PillarCarousel({ slides, prevLabel, nextLabel, slideLabel, appLa
       <div
         ref={track}
         dir="ltr"
-        className="relative flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain px-[13vw] py-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="relative flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain px-[19vw] pb-5 pt-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {slides.map((s, i) => {
           const Icon = icons[i]
@@ -70,59 +93,54 @@ export function PillarCarousel({ slides, prevLabel, nextLabel, slideLabel, appLa
               role="group"
               aria-roledescription="slide"
               aria-label={`${i + 1} / ${slides.length}`}
-              className="w-[74vw] max-w-[340px] shrink-0 snap-center px-1.5"
+              aria-hidden={i !== active}
+              className="w-[62vw] max-w-[270px] shrink-0 snap-center snap-always px-1"
             >
-              <div className={cn(
-                "origin-center transition-[transform,opacity] duration-300 motion-reduce:transition-none",
-                i === active ? "scale-100 opacity-100" : "scale-[0.9] opacity-60",
-              )}>
+              <div ref={(el) => { phones.current[i] = el }} className="origin-center will-change-transform">
                 {/* phone frame */}
-                <div className="relative overflow-hidden rounded-[2.4rem] border-[7px] border-[#1d2430] bg-white shadow-[0_18px_40px_-18px_rgba(11,31,51,0.55)]">
-                  <span aria-hidden className="absolute left-1/2 top-1.5 z-10 h-[18px] w-[30%] -translate-x-1/2 rounded-full bg-[#1d2430]" />
-                  <div aria-hidden className="flex items-center justify-between px-5 pb-1 pt-2 text-[11px] font-semibold text-brand-navy">
+                <div className="relative overflow-hidden rounded-[2.1rem] border-[6px] border-[#1d2430] bg-white shadow-[0_16px_34px_-16px_rgba(11,31,51,0.55)]">
+                  <span aria-hidden className="absolute left-1/2 top-1.5 z-10 h-4 w-[30%] -translate-x-1/2 rounded-full bg-[#1d2430]" />
+                  <div aria-hidden className="flex items-center justify-between px-4 pb-0.5 pt-1.5 text-[10px] font-semibold text-brand-navy">
                     <span>9:41</span>
-                    <span className="flex items-center gap-1"><Signal className="h-3 w-3" /><Wifi className="h-3 w-3" /><BatteryFull className="h-3.5 w-3.5" /></span>
+                    <span className="flex items-center gap-0.5"><Signal className="h-2.5 w-2.5" /><Wifi className="h-2.5 w-2.5" /><BatteryFull className="h-3 w-3" /></span>
                   </div>
 
-                  <div dir="auto" className="relative px-3 pb-5 pt-1">
-                    <div className="flex flex-col items-center">
-                      <span dir="ltr" className="flex items-center gap-1.5">
-                        <img src="/imgs/about/mark.png" alt="" className="h-6 w-6 object-contain" />
-                        <span className="text-[15px] font-extrabold italic text-brand-navy">PrimeServe</span>
-                      </span>
-                      <span className="mt-0.5 text-[11px] font-semibold text-brand-navy/80">{appLabel}</span>
-                    </div>
+                  <div className="relative px-2.5 pb-4 pt-1.5">
+                    <span dir="ltr" className="flex items-center gap-1.5 px-1">
+                      <img src="/imgs/about/mark.png" alt="" className="h-5 w-5 object-contain" />
+                      <span className="text-[13px] font-extrabold italic text-brand-navy">PrimeServe</span>
+                    </span>
 
-                    <img src={s.img} alt="" loading="lazy" className="mt-2.5 aspect-[16/11] w-full rounded-2xl object-cover" />
+                    <img src={s.img} alt="" loading="lazy" className="mt-2 aspect-[4/3] w-full rounded-xl object-cover" />
 
-                    <div className="relative pt-9 text-center">
+                    <div dir="auto" className="relative pt-7 text-center">
                       <span className={cn(
-                        "absolute -top-7 left-1/2 flex h-14 w-14 -translate-x-1/2 items-center justify-center rounded-2xl bg-white shadow-md ring-1 ring-brand-border",
+                        "absolute -top-6 left-1/2 flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-2xl bg-white shadow-md ring-1 ring-brand-border",
                         teal ? "text-brand-teal" : "text-brand-orange",
                       )}>
-                        <span className={cn("flex h-11 w-11 items-center justify-center rounded-xl", teal ? "bg-brand-green-soft" : "bg-brand-orange-soft")}>
-                          <Icon className="h-6 w-6" strokeWidth={1.8} />
+                        <span className={cn("flex h-9 w-9 items-center justify-center rounded-xl", teal ? "bg-brand-green-soft" : "bg-brand-orange-soft")}>
+                          <Icon className="h-5 w-5" strokeWidth={1.9} />
                         </span>
                       </span>
-                      <h3 className="text-[19px] font-extrabold leading-tight text-brand-navy">{s.title}</h3>
-                      <p className="mx-auto mt-1.5 max-w-[15rem] text-[13px] leading-snug text-brand-navy-2/80">{s.text}</p>
-                      <ul className="mt-4 grid grid-cols-3 gap-1.5">
+                      <h3 className="text-[17px] font-extrabold leading-tight text-brand-navy">{s.title}</h3>
+                      <p className="mx-auto mt-1 max-w-[14rem] text-[12px] leading-snug text-brand-navy-2/80">{s.text}</p>
+                      <ul className="mt-3 grid grid-cols-3 gap-1.5">
                         {s.tiles.map((label, j) => {
                           const TileIcon = tileIcons[i][j]
                           return (
                             <li key={j} className={cn(
-                              "flex flex-col items-center gap-1 rounded-xl px-1 py-2.5",
+                              "flex flex-col items-center gap-1 rounded-lg px-0.5 py-2",
                               teal ? "bg-brand-green-soft/70" : "bg-brand-orange-soft/70",
                             )}>
-                              <TileIcon className={cn("h-5 w-5", teal ? "text-brand-teal" : "text-brand-orange")} strokeWidth={1.8} />
-                              <span className="text-[10.5px] font-semibold leading-tight text-brand-navy">{label}</span>
+                              <TileIcon className={cn("h-4 w-4", teal ? "text-brand-teal" : "text-brand-orange")} strokeWidth={1.9} />
+                              <span className="text-[9.5px] font-semibold leading-tight text-brand-navy">{label}</span>
                             </li>
                           )
                         })}
                       </ul>
                     </div>
                   </div>
-                  <span aria-hidden className="mx-auto mb-2 block h-1 w-1/3 rounded-full bg-brand-navy/80" />
+                  <span aria-hidden className="mx-auto mb-1.5 block h-1 w-1/3 rounded-full bg-brand-navy/80" />
                 </div>
               </div>
             </div>
@@ -131,19 +149,19 @@ export function PillarCarousel({ slides, prevLabel, nextLabel, slideLabel, appLa
       </div>
 
       <button type="button" onClick={() => go(active - 1)} aria-label={prevLabel}
-        className="absolute left-2 top-[42%] flex h-11 w-11 items-center justify-center rounded-full bg-white text-brand-teal shadow-md ring-1 ring-brand-border">
-        <ChevronLeft className="h-6 w-6" />
+        className="absolute left-2 top-[42%] flex h-10 w-10 items-center justify-center rounded-full bg-white/95 text-brand-teal shadow-md ring-1 ring-brand-border transition active:scale-90">
+        <ChevronLeft className="h-5 w-5" />
       </button>
       <button type="button" onClick={() => go(active + 1)} aria-label={nextLabel}
-        className="absolute right-2 top-[42%] flex h-11 w-11 items-center justify-center rounded-full bg-white text-brand-teal shadow-md ring-1 ring-brand-border">
-        <ChevronRight className="h-6 w-6" />
+        className="absolute right-2 top-[42%] flex h-10 w-10 items-center justify-center rounded-full bg-white/95 text-brand-teal shadow-md ring-1 ring-brand-border transition active:scale-90">
+        <ChevronRight className="h-5 w-5" />
       </button>
 
-      <div className="mt-1 flex justify-center gap-1.5" dir="ltr">
+      <div className="flex justify-center gap-1" dir="ltr">
         {slides.map((s, i) => (
           <button key={i} type="button" onClick={() => go(i)} aria-label={s.title} aria-current={i === active}
             className="flex h-6 w-6 items-center justify-center">
-            <span className={cn("block h-2.5 rounded-full transition-all", i === active ? "w-6 bg-brand-orange" : "w-2.5 bg-brand-teal/25")} />
+            <span className={cn("block h-2 rounded-full transition-all duration-300", i === active ? "w-6 bg-brand-orange" : "w-2 bg-brand-teal/25")} />
           </button>
         ))}
       </div>

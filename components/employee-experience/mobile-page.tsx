@@ -11,14 +11,13 @@ import { ConnectedStats, SixExperiencesBanner } from "./sections"
 import { PlatformIntro } from "./platform-intro"
 import { PillarCarousel } from "./pillar-carousel"
 
-const svc = (f: string) => `/imgs/services/${f}`
 const rows = [
-  { icon: User, img: svc("890e72bb-cfd6-4a3b-8317-db82c9ca2332-ai01.webp"), tone: "teal" },
-  { icon: Building2, img: svc("d71dc543-df65-425b-9fba-6045ba344a71-9921.webp"), tone: "orange" },
-  { icon: MessageCircleMore, img: svc("0c9009df-2e5a-40fd-a4e6-917394c06a14-ai01.webp"), tone: "teal" },
-  { icon: GraduationCap, img: svc("be7c5175-9669-4653-bbd6-a68238fcc101-ai01.webp"), tone: "orange" },
-  { icon: Star, img: svc("32f531cf-dffc-4f16-9e00-c97e8a1eedf3-ai01.webp"), tone: "teal" },
-  { icon: CalendarDays, img: svc("a3aaa2b0-371a-4a99-9ede-143c07525cf2-ai01.webp"), tone: "orange" },
+  { icon: User, img: "/imgs/ee/employee-services.webp", tone: "teal" },
+  { icon: Building2, img: "/imgs/ee/workplace-services.webp", tone: "orange" },
+  { icon: MessageCircleMore, img: "/imgs/ee/internal-communication.webp", tone: "teal" },
+  { icon: GraduationCap, img: "/imgs/ee/learning-development.webp", tone: "orange" },
+  { icon: Star, img: "/imgs/ee/recognition-rewards.webp", tone: "teal" },
+  { icon: CalendarDays, img: "/imgs/ee/engagement-events.webp", tone: "orange" },
 ] as const
 const benefits = [
   { icon: Hourglass, tone: "teal" },
@@ -33,7 +32,6 @@ const ink = (tone: string) => (tone === "teal" ? "text-brand-teal" : "text-brand
 export async function MobileEmployeeExperience({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: "eePage.mobile" })
   const tp = await getTranslations({ locale, namespace: "eePage.pillars" })
-  const te = await getTranslations({ locale, namespace: "eePage" })
   const demoHref = `/${locale}/support`
   return (
     <div className="bg-white">
@@ -91,7 +89,6 @@ export async function MobileEmployeeExperience({ locale }: { locale: string }) {
             prevLabel={t("prev")}
             nextLabel={t("next")}
             slideLabel={tp("title")}
-            appLabel={te("nav")}
             slides={rows.map((r, i) => ({
               img: r.img,
               tone: r.tone,
