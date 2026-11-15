@@ -4,7 +4,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { useTranslations } from "next-intl"
-import { ArrowRight, Globe, Hand, RotateCcw } from "lucide-react"
+import { ArrowRight, Globe, Hand, Info, RotateCcw } from "lucide-react"
 import { DemoApp, MODULES, type Screen } from "./demo-app"
 
 export function EmployeeAppDemo({ locale }: { locale: string }) {
@@ -68,6 +68,15 @@ export function EmployeeAppDemo({ locale }: { locale: string }) {
             </div>
           </div>
 
+          <div className="hidden max-w-[520px] lg:block">
+            <div className="flex items-start gap-3 rounded-2xl border border-[#F26522]/30 bg-[#FFF3EC] p-4 text-start">
+              <Info className="mt-0.5 h-5 w-5 shrink-0 text-[#F26522]" />
+              <div className="leading-snug">
+                <div className="text-sm font-bold text-[#0B1F33]">{t("previewTitle")}</div>
+                <div className="mt-0.5 text-sm text-[#475467]">{t("previewText")}</div>
+              </div>
+            </div>
+          </div>
           <div className="hidden flex-wrap items-center gap-3 pt-2 lg:flex">
             <Link
               href={`/${locale}/support`}
@@ -93,7 +102,13 @@ export function EmployeeAppDemo({ locale }: { locale: string }) {
 
         {/* Below the phone on small screens */}
         <section className="space-y-4 text-center lg:hidden">
-          <p className="text-sm font-semibold">{t("ctaText")}</p>
+          <div className="flex items-start gap-3 rounded-2xl border border-[#F26522]/30 bg-[#FFF3EC] p-4 text-start">
+            <Info className="mt-0.5 h-5 w-5 shrink-0 text-[#F26522]" />
+            <div className="leading-snug">
+              <div className="text-sm font-bold text-[#0B1F33]">{t("previewTitle")}</div>
+              <div className="mt-0.5 text-sm text-[#475467]">{t("previewText")}</div>
+            </div>
+          </div>
           <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
             <Link href={`/${locale}/support`} className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-[#F26522] px-6 font-semibold text-white">
               {t("cta")}

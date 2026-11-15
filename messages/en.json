@@ -1586,7 +1586,9 @@
       "cta": "Request a Demo",
       "ctaText": "Want it under your company's name, logo and colors?",
       "note": "All names and data in this demo are samples for illustration only.",
-      "back": "Back to Employee Experience"
+      "back": "Back to Employee Experience",
+      "previewTitle": "Preview version",
+      "previewText": "This is a quick preview, not the full workflow. To see the full version, press Request a Demo."
     },
     "app": {
       "demo": "Demo",
