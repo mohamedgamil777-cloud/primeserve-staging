@@ -9,7 +9,7 @@ import { AttendanceScreen, HomeScreen, LeaveScreen, PhoneFrame } from "@/compone
 import { DashboardMockup } from "@/components/employee-experience/dashboard-mockup"
 import { MobileEmployeeExperience } from "@/components/employee-experience/mobile-page"
 import { PlatformIntro } from "@/components/employee-experience/platform-intro"
-import { CheckItem, FeatureCard, PillarCard, SectionHeading, Eyebrow, SixExperiencesBanner } from "@/components/employee-experience/sections"
+import { CheckItem, ConnectedStats, FeatureCard, PillarCard, SectionHeading, Eyebrow, SixExperiencesBanner } from "@/components/employee-experience/sections"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const t = await getTranslations({ locale: (await params).locale, namespace: "eePage" })
@@ -105,6 +105,9 @@ export default async function EmployeeExperiencePage({ params }: { params: Promi
       {/* Connect cards */}
       <section className="container mx-auto px-4 py-14 md:px-6 md:py-20">
         <SectionHeading title={t("connect.title")} center />
+        <div className="mx-auto mt-8 max-w-4xl">
+          <ConnectedStats upTo={t("mobile.upTo")} items={[40, 30, 25].map((value, i) => ({ value, label: t(`mobile.connect${i + 1}`) }))} />
+        </div>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {connect.map((c) => (
             <FeatureCard key={c.n} icon={c.icon} tone={c.tone} title={t(`connect.c${c.n}t`)} text={t(`connect.c${c.n}x`)} />

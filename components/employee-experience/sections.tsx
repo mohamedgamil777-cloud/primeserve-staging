@@ -3,6 +3,7 @@ import React from "react"
 import type { LucideIcon } from "lucide-react"
 import { Check } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { CountUp } from "./count-up"
 
 export function Eyebrow({ children, center }: { children: React.ReactNode; center?: boolean }) {
   return (
@@ -125,6 +126,21 @@ export function SixExperiencesBanner({ eyebrow, titleA, titleB, text, items, com
           </li>
         ))}
       </ul>
+    </div>
+  )
+}
+
+// Three animated percentages with labels ("A More Connected Workplace" strip).
+export function ConnectedStats({ items, upTo, compact }: { items: { value: number; label: string }[]; upTo: string; compact?: boolean }) {
+  return (
+    <div className={cn("grid grid-cols-3 rounded-2xl border border-[#00796B]/10 bg-[#E8F5F3]", compact ? "py-4" : "py-8")}>
+      {items.map((it, i) => (
+        <div key={i} className={cn("flex flex-col items-center border-s border-[#00796B]/15 text-center first:border-s-0", compact ? "gap-1 px-2" : "gap-2 px-6")}>
+          <span className={cn("font-semibold uppercase tracking-wide text-[#00796B]", compact ? "text-[10px]" : "text-xs")}>{upTo}</span>
+          <span className={cn("font-extrabold leading-none text-[#F26522]", compact ? "text-3xl" : "text-5xl xl:text-6xl")}><CountUp to={it.value} suffix="%" /></span>
+          <span className={cn("font-semibold leading-snug text-[#0B1F33]", compact ? "text-[13px]" : "text-lg")}>{it.label}</span>
+        </div>
+      ))}
     </div>
   )
 }

@@ -2,12 +2,12 @@
 import Link from "next/link"
 import { getTranslations } from "next-intl/server"
 import {
-  ArrowRight, Award, Building2, CalendarDays, Check, GraduationCap, Hourglass, Layers, MessageCircleMore,
-  MessagesSquare, Settings, ShieldCheck, Star, TrendingUp, User, Users, Zap,
+  ArrowRight, Building2, CalendarDays, Check, GraduationCap, Hourglass, Layers, MessageCircleMore,
+  ShieldCheck, Star, TrendingUp, User, Users, Zap,
 } from "lucide-react"
 import { HomeScreen, PhoneFrame } from "./phone-mockups"
 import { DashboardMockup } from "./dashboard-mockup"
-import { SixExperiencesBanner } from "./sections"
+import { ConnectedStats, SixExperiencesBanner } from "./sections"
 import { PlatformIntro } from "./platform-intro"
 
 const svc = (f: string) => `/imgs/services/${f}`
@@ -34,8 +34,6 @@ export async function MobileEmployeeExperience({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: "eePage.mobile" })
   const tp = await getTranslations({ locale, namespace: "eePage.pillars" })
   const demoHref = `/${locale}/support`
-  const connect = [Settings, MessagesSquare, Users]
-
   return (
     <div className="bg-white">
       {/* Hero */}
@@ -72,13 +70,8 @@ export async function MobileEmployeeExperience({ locale }: { locale: string }) {
       {/* Connected workplace */}
       <section className="px-4 pb-8">
         <h2 className="text-2xl font-extrabold tracking-tight text-brand-navy">{t("connectTitle")}</h2>
-        <div className="mt-4 grid grid-cols-3 rounded-2xl border border-brand-teal/10 bg-brand-green-soft py-4">
-          {connect.map((Icon, i) => (
-            <div key={i} className="flex flex-col items-center gap-2 border-s border-brand-teal/15 px-2 text-center first:border-s-0">
-              <Icon className="h-8 w-8 text-brand-teal" strokeWidth={1.6} />
-              <span className="text-[13px] font-semibold leading-snug text-brand-navy">{t(`connect${i + 1}`)}</span>
-            </div>
-          ))}
+        <div className="mt-4">
+          <ConnectedStats compact upTo={t("upTo")} items={[40, 30, 25].map((value, i) => ({ value, label: t(`connect${i + 1}`) }))} />
         </div>
       </section>
 
