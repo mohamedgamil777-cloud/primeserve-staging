@@ -1,6 +1,6 @@
 "use client"
 // Phone-only carousel of the six Employee Experience pillars, each shown as a phone mockup.
-// Swipe, arrows and dots; no autoplay, no links. Slides scale and fade with the scroll position.
+// Swipe, arrows and dots; loops forever and advances on its own; no links. Slides scale and fade with the scroll position.
 import { useCallback, useEffect, useRef, useState } from "react"
 import {
   Award, BarChart3, BatteryFull, Bell, BookOpen, Building2, CalendarCheck, CalendarDays, CalendarHeart, ChevronLeft, ChevronRight,
@@ -24,10 +24,21 @@ export type PillarSlide = { img: string; title: string; text: string; tiles: str
 export function PillarCarousel({ slides, prevLabel, nextLabel, slideLabel }: {
   slides: PillarSlide[]; prevLabel: string; nextLabel: string; slideLabel: string
 }) {
+  const n = slides.length
+  // Three copies of the slides: we always settle in the middle copy, so swiping and autoplay loop forever.
+  const loop = [...slides, ...slides, ...slides]
   const track = useRef<HTMLDivElement>(null)
   const items = useRef<(HTMLDivElement | null)[]>([])
   const phones = useRef<(HTMLDivElement | null)[]>([])
+  const current = useRef(n)
+  const pausedUntil = useRef(0)
   const [active, setActive] = useState(0)
+
+  const centerOf = (k: number) => {
+    const root = track.current
+    const el = items.current[k]
+    return root && el ? el.offsetLeft - (root.clientWidth - el.offsetWidth) / 2 : 0
+  }
 
   // Scale, fade and lower each phone by its distance from the centre, so slides follow the finger smoothly.
   const paint = useCallback(() => {
@@ -45,58 +56,93 @@ export function PillarCarousel({ slides, prevLabel, nextLabel, slideLabel }: {
       phone.style.transform = `translateY(${d * 14}px) scale(${1 - d * 0.14})`
       phone.style.opacity = String(1 - d * 0.45)
     })
-    setActive(best)
-  }, [])
+    current.current = best
+    setActive(best % n)
+  }, [n])
 
   useEffect(() => {
     const root = track.current
     if (!root) return
+    root.scrollLeft = centerOf(n)
     let frame = 0
+    let settle = 0
     const onScroll = () => {
       cancelAnimationFrame(frame)
       frame = requestAnimationFrame(paint)
+      clearTimeout(settle)
+      // Once the scroll has stopped in an outer copy, jump silently to the same slide in the middle copy.
+      settle = window.setTimeout(() => {
+        const k = current.current
+        if (k < n || k >= 2 * n) {
+          const target = k < n ? k + n : k - n
+          root.scrollLeft += centerOf(target) - centerOf(k)
+          paint()
+        }
+      }, 140)
     }
     paint()
     root.addEventListener("scroll", onScroll, { passive: true })
     window.addEventListener("resize", onScroll)
     return () => {
       cancelAnimationFrame(frame)
+      clearTimeout(settle)
       root.removeEventListener("scroll", onScroll)
       window.removeEventListener("resize", onScroll)
     }
-  }, [paint])
+  }, [paint, n])
 
-  const go = (i: number) => {
-    const n = (i + slides.length) % slides.length
+  const smooth = () => !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  const scrollToIndex = (k: number) => {
     const root = track.current
-    const el = items.current[n]
-    if (!root || !el) return
-    const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    root.scrollTo({ left: el.offsetLeft - (root.clientWidth - el.offsetWidth) / 2, behavior: smooth ? "smooth" : "auto" })
+    if (!root) return
+    root.scrollTo({ left: centerOf(k), behavior: smooth() ? "smooth" : "auto" })
   }
+  const step = (delta: number) => scrollToIndex(current.current + delta)
+  const goTo = (i: number) => scrollToIndex(current.current - (current.current % n) + i)
+  const hold = () => { pausedUntil.current = Date.now() + 6000 }
+
+  // Autoplay: move to the next phone every 3.5 s, forever. Pauses while touched, off screen,
+  // in a background tab, or when the visitor prefers reduced motion.
+  useEffect(() => {
+    const root = track.current
+    if (!root || !smooth()) return
+    let visible = false
+    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting }, { threshold: 0.4 })
+    io.observe(root)
+    const id = window.setInterval(() => {
+      if (!visible || document.hidden || Date.now() < pausedUntil.current) return
+      scrollToIndex(current.current + 1)
+    }, 3500)
+    return () => { clearInterval(id); io.disconnect() }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className="relative -mx-4" role="region" aria-roledescription="carousel" aria-label={slideLabel}>
       <div
         ref={track}
         dir="ltr"
+        onPointerDown={hold}
+        onTouchStart={hold}
+        onWheel={hold}
         className="relative flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain px-[19vw] pb-5 pt-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
-        {slides.map((s, i) => {
+        {loop.map((s, k) => {
+          const i = k % n
           const Icon = icons[i]
           const teal = s.tone === "teal"
           return (
             <div
-              key={i}
-              ref={(el) => { items.current[i] = el }}
+              key={k}
+              ref={(el) => { items.current[k] = el }}
               data-index={i}
               role="group"
               aria-roledescription="slide"
-              aria-label={`${i + 1} / ${slides.length}`}
-              aria-hidden={i !== active}
+              aria-label={`${i + 1} / ${n}`}
+              aria-hidden={k !== current.current}
               className="w-[62vw] max-w-[270px] shrink-0 snap-center snap-always px-1"
             >
-              <div ref={(el) => { phones.current[i] = el }} className="origin-center will-change-transform">
+              <div ref={(el) => { phones.current[k] = el }} className="origin-center will-change-transform">
                 {/* phone frame */}
                 <div className="relative overflow-hidden rounded-[2.1rem] border-[6px] border-[#1d2430] bg-white shadow-[0_16px_34px_-16px_rgba(11,31,51,0.55)]">
                   <span aria-hidden className="absolute left-1/2 top-1.5 z-10 h-4 w-[30%] -translate-x-1/2 rounded-full bg-[#1d2430]" />
@@ -148,18 +194,18 @@ export function PillarCarousel({ slides, prevLabel, nextLabel, slideLabel }: {
         })}
       </div>
 
-      <button type="button" onClick={() => go(active - 1)} aria-label={prevLabel}
+      <button type="button" onClick={() => { hold(); step(-1) }} aria-label={prevLabel}
         className="absolute left-2 top-[42%] flex h-10 w-10 items-center justify-center rounded-full bg-white/95 text-brand-teal shadow-md ring-1 ring-brand-border transition active:scale-90">
         <ChevronLeft className="h-5 w-5" />
       </button>
-      <button type="button" onClick={() => go(active + 1)} aria-label={nextLabel}
+      <button type="button" onClick={() => { hold(); step(1) }} aria-label={nextLabel}
         className="absolute right-2 top-[42%] flex h-10 w-10 items-center justify-center rounded-full bg-white/95 text-brand-teal shadow-md ring-1 ring-brand-border transition active:scale-90">
         <ChevronRight className="h-5 w-5" />
       </button>
 
       <div className="flex justify-center gap-1" dir="ltr">
         {slides.map((s, i) => (
-          <button key={i} type="button" onClick={() => go(i)} aria-label={s.title} aria-current={i === active}
+          <button key={i} type="button" onClick={() => { hold(); goTo(i) }} aria-label={s.title} aria-current={i === active}
             className="flex h-6 w-6 items-center justify-center">
             <span className={cn("block h-2 rounded-full transition-all duration-300", i === active ? "w-6 bg-brand-orange" : "w-2 bg-brand-teal/25")} />
           </button>
